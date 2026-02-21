@@ -217,8 +217,8 @@ def main():
         if logo_padrao:
             st.image(logo_padrao, width='stretch')
         st.markdown("### ⚙️ Emissor do Documento")
-        nome_emissor = st.text_input("Nome", value="Rauf Alencar")
-        cargo_emissor = st.text_input("Cargo", value="Gestor Comercial / Administrativo")
+        nome_emissor = st.text_input("Nome", value="")
+        cargo_emissor = st.text_input("Cargo", value="")
         st.markdown("---")
         usar_marca_dagua = st.checkbox("Incluir Marca D'água no Fundo", value=True)
 
