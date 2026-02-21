@@ -168,10 +168,10 @@ def main():
             st.title("LSX Config")
             
         st.markdown("### 👤 Dados do Emissor")
-        nome_vendedor = st.text_input("Nome", value="Rauf Alencar")
-        cargo_vendedor = st.text_input("Cargo", value="Gestor Comercial")
-        telefone_vendedor = st.text_input("Telefone", value="(41) 99550-0770")
-        email_vendedor = st.text_input("E-mail", value="contato@lsxmedical.com")
+        nome_vendedor = st.text_input("Nome", value="")
+        cargo_vendedor = st.text_input("Cargo", value="")
+        telefone_vendedor = st.text_input("Telefone", value="")
+        email_vendedor = st.text_input("E-mail", value="@lsxmedical.com")
         
         st.markdown("---")
         st.markdown("### ⚙️ Configurações Visuais")
