@@ -276,6 +276,7 @@ def main():
         st.checkbox("App e Dashboard White Label", value=True, disabled=True)
     with c_scope2:
         st.markdown("**Diferenciais B2B:**")
+        inc_clube = st.checkbox("Clube de Benefícios (Descontos em medicamentos, etc)", value=True)
         inc_televet = st.checkbox("Televeterinária (Pet)", value=False)
         inc_entrevista = st.checkbox("Projeto de Entrevista Qualificada", value=False)
         inc_nr1 = st.checkbox("Programa de Regulamentação NR-1", value=False)
@@ -313,7 +314,7 @@ def main():
 
                 # --- JORNADA E GATILHOS DE GRATUIDADE ---
                 pdf.chapter_title("2. TECNOLOGIA E IMPLANTAÇÃO (BÔNUS 100% INCLUSO)")
-                pdf.body_text("Para viabilizar uma parceria de longo prazo e garantir tração rápida, a LSX Medical subsidia integralmente o custo de tecnologia. Você terá ISENÇÃO TOTAL de Taxa de Setup. O pacote inclui:")
+                pdf.body_text("Para viabilizar uma parceria de longo prazo e garantir tração rápida, a LSX Medical subsidia integralmente os custos de tecnologia e implantação. O pacote inclui:")
                 pdf.bullet_point(f"Desenvolvimento White Label: Aplicativo e Plataforma completa com a identidade, nome e cores da {nome_fantasia_cliente}.")
                 pdf.bullet_point("Helpdesk e Treinamento: Corpo clínico e atendimento atuando como extensão oficial da sua equipe sem custo extra.")
                 pdf.bullet_point(f"Documentos Oficiais: Atestados, receituários ICP-Brasil e exames emitidos com a marca {nome_fantasia_cliente}.")
@@ -323,12 +324,20 @@ def main():
                 if pdf.get_y() > 190: pdf.add_page()
                 
                 pdf.chapter_title("3. ESCOPO MÉDICO E ASSISTENCIAL")
+                
                 pdf.sub_title("Pronto Atendimento 24h / 7 Dias")
                 pdf.body_text("Acesso imediato e ilimitado para triagem, diagnóstico e prescrição. Corpo clínico composto por:")
                 pdf.bullet_point("Clínico Geral")
                 pdf.bullet_point("Pediatra")
                 pdf.bullet_point("Médico da Família")
 
+                pdf.ln(2)
+                pdf.sub_title("Política de Especialidades")
+                pdf.body_text("Para garantir eficiência e controle de custos, adotamos a seguinte política de especialidades focada no encaminhamento inteligente:")
+                pdf.bullet_point("Quando houver encaminhamento médico realizado pelo corpo clínico da LSX Medical e o atendimento ocorrer dentro da nossa rede própria, não haverá custo adicional para o beneficiário.")
+                pdf.bullet_point("Caso o beneficiário solicite diretamente um atendimento especializado sem o encaminhamento do Clínico Geral/Médico da Família, poderão ser aplicadas as regras e tabelas comerciais vigentes para especialidades avulsas.")
+
+                pdf.ln(2)
                 # SAÚDE MENTAL DINÂMICA
                 pdf.sub_title(copy_intro["titulo_mental"])
                 for paragrafo in copy_intro["texto_mental"].split("\n\n"):
@@ -336,6 +345,7 @@ def main():
 
                 # --- DIFERENCIAIS ---
                 diferenciais = []
+                if inc_clube: diferenciais.append("Clube de Benefícios completo integrado à solução.")
                 if inc_televet: diferenciais.append("Televeterinária (cuidado ampliado para o bem-estar de toda a família).")
                 if inc_entrevista: diferenciais.append("Projeto de Entrevista Qualificada (inteligência de dados da base).")
                 if inc_nr1: diferenciais.append("Programa de Regulamentação NR-1 (oportunidade de escala B2B).")
@@ -426,11 +436,13 @@ def main():
                     pdf.cell(85, 6, f"R$ {preco_faixa:,.2f}", 1, 1, 'C')
                 
                 pdf.ln(8)
-                pdf.sub_title("Diretrizes Comerciais:")
+                pdf.sub_title("Regras de Faturamento e Prazos (SLAs):")
                 pdf.bullet_point(f"Vigência Contratual: {vigencia_contrato} (Período mínimo para sustentação da tabela de preços).")
+                pdf.bullet_point("Prazos de Implantação: Plataforma White Label operante em até 48 horas e Clube de Benefícios em até 20 dias, acompanhados de Reunião de Kick-Off.")
+                pdf.bullet_point("Isenções Comerciais: Isenção total e irrevogável de taxa de setup, taxa de implantação, taxa de personalização White Label e taxa de adesão.")
+                pdf.bullet_point("Faturamento: Apuração por volume de vidas ativas (ou volume mínimo) baseada no ciclo do primeiro ao último dia do mês, com vencimento programado para o dia 10 do mês subsequente.")
                 pdf.bullet_point("Reajuste: Anual com base no índice IPCA.")
-                # FATURAMENTO CORRIGIDO:
-                pdf.bullet_point("Faturamento: Cobrança fixa mensal baseada na quantidade de vidas contratada (faixa atual), com liberdade para escalar.")
+                
                 if obs_comerciais:
                     pdf.bullet_point(f"Observações: {obs_comerciais}")
 
