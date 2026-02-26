@@ -83,7 +83,6 @@ def limpa_texto(texto):
     }
     for char, rep in replacements.items():
         texto = texto.replace(char, rep)
-    # Garante que qualquer coisa fora do latin-1 seja substituída sem travar o PDF
     return texto.encode('latin-1', 'replace').decode('latin-1')
 
 # ==============================================================================
@@ -157,7 +156,6 @@ class ProposalPDF(FPDF):
         self.cell(0, 10, f'Página {self.page_no()}', 0, 0, 'R')
 
     def chapter_title(self, title):
-        # Proteção anti-título órfão no fim da página
         if self.get_y() > 240: 
             self.add_page()
         self.ln(5)
@@ -187,7 +185,6 @@ class ProposalPDF(FPDF):
         self.set_text_color(50, 50, 50)
         self.cell(5) 
         self.set_text_color(*COR_SECUNDARIA)
-        # Substitui a bolinha problemática (•) pelo símbolo >> nativo do latin-1
         self.cell(3, 5, chr(187), 0, 0) 
         self.set_text_color(50, 50, 50)
         self.multi_cell(0, 5, limpa_texto(text), align='J')
@@ -229,7 +226,6 @@ def main():
     st.subheader("1. Dados do Cliente e Inteligência Comercial")
     col1, col2, col3 = st.columns([2, 1, 1])
     
-    # PRÉ-PREENCHIDO COM CARTÃO BRISA
     cliente_empresa = col1.text_input("Razão Social / Empresa", value="Cartão Brisa Saúde")
     cliente_responsavel = col2.text_input("Nome do Responsável", value="Igor Ferreira da Silva")
     segmento_selecionado = col3.selectbox("Segmento de Atuação", list(TEXTOS_SEGMENTOS.keys()))
@@ -257,13 +253,13 @@ def main():
         valores_iniciais = [3.90, 3.90, 3.90, 3.90]
         
         df_rampa = pd.DataFrame({
-            "Período": meses_iniciais, "Qtd. Vidas (Meta)": vidas_iniciais, "Valor por Vida (R$)": valores_iniciais
+            "Período": meses_iniciais, "Vidas Contratadas": vidas_iniciais, "Valor por Vida (R$)": valores_iniciais
         })
         dados_rampa = st.data_editor(df_rampa, num_rows="dynamic", use_container_width=True, hide_index=True)
         dados_rampa = dados_rampa.fillna(0)
         
         try:
-            qtd_vidas = int(dados_rampa["Qtd. Vidas (Meta)"].max())
+            qtd_vidas = int(dados_rampa["Vidas Contratadas"].max())
             valor_unitario = float(dados_rampa["Valor por Vida (R$)"].iloc[-1])
         except:
             qtd_vidas = 10000
@@ -280,7 +276,7 @@ def main():
         total_mensal = qtd_vidas * valor_unitario
         st.markdown(f"""
             <div class="highlight-box">
-                <h3 style="margin:0; color: #001E50;">Faturamento Base Estimado: R$ {total_mensal:,.2f} /mês</h3>
+                <h3 style="margin:0; color: #001E50;">Investimento Base: R$ {total_mensal:,.2f} /mês</h3>
             </div>
         """, unsafe_allow_html=True)
 
@@ -372,7 +368,6 @@ def main():
                 pdf.bullet_point("Pediatria;")
                 pdf.bullet_point("Medicina da Família;")
                 
-                # INSERE O TEXTO DINÂMICO DE SAÚDE MENTAL
                 pdf.ln(1)
                 pdf.bullet_point(f"{copy_intro['titulo_mental']}:")
                 for paragrafo in copy_intro["texto_mental"].split("\n\n"):
@@ -388,7 +383,7 @@ def main():
 
                 # 6. CONDIÇÕES COMERCIAIS E ESCALONAMENTO DE PREÇOS
                 pdf.chapter_title("6. CONDIÇÕES COMERCIAIS E ESCALONAMENTO DE PREÇOS")
-                pdf.body_text("O modelo de precificação será mensal, por vida ativa, conforme o volume embarcado, respeitando o escalonamento mínimo abaixo:")
+                pdf.body_text("O modelo de precificação será mensal, baseado na quantidade de vidas contratada multiplicada pelo valor unitário, respeitando o escalonamento abaixo:")
                 
                 if usar_rampa and dados_rampa is not None:
                     pdf.ln(2)
@@ -396,9 +391,9 @@ def main():
                     pdf.set_fill_color(*COR_PRIMARIA)
                     pdf.set_text_color(255, 255, 255)
                     pdf.cell(45, 8, 'Fase / Período', 1, 0, 'C', fill=True)
-                    pdf.cell(45, 8, 'Vidas Ativas (Meta)', 1, 0, 'C', fill=True)
+                    pdf.cell(45, 8, 'Vidas Contratadas', 1, 0, 'C', fill=True)
                     pdf.cell(45, 8, 'Valor Unitário', 1, 0, 'C', fill=True)
-                    pdf.cell(45, 8, 'Faturamento Mensal', 1, 1, 'C', fill=True)
+                    pdf.cell(45, 8, 'Investimento Mensal', 1, 1, 'C', fill=True)
 
                     pdf.set_font('Arial', '', 9)
                     pdf.set_text_color(50, 50, 50)
@@ -406,7 +401,7 @@ def main():
                     for index, row in dados_rampa.iterrows():
                         mes = str(row['Período'])
                         try:
-                            vidas = int(row['Qtd. Vidas (Meta)'])
+                            vidas = int(row['Vidas Contratadas'])
                             valor = float(row['Valor por Vida (R$)'])
                         except:
                             vidas, valor = 0, 0.0
@@ -447,7 +442,8 @@ def main():
                 # 7. MODELO DE COBRANÇA
                 pdf.chapter_title("7. MODELO DE COBRANÇA")
                 pdf.bullet_point("Periodicidade: mensal;")
-                pdf.bullet_point("Base de cálculo: número de vidas ativas no período ou volume mínimo estipulado;")
+                # REGRA ALTERADA CONFORME SOLICITADO
+                pdf.bullet_point("Base de cálculo: volume mínimo estipulado multiplicado pelo valor unitário por vida;")
                 pdf.bullet_point("Forma de pagamento: conforme definido no contrato principal;")
                 pdf.bullet_point("Não haverá cobrança de taxa de setup, implantação ou adesão;")
                 pdf.bullet_point("A apuração será realizada do primeiro ao último dia de cada mês;")
