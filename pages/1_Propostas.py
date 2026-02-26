@@ -73,15 +73,21 @@ st.markdown(f"""
     </style>
 """, unsafe_allow_html=True)
 
+# FUNÇÃO DE LIMPEZA BLINDADA (Anti-Crash)
 def limpa_texto(texto):
     if not texto: return ""
-    replacements = {"•": "-", "–": "-", "—": "-", "“": '"', "”": '"', "\u2022": "-", "\u2028": "\n"}
+    texto = str(texto)
+    replacements = {
+        "•": "-", "–": "-", "—": "-", "“": '"', "”": '"', "‘": "'", "’": "'", 
+        "\u2022": "-", "\u2028": "\n"
+    }
     for char, rep in replacements.items():
-        texto = str(texto).replace(char, rep)
+        texto = texto.replace(char, rep)
+    # Garante que qualquer coisa fora do latin-1 seja substituída sem travar o PDF
     return texto.encode('latin-1', 'replace').decode('latin-1')
 
 # ==============================================================================
-# 2. MOTOR DE PRECIFICAÇÃO DINÂMICA (Fallback)
+# 2. MOTOR DE PRECIFICAÇÃO DINÂMICA
 # ==============================================================================
 def calcular_preco_sugerido(vidas):
     if vidas <= 0: return 0.00
@@ -151,6 +157,9 @@ class ProposalPDF(FPDF):
         self.cell(0, 10, f'Página {self.page_no()}', 0, 0, 'R')
 
     def chapter_title(self, title):
+        # Proteção anti-título órfão no fim da página
+        if self.get_y() > 240: 
+            self.add_page()
         self.ln(5)
         self.set_font('Arial', 'B', 11)
         self.set_text_color(*COR_PRIMARIA)
@@ -160,6 +169,8 @@ class ProposalPDF(FPDF):
         self.ln(3)
 
     def sub_title(self, title):
+        if self.get_y() > 250: 
+            self.add_page()
         self.set_font('Arial', 'B', 10)
         self.set_text_color(*COR_PRIMARIA)
         self.cell(0, 6, limpa_texto(title), 0, 1, 'L')
@@ -176,7 +187,8 @@ class ProposalPDF(FPDF):
         self.set_text_color(50, 50, 50)
         self.cell(5) 
         self.set_text_color(*COR_SECUNDARIA)
-        self.cell(3, 5, "•", 0, 0) 
+        # Substitui a bolinha problemática (•) pelo símbolo >> nativo do latin-1
+        self.cell(3, 5, chr(187), 0, 0) 
         self.set_text_color(50, 50, 50)
         self.multi_cell(0, 5, limpa_texto(text), align='J')
         self.ln(1)
@@ -217,7 +229,7 @@ def main():
     st.subheader("1. Dados do Cliente e Inteligência Comercial")
     col1, col2, col3 = st.columns([2, 1, 1])
     
-    # PRÉ-PREENCHIDO
+    # PRÉ-PREENCHIDO COM CARTÃO BRISA
     cliente_empresa = col1.text_input("Razão Social / Empresa", value="Cartão Brisa Saúde")
     cliente_responsavel = col2.text_input("Nome do Responsável", value="Igor Ferreira da Silva")
     segmento_selecionado = col3.selectbox("Segmento de Atuação", list(TEXTOS_SEGMENTOS.keys()))
@@ -230,7 +242,6 @@ def main():
     col_vig, col_acesso, col_pag = st.columns([1, 1, 1])
     vigencia_contrato = col_vig.radio("Vigência do Contrato", ["12 Meses", "24 Meses"], index=1)
     
-    # NOVOS CAMPOS DE DATAS DINÂMICAS
     data_acesso = col_acesso.text_input("Data Disponibilização do Acesso", value="05/02/2026")
     data_pagamento = col_pag.text_input("Data 1º Pagamento / Kick-Off", value="03/03/2026")
     
@@ -239,7 +250,7 @@ def main():
     dados_rampa = None 
     
     if usar_rampa:
-        st.info("Preencha a rampa. A política de escalonamento será gerada baseada nessas linhas (fases iniciais).")
+        st.info("Preencha a rampa. A política de escalonamento será gerada baseada nessas linhas.")
         
         meses_iniciais = ["Março Vencimento: 05/03", "Abril Vencimento: 05/04", "Maio Vencimento: 05/05", "Junho Vencimento: 05/06"] 
         vidas_iniciais = [1000, 3000, 5000, 10000]
@@ -269,7 +280,7 @@ def main():
         total_mensal = qtd_vidas * valor_unitario
         st.markdown(f"""
             <div class="highlight-box">
-                <h3 style="margin:0; color: #001E50;">Faturamento Base: R$ {total_mensal:,.2f} /mês</h3>
+                <h3 style="margin:0; color: #001E50;">Faturamento Base Estimado: R$ {total_mensal:,.2f} /mês</h3>
             </div>
         """, unsafe_allow_html=True)
 
@@ -333,7 +344,6 @@ def main():
                 pdf.bullet_point("Operação, suporte técnico e helpdesk sob gestão da LSX Medical.")
 
                 # 3. ESCOPO DOS SERVIÇOS INCLUSOS
-                if pdf.get_y() > 220: pdf.add_page()
                 pdf.chapter_title("3. ESCOPO DOS SERVIÇOS INCLUSOS")
                 pdf.body_text("Estão inclusos na solução contratada:")
                 pdf.bullet_point("Agendamento digital de consultas (opcional);")
@@ -352,7 +362,6 @@ def main():
                 if inc_cabine: pdf.bullet_point("Cabine Física de Telemedicina;")
 
                 # 4. MODELO ASSISTENCIAL
-                if pdf.get_y() > 220: pdf.add_page()
                 pdf.chapter_title("4. MODELO ASSISTENCIAL")
                 
                 pdf.sub_title("4.1 Pronto Atendimento 24x7")
@@ -373,13 +382,11 @@ def main():
                     pdf.multi_cell(0, 5, limpa_texto(paragrafo), align='J')
 
                 # 5. POLÍTICA DE ESPECIALIDADES
-                if pdf.get_y() > 220: pdf.add_page()
                 pdf.chapter_title("5. POLÍTICA DE ESPECIALIDADES")
                 pdf.bullet_point("Quando houver encaminhamento médico realizado pelo corpo clínico da LSX Medical e o atendimento ocorrer dentro da rede própria da LSX Medical, não haverá custo adicional;")
                 pdf.bullet_point("Caso o beneficiário solicite diretamente atendimento especializado sem encaminhamento médico, poderão ser aplicadas as regras comerciais vigentes para especialidades, conforme tabela da LSX Medical.")
 
                 # 6. CONDIÇÕES COMERCIAIS E ESCALONAMENTO DE PREÇOS
-                pdf.add_page()
                 pdf.chapter_title("6. CONDIÇÕES COMERCIAIS E ESCALONAMENTO DE PREÇOS")
                 pdf.body_text("O modelo de precificação será mensal, por vida ativa, conforme o volume embarcado, respeitando o escalonamento mínimo abaixo:")
                 
@@ -438,7 +445,6 @@ def main():
                 pdf.body_text("O escalonamento ocorrerá de forma automática conforme o crescimento do número de vidas, sem necessidade de renegociação contratual, desde que respeitados os volumes mínimos estabelecidos neste acordo.")
 
                 # 7. MODELO DE COBRANÇA
-                if pdf.get_y() > 220: pdf.add_page()
                 pdf.chapter_title("7. MODELO DE COBRANÇA")
                 pdf.bullet_point("Periodicidade: mensal;")
                 pdf.bullet_point("Base de cálculo: número de vidas ativas no período ou volume mínimo estipulado;")
@@ -448,7 +454,6 @@ def main():
                 pdf.bullet_point("Os pagamentos serão realizados até o dia 10 do mês subsequente.")
 
                 # 8. IMPLANTAÇÃO E PRAZOS
-                if pdf.get_y() > 220: pdf.add_page()
                 pdf.chapter_title("8. IMPLANTAÇÃO E PRAZOS")
                 pdf.bullet_point("Prazo de implantação da clínica digital White Label: até 48 horas;")
                 pdf.bullet_point("Prazo de implantação e configuração do Clube de Benefícios: até 20 dias;")
@@ -459,7 +464,6 @@ def main():
                 pdf.body_text(f"Obs.: Será realizada reunião de Kick Off para apresentação da equipe e entrega das plataformas após a assinatura do contrato. O primeiro pagamento e o início das operações estão programados para {data_pagamento}.")
 
                 # 9. ISENÇÕES E CONDIÇÕES ESPECIAIS
-                if pdf.get_y() > 220: pdf.add_page()
                 pdf.chapter_title("9. ISENÇÕES E CONDIÇÕES ESPECIAIS")
                 pdf.body_text("Estão expressamente isentas de cobrança:")
                 pdf.bullet_point("Taxa de setup;")
@@ -468,7 +472,6 @@ def main():
                 pdf.bullet_point("Taxa de adesão.")
 
                 # 10. SEGURANÇA DA INFORMAÇÃO E CONFORMIDADE
-                if pdf.get_y() > 220: pdf.add_page()
                 pdf.chapter_title("10. SEGURANÇA DA INFORMAÇÃO E CONFORMIDADE")
                 pdf.body_text("A LSX Medical assegura:")
                 pdf.bullet_point("Conformidade com a LGPD, HIPAA e demais normas aplicáveis;")
@@ -477,7 +480,6 @@ def main():
                 pdf.bullet_point("Integridade e rastreabilidade das informações clínicas.")
 
                 # 11. VIGÊNCIA DAS CONDIÇÕES
-                if pdf.get_y() > 220: pdf.add_page()
                 pdf.chapter_title("11. VIGÊNCIA DAS CONDIÇÕES")
                 pdf.body_text("As condições comerciais e operacionais descritas neste Anexo:")
                 pdf.bullet_point(f"Permanecerão válidas durante a vigência do contrato ({vigencia_contrato});")
@@ -485,7 +487,7 @@ def main():
                 pdf.bullet_point("Não caracterizam desconto pontual, mas sim um modelo de parceria estratégica baseado em escala e previsibilidade.")
 
                 # --- ASSINATURA ---
-                if pdf.get_y() > 220:
+                if pdf.get_y() > 240:
                     pdf.add_page()
                 else:
                     pdf.ln(15) 
