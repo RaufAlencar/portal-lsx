@@ -37,7 +37,6 @@ st.markdown(f"""
     </style>
 """, unsafe_allow_html=True)
 
-# Limpeza de caracteres não suportados pelo FPDF
 def limpa_texto(texto):
     if not texto: return ""
     replacements = {"•": "-", "–": "-", "—": "-", "“": '"', "”": '"', "\u2022": "-", "\u2028": "\n"}
@@ -71,6 +70,8 @@ class ProposalPDF(FPDF):
     def __init__(self, logo_path=None):
         super().__init__()
         self.logo_path = logo_path
+        # AJUSTE 1: Configura uma margem de quebra de página automática bem antes do rodapé
+        self.set_auto_page_break(auto=True, margin=35) 
 
     def header(self):
         self.set_fill_color(255, 255, 255)
@@ -178,50 +179,34 @@ def main():
     st.title("Gerador de Propostas Enterprise - LSX Medical")
     st.markdown("Plataforma White Label B2B - Configuração de Contratos Avançados")
 
-    # SEÇÃO 1: CLIENTE
     st.subheader("1. Dados do Cliente (Contratante)")
     col1, col2 = st.columns(2)
     cliente_empresa = col1.text_input("Razão Social / Empresa", placeholder="Ex: Grupo UMUPREV")
     cliente_responsavel = col2.text_input("Nome do Responsável", placeholder="Ex: João Silva")
-    
     nome_fantasia_cliente = cliente_empresa if cliente_empresa else "Sua Empresa"
 
     st.markdown("---")
     
-    # SEÇÃO 2: PRECIFICAÇÃO (SIMPLES OU RAMPA)
     st.subheader("2. Dimensionamento e Precificação")
-    
     usar_rampa = st.checkbox("📈 Habilitar Rampa de Lançamento (Contrato com Escalonamento Mensal)")
-    
-    dados_rampa = None # Variável para armazenar a tabela se existir
+    dados_rampa = None 
     
     if usar_rampa:
         st.info("Preencha a tabela abaixo com a projeção mês a mês. O PDF gerará um cronograma financeiro completo.")
-        
-        # Cria uma tabela padrão de 12 meses
         meses_iniciais = [f"Mês {i}" for i in range(1, 13)]
         vidas_iniciais = [1000] * 12
         valores_iniciais = [5.90] * 12
-        
         df_rampa = pd.DataFrame({
-            "Período": meses_iniciais,
-            "Qtd. Vidas": vidas_iniciais,
-            "Valor por Vida (R$)": valores_iniciais
+            "Período": meses_iniciais, "Qtd. Vidas": vidas_iniciais, "Valor por Vida (R$)": valores_iniciais
         })
-        
-        # Tabela editável (estilo excel)
         dados_rampa = st.data_editor(df_rampa, num_rows="dynamic", use_container_width=True, hide_index=True)
-        
-        # Puxa os dados da rampa para variáveis de fallback
         qtd_vidas = dados_rampa["Qtd. Vidas"].max()
         valor_unitario = dados_rampa["Valor por Vida (R$)"].iloc[-1]
-        
     else:
         col_vidas, col_preco = st.columns([1, 1])
         qtd_vidas = col_vidas.number_input("Quantidade de Vidas Fixas", min_value=1, value=1000, step=100)
         preco_calculado = calcular_preco_sugerido(qtd_vidas)
         valor_unitario = col_preco.number_input("Valor Mensal por Vida (R$)", value=float(preco_calculado), format="%.2f", step=0.10)
-        
         total_mensal = qtd_vidas * valor_unitario
         st.markdown(f"""
             <div class="highlight-box">
@@ -231,12 +216,8 @@ def main():
         """, unsafe_allow_html=True)
 
     st.markdown("---")
-    
-    # SEÇÃO 3: ESCOPO AVANÇADO
     st.subheader("3. Configuração de Escopo e Diferenciais Estratégicos")
-    
     c_scope1, c_scope2 = st.columns(2)
-    
     with c_scope1:
         st.markdown("**Core Clínico (Incluso):**")
         st.checkbox("Clínico Geral 24/7", value=True, disabled=True)
@@ -244,7 +225,6 @@ def main():
         st.checkbox("Psicologia Orientativa (09h às 18h)", value=True)
         st.checkbox("Programa de Apoio ao Luto / Acolhimento", value=True)
         st.checkbox("App e Dashboard White Label", value=True, disabled=True)
-    
     with c_scope2:
         st.markdown("**Diferenciais B2B:**")
         inc_televet = st.checkbox("Televeterinária (Pet)", value=False)
@@ -255,11 +235,9 @@ def main():
     
     obs_comerciais = st.text_area("Observações Comerciais (Ex: Carência, Setup de Implantação)", height=80)
 
-    # BOTÃO GERADOR
     st.markdown("---")
     submit_btn = st.button("GERAR PROPOSTA ENTERPRISE (PDF) 🚀")
 
-    # --- PROCESSAMENTO DO PDF ---
     if submit_btn:
         if not cliente_empresa:
             st.error("⚠️ Por favor, preencha o nome da Empresa Cliente.")
@@ -275,22 +253,14 @@ def main():
                 pdf.set_font('Arial', '', 11)
                 if cliente_responsavel: pdf.cell(0, 6, limpa_texto(f"Aos cuidados de: {cliente_responsavel}"), 0, 1)
                 pdf.cell(0, 6, f"Data da Emissão: {datetime.now().strftime('%d/%m/%Y')}", 0, 1)
-                
                 pdf.ln(8)
                 
-                # --- INTRODUÇÃO ENTERPRISE ---
+                # --- INTRODUÇÃO ---
                 pdf.chapter_title(f"1. A CLÍNICA DIGITAL {nome_fantasia_cliente.upper()}")
-                pdf.body_text(
-                    f"A LSX Medical propõe transformar sua base de confiança em um cuidado contínuo de alto valor agregado. "
-                    f"Nosso objetivo é estruturar e operar uma Clínica Digital de telemedicina totalmente personalizada, "
-                    f"exclusiva e integralmente sob a marca {nome_fantasia_cliente}."
-                )
-                pdf.body_text(
-                    "Não se trata de uma plataforma genérica de mercado. Esta é uma operação desenhada para a realidade, "
-                    f"estratégia de negócios e posicionamento institucional da {nome_fantasia_cliente}."
-                )
+                pdf.body_text(f"A LSX Medical propõe transformar sua base de confiança em um cuidado contínuo de alto valor agregado. Nosso objetivo é estruturar e operar uma Clínica Digital de telemedicina totalmente personalizada, exclusiva e integralmente sob a marca {nome_fantasia_cliente}.")
+                pdf.body_text("Não se trata de uma plataforma genérica de mercado. Esta é uma operação desenhada para a realidade, estratégia de negócios e posicionamento institucional.")
 
-                # --- JORNADA PERSONALIZADA ---
+                # --- JORNADA ---
                 pdf.chapter_title("2. JORNADA 100% PERSONALIZADA (WHITE LABEL)")
                 pdf.bullet_point(f"Plataforma completa com identidade visual, nome e posicionamento da {nome_fantasia_cliente}.")
                 pdf.bullet_point("Helpdesk e corpo clínico treinado, atuando como extensão oficial da sua equipe.")
@@ -298,8 +268,10 @@ def main():
                 pdf.bullet_point("Dashboard exclusivo corporativo com dados reais de uso, engajamento e performance da base.")
 
                 # --- ESCOPO CORE ---
-                pdf.chapter_title("3. ESCOPO MÉDICO E ASSISTENCIAL")
+                # AJUSTE 2: Forçar quebra se não houver espaço para o escopo
+                if pdf.get_y() > 190: pdf.add_page()
                 
+                pdf.chapter_title("3. ESCOPO MÉDICO E ASSISTENCIAL")
                 pdf.sub_title("Pronto Atendimento 24h / 7 Dias")
                 pdf.body_text("Acesso imediato e ilimitado para triagem, diagnóstico e prescrição. Corpo clínico composto por:")
                 pdf.bullet_point("Clínico Geral")
@@ -310,7 +282,7 @@ def main():
                 pdf.body_text("Atendimento de Psicologia Orientativa (das 09h às 18h). Como pilar central do projeto, estruturamos o programa de Apoio ao Luto e Acolhimento Familiar.")
                 pdf.body_text("Sabemos que a dor não termina no momento da despedida — muitas vezes ela se intensifica nos dias seguintes. Oferecemos escuta qualificada e direcionamento emocional para as famílias num momento extremamente sensível, fortalecendo laços e gerando valor social à marca.")
 
-                # --- DIFERENCIAIS ESTRATÉGICOS ---
+                # --- DIFERENCIAIS ---
                 diferenciais = []
                 if inc_televet: diferenciais.append("Televeterinária (cuidado ampliado para o bem-estar de toda a família).")
                 if inc_entrevista: diferenciais.append("Projeto de Entrevista Qualificada (inteligência de dados da base).")
@@ -319,20 +291,20 @@ def main():
                 if inc_cabine: diferenciais.append("Fornecimento de Cabine Física de Telemedicina para alocação presencial.")
 
                 if diferenciais:
+                    if pdf.get_y() > 220: pdf.add_page()
                     pdf.ln(3)
                     pdf.sub_title("Diferenciais Estratégicos Agregados")
                     for d in diferenciais:
                         pdf.bullet_point(d)
 
-                # --- INVESTIMENTO E RAMPA ---
-                pdf.add_page()
+                # --- INVESTIMENTO ---
+                pdf.add_page() # Rampa de investimento sempre em página nova
                 pdf.chapter_title("4. MODELO DE INVESTIMENTO")
                 
                 if usar_rampa and dados_rampa is not None:
                     pdf.body_text("Projeção de implantação com Rampa de Lançamento (Crescimento Escalonado):")
                     pdf.ln(3)
                     
-                    # Desenha Cabeçalho da Tabela
                     pdf.set_font('Arial', 'B', 10)
                     pdf.set_fill_color(*COR_PRIMARIA)
                     pdf.set_text_color(255, 255, 255)
@@ -341,7 +313,6 @@ def main():
                     pdf.cell(50, 8, 'Valor Unitário', 1, 0, 'C', fill=True)
                     pdf.cell(50, 8, 'Faturamento Estimado', 1, 1, 'C', fill=True)
 
-                    # Desenha as Linhas da Tabela
                     pdf.set_font('Arial', '', 10)
                     pdf.set_text_color(50, 50, 50)
                     total_ano = 0
@@ -362,9 +333,7 @@ def main():
                     pdf.set_font('Arial', 'B', 11)
                     pdf.set_text_color(*COR_SECUNDARIA)
                     pdf.cell(0, 8, f"Expectativa de Faturamento Acumulado no Período: R$ {total_ano:,.2f}", 0, 1, 'R')
-
                 else:
-                    # Modelo Padrão (Sem Rampa)
                     pdf.set_fill_color(*COR_CINZA_CLARO)
                     pdf.rect(10, pdf.get_y(), 190, 40, 'F')
                     pdf.set_y(pdf.get_y() + 5)
@@ -394,8 +363,13 @@ def main():
                 if obs_comerciais:
                     pdf.bullet_point(f"Observações: {obs_comerciais}")
 
-                # --- SEGURANCA LEGAL ---
-                pdf.ln(5)
+                # --- COMPLIANCE ---
+                # AJUSTE 3: Garante que o bloco não fique "picotado"
+                if pdf.get_y() > 190: 
+                    pdf.add_page()
+                else:
+                    pdf.ln(5)
+                    
                 pdf.chapter_title("5. COMPROMISSO ÉTICO, SEGURANÇA E LEGALIDADE")
                 texto_compliance = (
                     "O ecossistema LSX Medical é 100% seguro, auditável e estruturado para proteger sua marca e "
@@ -413,11 +387,12 @@ def main():
                 pdf.set_font('Arial', '', 9)
                 pdf.multi_cell(0, 5, limpa_texto(texto_compliance), border=1, align='J', fill=True)
 
-                pdf.ln(15)
-                
-                # --- ASSINATURA AJUSTADA PARA NÃO SOBREPOR RODAPÉ ---
-                # Aumentei o espaçamento da base para garantir que o rodapé e a linha azul não sejam atropelados
-                pdf.set_y(-75) 
+                # --- ASSINATURA ---
+                # AJUSTE 4: Dinâmico em vez de Fixo. Pula de página se não couber.
+                if pdf.get_y() > 220:
+                    pdf.add_page()
+                else:
+                    pdf.ln(20) # Espaço de respiro
                 
                 pdf.set_font('Arial', 'I', 10)
                 pdf.set_text_color(100, 100, 100)
@@ -445,7 +420,6 @@ def main():
                 if contato_str:
                     pdf.cell(0, 5, limpa_texto(contato_str.strip(' |')), 0, 1, 'C')
 
-                # Geração
                 nome_arquivo = f"Proposta_LSX_{cliente_empresa.replace(' ', '_')}.pdf"
                 pdf_bytes = pdf.output(dest='S').encode('latin-1', 'replace') 
                 
