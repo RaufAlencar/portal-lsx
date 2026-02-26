@@ -21,27 +21,36 @@ REGISTRO_CRM_PJ = "CRM-PR PJ 24.806"
 # ==============================================================================
 # 1.5. MOTOR DE INTELIGÊNCIA COMERCIAL (SEGMENTOS B2B)
 # ==============================================================================
-# Aqui definimos o discurso de vendas (Copy) focado na dor de cada segmento.
 TEXTOS_SEGMENTOS = {
     "Geral / Corporativo": {
         "intro1": "A LSX Medical propõe transformar sua base de confiança em um cuidado contínuo de alto valor agregado. Nosso objetivo é estruturar e operar uma Clínica Digital de telemedicina totalmente personalizada, exclusiva e integralmente sob a marca {marca}.",
-        "intro2": "Não se trata de uma plataforma genérica de mercado. Esta é uma operação desenhada para a realidade corporativa, focada em reduzir absenteísmo, otimizar custos de saúde e valorizar a sua marca empregadora perante colaboradores e clientes."
+        "intro2": "Não se trata de uma plataforma genérica de mercado. Esta é uma operação desenhada para a realidade corporativa, focada em reduzir absenteísmo, otimizar custos de saúde e valorizar a sua marca empregadora perante colaboradores e clientes.",
+        "titulo_mental": "Saúde Mental e Suporte Corporativo",
+        "texto_mental": "Atendimento de Psicologia Orientativa (das 09h às 18h). Entendemos que a saúde mental é o maior desafio corporativo atual.\n\nDisponibilizamos suporte psicológico de rápido acesso para gerenciamento de estresse, ansiedade e prevenção de burnout, promovendo bem-estar e produtividade para os seus beneficiários."
     },
     "Funerárias / Assistência Familiar": {
         "intro1": "No setor de assistência familiar, o cuidado não termina com a despedida. A LSX Medical propõe transformar a {marca} em uma verdadeira provedora de saúde em vida, agregando valor tangível aos seus planos e aumentando a fidelização e retenção da sua carteira.",
-        "intro2": "Desenhamos uma Clínica Digital 100% White Label. O grande diferencial desta proposta é o foco em Saúde Mental e Apoio ao Luto, oferecendo suporte contínuo para a família no momento em que ela mais precisa, consolidando a sua marca como um pilar de acolhimento."
+        "intro2": "Desenhamos uma Clínica Digital 100% White Label. O grande diferencial desta proposta é o foco em Saúde Mental e Apoio ao Luto, oferecendo suporte contínuo para a família no momento em que ela mais precisa, consolidando a sua marca como um pilar de acolhimento.",
+        "titulo_mental": "Saúde Mental e Apoio ao Luto",
+        "texto_mental": "Atendimento de Psicologia Orientativa (das 09h às 18h). Como pilar central do projeto, estruturamos o programa de Apoio ao Luto e Acolhimento Familiar.\n\nSabemos que a dor não termina no momento da despedida — muitas vezes ela se intensifica nos dias seguintes. Oferecemos escuta qualificada e direcionamento emocional num momento extremamente sensível, fortalecendo laços e gerando valor social à marca."
     },
     "Cartões de Benefícios / Saúde": {
         "intro1": "Para aumentar o LTV (Life Time Value) e a atratividade do seu cartão, a LSX Medical oferece a infraestrutura completa para você operar a sua própria Clínica Digital de Telemedicina, fortalecendo o ecossistema da {marca}.",
-        "intro2": "Entregue um benefício de uso imediato e alta percepção de valor. Uma solução 100% customizável, pronta para escalar suas vendas e gerar novas linhas de receita, sem a necessidade de investir em desenvolvimento tecnológico ou corpo clínico próprio."
+        "intro2": "Entregue um benefício de uso imediato e alta percepção de valor. Uma solução 100% customizável, pronta para escalar suas vendas e gerar novas linhas de receita, sem a necessidade de investir em desenvolvimento tecnológico ou corpo clínico próprio.",
+        "titulo_mental": "Saúde Mental de Acesso Rápido",
+        "texto_mental": "Atendimento de Psicologia Orientativa (das 09h às 18h). Agregue alto valor percebido ao seu cartão entregando cuidado emocional.\n\nNossos profissionais estão disponíveis para triagem e orientação em casos de ansiedade, crises pontuais e conflitos familiares. Um benefício que gera uso recorrente e fideliza o usuário ao seu produto."
     },
     "Hospitais, Clínicas e Planos de Saúde": {
         "intro1": "A LSX Medical atua como o braço tecnológico e de retaguarda médica da {marca}. Nossa solução de Clínica Digital visa otimizar sua operação, desafogar prontos-socorros físicos e expandir sua capilaridade de atendimento.",
-        "intro2": "Com protocolos integrados e fluxos de triagem digital (Pronto Atendimento Virtual), reduzimos custos operacionais e sinistralidade, garantindo a excelência do cuidado primário e o direcionamento inteligente de casos de alta complexidade para a sua rede física."
+        "intro2": "Com protocolos integrados e fluxos de triagem digital (Pronto Atendimento Virtual), reduzimos custos operacionais e sinistralidade, garantindo a excelência do cuidado primário e o direcionamento inteligente de casos de alta complexidade para a sua rede física.",
+        "titulo_mental": "Triagem e Orientação Psicológica",
+        "texto_mental": "Atendimento de Psicologia Orientativa (das 09h às 18h). Atua como um importante filtro para a rede presencial.\n\nRealizamos o acolhimento, escuta qualificada e encaminhamento assertivo. Ideal para pacientes com quadros leves, evitando idas desnecessárias à emergência e oferecendo conforto e comodidade diretamente pelo aplicativo."
     },
     "Varejo e Grandes Redes": {
         "intro1": "O varejo moderno exige inovação na retenção de clientes e na monetização da base. A LSX propõe que a {marca} ofereça saúde de qualidade como um serviço financeiro e de fidelidade (Health as a Service).",
-        "intro2": "Com nossa plataforma White Label, você entrega um benefício percebido como essencial, aumentando o engajamento do cliente com o seu ecossistema, gerando recorrência e abrindo uma nova frente de faturamento altamente rentável."
+        "intro2": "Com nossa plataforma White Label, você entrega um benefício percebido como essencial, aumentando o engajamento do cliente com o seu ecossistema, gerando recorrência e abrindo uma nova frente de faturamento altamente rentável.",
+        "titulo_mental": "Bem-Estar e Psicologia Orientativa",
+        "texto_mental": "Atendimento de Psicologia Orientativa (das 09h às 18h). Diferencie o seu programa de fidelidade entregando acolhimento.\n\nOferecemos acesso rápido a profissionais de saúde mental para orientações gerais. Um serviço moderno que conecta a sua marca diretamente ao cuidado pessoal do seu cliente."
     }
 }
 
@@ -209,7 +218,6 @@ def main():
     col1, col2, col3 = st.columns([2, 1, 1])
     cliente_empresa = col1.text_input("Razão Social / Empresa", placeholder="Ex: Grupo UMUPREV")
     cliente_responsavel = col2.text_input("Nome do Responsável", placeholder="Ex: João Silva")
-    # NOVO: Seletor de Segmento
     segmento_selecionado = col3.selectbox("Segmento de Atuação", list(TEXTOS_SEGMENTOS.keys()))
     
     nome_fantasia_cliente = cliente_empresa if cliente_empresa else "Sua Empresa"
@@ -218,7 +226,6 @@ def main():
     
     st.subheader("2. Dimensionamento e Precificação")
     col_vig, col_rampa = st.columns([1, 2])
-    # NOVO: Vigência Contratual
     vigencia_contrato = col_vig.radio("Vigência do Contrato", ["12 Meses", "24 Meses"], index=1)
     
     usar_rampa = col_rampa.checkbox("📈 Habilitar Cronograma de Implantação (Rampa de Crescimento)")
@@ -226,7 +233,7 @@ def main():
     
     if usar_rampa:
         st.info("Preencha a expectativa de crescimento (Adicione ou remova linhas conforme os meses de implantação). A política de descontos progressivos por volume será gerada automaticamente.")
-        meses_iniciais = [f"Mês {i}" for i in range(1, 4)] # Padrão mais curto para rampa
+        meses_iniciais = [f"Mês {i}" for i in range(1, 4)] 
         vidas_iniciais = [1000, 3000, 5000]
         valores_iniciais = [calcular_preco_sugerido(v) for v in vidas_iniciais]
         
@@ -297,19 +304,20 @@ def main():
                 pdf.cell(0, 6, f"Data da Emissão: {datetime.now().strftime('%d/%m/%Y')}", 0, 1)
                 pdf.ln(8)
                 
-                # --- INTRODUÇÃO DINÂMICA (POR SEGMENTO) ---
+                # --- INTRODUÇÃO DINÂMICA ---
                 copy_intro = TEXTOS_SEGMENTOS[segmento_selecionado]
                 
                 pdf.chapter_title(f"1. A CLÍNICA DIGITAL {nome_fantasia_cliente.upper()}")
                 pdf.body_text(copy_intro["intro1"].replace("{marca}", nome_fantasia_cliente))
                 pdf.body_text(copy_intro["intro2"])
 
-                # --- JORNADA ---
-                pdf.chapter_title("2. JORNADA 100% PERSONALIZADA (WHITE LABEL)")
-                pdf.bullet_point(f"Plataforma completa com identidade visual, nome e posicionamento da {nome_fantasia_cliente}.")
-                pdf.bullet_point("Helpdesk e corpo clínico treinado, atuando como extensão oficial da sua equipe.")
-                pdf.bullet_point(f"Atestados, receituários ICP-Brasil e exames emitidos com a marca {nome_fantasia_cliente}.")
-                pdf.bullet_point("Dashboard exclusivo corporativo com dados reais de uso, engajamento e performance da base.")
+                # --- JORNADA E GATILHOS DE GRATUIDADE ---
+                pdf.chapter_title("2. TECNOLOGIA E IMPLANTAÇÃO (BÔNUS 100% INCLUSO)")
+                pdf.body_text("Para viabilizar uma parceria de longo prazo e garantir tração rápida, a LSX Medical subsidia integralmente o custo de tecnologia. Você terá ISENÇÃO TOTAL de Taxa de Setup. O pacote inclui:")
+                pdf.bullet_point(f"Desenvolvimento White Label: Aplicativo e Plataforma completa com a identidade, nome e cores da {nome_fantasia_cliente}.")
+                pdf.bullet_point("Helpdesk e Treinamento: Corpo clínico e atendimento atuando como extensão oficial da sua equipe sem custo extra.")
+                pdf.bullet_point(f"Documentos Oficiais: Atestados, receituários ICP-Brasil e exames emitidos com a marca {nome_fantasia_cliente}.")
+                pdf.bullet_point("Dashboard Exclusivo: Painel corporativo com dados reais de uso, engajamento e performance da base.")
 
                 # --- ESCOPO CORE ---
                 if pdf.get_y() > 190: pdf.add_page()
@@ -321,9 +329,10 @@ def main():
                 pdf.bullet_point("Pediatra")
                 pdf.bullet_point("Médico da Família")
 
-                pdf.sub_title("Saúde Mental e Apoio ao Luto")
-                pdf.body_text("Atendimento de Psicologia Orientativa (das 09h às 18h). Como pilar central do projeto, estruturamos o programa de Apoio ao Luto e Acolhimento Familiar.")
-                pdf.body_text("Sabemos que a dor não termina no momento da despedida — muitas vezes ela se intensifica nos dias seguintes. Oferecemos escuta qualificada e direcionamento emocional para as famílias num momento extremamente sensível, fortalecendo laços e gerando valor social à marca.")
+                # SAÚDE MENTAL DINÂMICA
+                pdf.sub_title(copy_intro["titulo_mental"])
+                for paragrafo in copy_intro["texto_mental"].split("\n\n"):
+                    pdf.body_text(paragrafo)
 
                 # --- DIFERENCIAIS ---
                 diferenciais = []
@@ -378,7 +387,7 @@ def main():
                     
                     pdf.set_font('Arial', 'B', 12)
                     pdf.set_text_color(*COR_PRIMARIA)
-                    pdf.cell(95, 10, limpa_texto("VOLUME INICIAL ESTIMADO"), 0, 0, 'C')
+                    pdf.cell(95, 10, limpa_texto("VOLUME INICIAL CONTRATADO"), 0, 0, 'C')
                     pdf.cell(95, 10, limpa_texto("VALOR MENSAL POR VIDA"), 0, 1, 'C')
                     
                     pdf.set_font('Arial', '', 14)
@@ -390,7 +399,7 @@ def main():
                     pdf.cell(95, 10, f"R$ {valor_unitario:,.2f}", 0, 1, 'C')
                     pdf.ln(12)
 
-                # Parte 2: A Tabela Progressiva (A Quebra do Teto)
+                # Parte 2: A Tabela Progressiva
                 pdf.ln(8)
                 pdf.sub_title("Política de Crescimento e Upsell (Descontos Progressivos):")
                 pdf.body_text("Nossa parceria foi desenhada para escalar com você. Não há limite de crescimento. Conforme a base de usuários aumenta, o custo unitário da operação diminui automaticamente, aumentando sua margem de lucro:")
@@ -402,7 +411,6 @@ def main():
                 pdf.cell(85, 6, 'Volume de Vidas Ativas', 1, 0, 'C', fill=True)
                 pdf.cell(85, 6, 'Valor Unitário (Desconto Progressivo)', 1, 1, 'C', fill=True)
                 
-                # Gera as faixas dinamicamente acima da faixa atual do cliente
                 pdf.set_font('Arial', '', 9)
                 pdf.set_text_color(50, 50, 50)
                 
@@ -410,7 +418,7 @@ def main():
                 faixas_para_mostrar = [f for f in faixas_crescimento if f > qtd_vidas]
                 
                 if not faixas_para_mostrar: 
-                    faixas_para_mostrar = [qtd_vidas + 5000, qtd_vidas + 15000] # Garante que sempre mostra que pode crescer mais
+                    faixas_para_mostrar = [qtd_vidas + 5000, qtd_vidas + 15000] 
                     
                 for limite in faixas_para_mostrar:
                     preco_faixa = calcular_preco_sugerido(limite)
@@ -419,10 +427,10 @@ def main():
                 
                 pdf.ln(8)
                 pdf.sub_title("Diretrizes Comerciais:")
-                # NOVO: Vigência Dinâmica
                 pdf.bullet_point(f"Vigência Contratual: {vigencia_contrato} (Período mínimo para sustentação da tabela de preços).")
                 pdf.bullet_point("Reajuste: Anual com base no índice IPCA.")
-                pdf.bullet_point("Faturamento: Apuração por volume de CPFs ativos enviados na base mensal.")
+                # FATURAMENTO CORRIGIDO:
+                pdf.bullet_point("Faturamento: Cobrança fixa mensal baseada na quantidade de vidas contratada (faixa atual), com liberdade para escalar.")
                 if obs_comerciais:
                     pdf.bullet_point(f"Observações: {obs_comerciais}")
 
