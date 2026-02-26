@@ -22,6 +22,12 @@ REGISTRO_CRM_PJ = "CRM-PR PJ 24.806"
 # 1.5. MOTOR DE INTELIGÊNCIA COMERCIAL (SEGMENTOS B2B)
 # ==============================================================================
 TEXTOS_SEGMENTOS = {
+    "Cartões de Benefícios / Saúde": {
+        "intro1": "Para aumentar o LTV (Life Time Value) e a atratividade do seu cartão, a LSX Medical oferece a infraestrutura completa para você operar a sua própria Clínica Digital de Telemedicina, fortalecendo o ecossistema da {marca}.",
+        "intro2": "Entregue um benefício de uso imediato e alta percepção de valor. Uma solução 100% customizável, pronta para escalar suas vendas e gerar novas linhas de receita, sem a necessidade de investir em desenvolvimento tecnológico ou corpo clínico próprio.",
+        "titulo_mental": "Saúde Mental de Acesso Rápido",
+        "texto_mental": "Atendimento de Psicologia Orientativa (das 09h às 18h). Agregue alto valor percebido ao seu cartão entregando cuidado emocional.\n\nNossos profissionais estão disponíveis para triagem e orientação em casos de ansiedade, crises pontuais e conflitos familiares. Um benefício que gera uso recorrente e fideliza o usuário ao seu produto."
+    },
     "Geral / Corporativo": {
         "intro1": "A LSX Medical propõe transformar sua base de confiança em um cuidado contínuo de alto valor agregado. Nosso objetivo é estruturar e operar uma Clínica Digital de telemedicina totalmente personalizada, exclusiva e integralmente sob a marca {marca}.",
         "intro2": "Não se trata de uma plataforma genérica de mercado. Esta é uma operação desenhada para a realidade corporativa, focada em reduzir absenteísmo, otimizar custos de saúde e valorizar a sua marca empregadora perante colaboradores e clientes.",
@@ -33,12 +39,6 @@ TEXTOS_SEGMENTOS = {
         "intro2": "Desenhamos uma Clínica Digital 100% White Label. O grande diferencial desta proposta é o foco em Saúde Mental e Apoio ao Luto, oferecendo suporte contínuo para a família no momento em que ela mais precisa, consolidando a sua marca como um pilar de acolhimento.",
         "titulo_mental": "Saúde Mental e Apoio ao Luto",
         "texto_mental": "Atendimento de Psicologia Orientativa (das 09h às 18h). Como pilar central do projeto, estruturamos o programa de Apoio ao Luto e Acolhimento Familiar.\n\nSabemos que a dor não termina no momento da despedida — muitas vezes ela se intensifica nos dias seguintes. Oferecemos escuta qualificada e direcionamento emocional num momento extremamente sensível, fortalecendo laços e gerando valor social à marca."
-    },
-    "Cartões de Benefícios / Saúde": {
-        "intro1": "Para aumentar o LTV (Life Time Value) e a atratividade do seu cartão, a LSX Medical oferece a infraestrutura completa para você operar a sua própria Clínica Digital de Telemedicina, fortalecendo o ecossistema da {marca}.",
-        "intro2": "Entregue um benefício de uso imediato e alta percepção de valor. Uma solução 100% customizável, pronta para escalar suas vendas e gerar novas linhas de receita, sem a necessidade de investir em desenvolvimento tecnológico ou corpo clínico próprio.",
-        "titulo_mental": "Saúde Mental de Acesso Rápido",
-        "texto_mental": "Atendimento de Psicologia Orientativa (das 09h às 18h). Agregue alto valor percebido ao seu cartão entregando cuidado emocional.\n\nNossos profissionais estão disponíveis para triagem e orientação em casos de ansiedade, crises pontuais e conflitos familiares. Um benefício que gera uso recorrente e fideliza o usuário ao seu produto."
     },
     "Hospitais, Clínicas e Planos de Saúde": {
         "intro1": "A LSX Medical atua como o braço tecnológico e de retaguarda médica da {marca}. Nossa solução de Clínica Digital visa otimizar sua operação, desafogar prontos-socorros físicos e expandir sua capilaridade de atendimento.",
@@ -195,10 +195,10 @@ def main():
             st.title("LSX Config")
             
         st.markdown("### 👤 Dados do Emissor")
-        nome_vendedor = st.text_input("Nome", value="")
-        cargo_vendedor = st.text_input("Cargo", value="")
-        telefone_vendedor = st.text_input("Telefone", value="")
-        email_vendedor = st.text_input("E-mail", value="@lsxmedical.com")
+        nome_vendedor = st.text_input("Nome", value="Rauf Alencar")
+        cargo_vendedor = st.text_input("Cargo", value="Gestor Comercial")
+        telefone_vendedor = st.text_input("Telefone", value="(41) 99550-0770")
+        email_vendedor = st.text_input("E-mail", value="contato@lsxmedical.com")
         
         st.markdown("---")
         st.markdown("### ⚙️ Configurações Visuais")
@@ -216,8 +216,10 @@ def main():
 
     st.subheader("1. Dados do Cliente e Inteligência Comercial")
     col1, col2, col3 = st.columns([2, 1, 1])
-    cliente_empresa = col1.text_input("Razão Social / Empresa", placeholder="Ex: Grupo UMUPREV")
-    cliente_responsavel = col2.text_input("Nome do Responsável", placeholder="Ex: João Silva")
+    
+    # PRÉ-PREENCHIDO COM OS DADOS DO IGOR E DO CARTÃO BRISA
+    cliente_empresa = col1.text_input("Razão Social / Empresa", value="Cartão Brisa Saúde")
+    cliente_responsavel = col2.text_input("Nome do Responsável", value="Igor Ferreira da Silva")
     segmento_selecionado = col3.selectbox("Segmento de Atuação", list(TEXTOS_SEGMENTOS.keys()))
     
     nome_fantasia_cliente = cliente_empresa if cliente_empresa else "Sua Empresa"
@@ -228,14 +230,16 @@ def main():
     col_vig, col_rampa = st.columns([1, 2])
     vigencia_contrato = col_vig.radio("Vigência do Contrato", ["12 Meses", "24 Meses"], index=1)
     
-    usar_rampa = col_rampa.checkbox("📈 Habilitar Cronograma de Implantação (Rampa de Crescimento)")
+    # RAMPA PRÉ-PREENCHIDA COM A SOLICITAÇÃO ESPECÍFICA
+    usar_rampa = col_rampa.checkbox("📈 Habilitar Cronograma de Implantação (Rampa de Crescimento)", value=True)
     dados_rampa = None 
     
     if usar_rampa:
         st.info("Preencha a expectativa de crescimento (Adicione ou remova linhas conforme os meses de implantação). A política de descontos progressivos por volume será gerada automaticamente.")
-        meses_iniciais = [f"Mês {i}" for i in range(1, 4)] 
-        vidas_iniciais = [1000, 3000, 5000]
-        valores_iniciais = [calcular_preco_sugerido(v) for v in vidas_iniciais]
+        
+        meses_iniciais = ["Março Vencimento: 05/03", "Abril Vencimento: 05/04", "Maio Vencimento: 05/05", "Junho Vencimento: 05/06"] 
+        vidas_iniciais = [1000, 3000, 5000, 10000]
+        valores_iniciais = [3.90, 3.90, 3.90, 3.90]
         
         df_rampa = pd.DataFrame({
             "Período": meses_iniciais, "Qtd. Vidas (Meta)": vidas_iniciais, "Valor por Vida (R$)": valores_iniciais
@@ -245,8 +249,10 @@ def main():
         
         try:
             qtd_vidas = int(dados_rampa["Qtd. Vidas (Meta)"].max())
+            valor_unitario = float(dados_rampa["Valor por Vida (R$)"].iloc[-1])
         except:
-            qtd_vidas = 1000
+            qtd_vidas = 10000
+            valor_unitario = 3.90
     else:
         col_vidas, col_preco = st.columns([1, 1])
         qtd_vidas = col_vidas.number_input("Volume Inicial Estimado (Vidas)", min_value=1, value=1000, step=100)
@@ -368,15 +374,19 @@ def main():
                     pdf.body_text("Cronograma de Implantação (Rampa de Lançamento):")
                     pdf.ln(3)
                     
-                    pdf.set_font('Arial', 'B', 10)
+                    # AJUSTADO: Adicionada a coluna de Faturamento Mensal com redimensionamento
+                    pdf.set_font('Arial', 'B', 9)
                     pdf.set_fill_color(*COR_PRIMARIA)
                     pdf.set_text_color(255, 255, 255)
                     pdf.cell(50, 8, 'Período', 1, 0, 'C', fill=True)
-                    pdf.cell(60, 8, 'Vidas Ativas (Meta)', 1, 0, 'C', fill=True)
-                    pdf.cell(60, 8, 'Valor Unitário Aplicado', 1, 1, 'C', fill=True)
+                    pdf.cell(45, 8, 'Vidas Ativas', 1, 0, 'C', fill=True)
+                    pdf.cell(40, 8, 'Valor Unitário', 1, 0, 'C', fill=True)
+                    pdf.cell(50, 8, 'Faturamento Mensal', 1, 1, 'C', fill=True)
 
-                    pdf.set_font('Arial', '', 10)
+                    pdf.set_font('Arial', '', 9)
                     pdf.set_text_color(50, 50, 50)
+                    
+                    total_ano = 0
                     
                     for index, row in dados_rampa.iterrows():
                         mes = str(row['Período'])
@@ -386,9 +396,13 @@ def main():
                         except:
                             vidas, valor = 0, 0.0
                             
+                        faturamento_mes = vidas * valor
+                        total_ano += faturamento_mes
+                            
                         pdf.cell(50, 8, limpa_texto(mes), 1, 0, 'C')
-                        pdf.cell(60, 8, f"{vidas:,}", 1, 0, 'C')
-                        pdf.cell(60, 8, f"R$ {valor:,.2f}", 1, 1, 'C')
+                        pdf.cell(45, 8, f"{vidas:,}", 1, 0, 'C')
+                        pdf.cell(40, 8, f"R$ {valor:,.2f}", 1, 0, 'C')
+                        pdf.cell(50, 8, f"R$ {faturamento_mes:,.2f}", 1, 1, 'C')
                         
                 else:
                     pdf.set_fill_color(*COR_CINZA_CLARO)
@@ -424,7 +438,7 @@ def main():
                 pdf.set_font('Arial', '', 9)
                 pdf.set_text_color(50, 50, 50)
                 
-                faixas_crescimento = [3000, 6000, 9000, 15000, 25000, 35000]
+                faixas_crescimento = [15000, 25000, 35000]
                 faixas_para_mostrar = [f for f in faixas_crescimento if f > qtd_vidas]
                 
                 if not faixas_para_mostrar: 
