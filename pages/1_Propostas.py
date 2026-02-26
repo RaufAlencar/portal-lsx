@@ -25,32 +25,32 @@ TEXTOS_SEGMENTOS = {
     "Cartões de Benefícios / Saúde": {
         "intro1": "Para aumentar o LTV (Life Time Value) e a atratividade do seu cartão, a LSX Medical oferece a infraestrutura completa para você operar a sua própria Clínica Digital de Telemedicina, fortalecendo o ecossistema da {marca}.",
         "intro2": "Entregue um benefício de uso imediato e alta percepção de valor. Uma solução 100% customizável, pronta para escalar suas vendas e gerar novas linhas de receita, sem a necessidade de investir em desenvolvimento tecnológico ou corpo clínico próprio.",
-        "titulo_mental": "Saúde Mental de Acesso Rápido",
-        "texto_mental": "Atendimento de Psicologia Orientativa (das 09h às 18h). Agregue alto valor percebido ao seu cartão entregando cuidado emocional.\n\nNossos profissionais estão disponíveis para triagem e orientação em casos de ansiedade, crises pontuais e conflitos familiares. Um benefício que gera uso recorrente e fideliza o usuário ao seu produto."
+        "titulo_mental": "Telepsicologia Orientativa (Acesso Rápido)",
+        "texto_mental": "Atendimento das 09h às 18h. Agregue alto valor percebido ao seu cartão entregando cuidado emocional.\n\nNossos profissionais estão disponíveis para triagem e orientação em casos de ansiedade, crises pontuais e conflitos familiares. Um benefício que gera uso recorrente e fideliza o usuário ao seu produto."
     },
     "Geral / Corporativo": {
         "intro1": "A LSX Medical propõe transformar sua base de confiança em um cuidado contínuo de alto valor agregado. Nosso objetivo é estruturar e operar uma Clínica Digital de telemedicina totalmente personalizada, exclusiva e integralmente sob a marca {marca}.",
         "intro2": "Não se trata de uma plataforma genérica de mercado. Esta é uma operação desenhada para a realidade corporativa, focada em reduzir absenteísmo, otimizar custos de saúde e valorizar a sua marca empregadora perante colaboradores e clientes.",
-        "titulo_mental": "Saúde Mental e Suporte Corporativo",
-        "texto_mental": "Atendimento de Psicologia Orientativa (das 09h às 18h). Entendemos que a saúde mental é o maior desafio corporativo atual.\n\nDisponibilizamos suporte psicológico de rápido acesso para gerenciamento de estresse, ansiedade e prevenção de burnout, promovendo bem-estar e produtividade para os seus beneficiários."
+        "titulo_mental": "Telepsicologia Orientativa (Suporte Corporativo)",
+        "texto_mental": "Atendimento das 09h às 18h. Entendemos que a saúde mental é o maior desafio corporativo atual.\n\nDisponibilizamos suporte psicológico de rápido acesso para gerenciamento de estresse, ansiedade e prevenção de burnout, promovendo bem-estar e produtividade para os seus beneficiários."
     },
     "Funerárias / Assistência Familiar": {
         "intro1": "No setor de assistência familiar, o cuidado não termina com a despedida. A LSX Medical propõe transformar a {marca} em uma verdadeira provedora de saúde em vida, agregando valor tangível aos seus planos e aumentando a fidelização e retenção da sua carteira.",
         "intro2": "Desenhamos uma Clínica Digital 100% White Label. O grande diferencial desta proposta é o foco em Saúde Mental e Apoio ao Luto, oferecendo suporte contínuo para a família no momento em que ela mais precisa, consolidando a sua marca como um pilar de acolhimento.",
-        "titulo_mental": "Saúde Mental e Apoio ao Luto",
-        "texto_mental": "Atendimento de Psicologia Orientativa (das 09h às 18h). Como pilar central do projeto, estruturamos o programa de Apoio ao Luto e Acolhimento Familiar.\n\nSabemos que a dor não termina no momento da despedida — muitas vezes ela se intensifica nos dias seguintes. Oferecemos escuta qualificada e direcionamento emocional num momento extremamente sensível, fortalecendo laços e gerando valor social à marca."
+        "titulo_mental": "Telepsicologia Orientativa (Apoio ao Luto)",
+        "texto_mental": "Atendimento das 09h às 18h. Como pilar central do projeto, estruturamos o programa de Apoio ao Luto e Acolhimento Familiar.\n\nSabemos que a dor não termina no momento da despedida — muitas vezes ela se intensifica nos dias seguintes. Oferecemos escuta qualificada e direcionamento emocional num momento extremamente sensível, fortalecendo laços e gerando valor social à marca."
     },
     "Hospitais, Clínicas e Planos de Saúde": {
         "intro1": "A LSX Medical atua como o braço tecnológico e de retaguarda médica da {marca}. Nossa solução de Clínica Digital visa otimizar sua operação, desafogar prontos-socorros físicos e expandir sua capilaridade de atendimento.",
         "intro2": "Com protocolos integrados e fluxos de triagem digital (Pronto Atendimento Virtual), reduzimos custos operacionais e sinistralidade, garantindo a excelência do cuidado primário e o direcionamento inteligente de casos de alta complexidade para a sua rede física.",
-        "titulo_mental": "Triagem e Orientação Psicológica",
-        "texto_mental": "Atendimento de Psicologia Orientativa (das 09h às 18h). Atua como um importante filtro para a rede presencial.\n\nRealizamos o acolhimento, escuta qualificada e encaminhamento assertivo. Ideal para pacientes com quadros leves, evitando idas desnecessárias à emergência e oferecendo conforto e comodidade diretamente pelo aplicativo."
+        "titulo_mental": "Telepsicologia Orientativa (Triagem)",
+        "texto_mental": "Atendimento das 09h às 18h. Atua como um importante filtro para a rede presencial.\n\nRealizamos o acolhimento, escuta qualificada e encaminhamento assertivo. Ideal para pacientes com quadros leves, evitando idas desnecessárias à emergência e oferecendo conforto e comodidade diretamente pelo aplicativo."
     },
     "Varejo e Grandes Redes": {
         "intro1": "O varejo moderno exige inovação na retenção de clientes e na monetização da base. A LSX propõe que a {marca} ofereça saúde de qualidade como um serviço financeiro e de fidelidade (Health as a Service).",
         "intro2": "Com nossa plataforma White Label, você entrega um benefício percebido como essencial, aumentando o engajamento do cliente com o seu ecossistema, gerando recorrência e abrindo uma nova frente de faturamento altamente rentável.",
-        "titulo_mental": "Bem-Estar e Psicologia Orientativa",
-        "texto_mental": "Atendimento de Psicologia Orientativa (das 09h às 18h). Diferencie o seu programa de fidelidade entregando acolhimento.\n\nOferecemos acesso rápido a profissionais de saúde mental para orientações gerais. Um serviço moderno que conecta a sua marca diretamente ao cuidado pessoal do seu cliente."
+        "titulo_mental": "Telepsicologia Orientativa (Bem-Estar)",
+        "texto_mental": "Atendimento das 09h às 18h. Diferencie o seu programa de fidelidade entregando acolhimento.\n\nOferecemos acesso rápido a profissionais de saúde mental para orientações gerais. Um serviço moderno que conecta a sua marca diretamente ao cuidado pessoal do seu cliente."
     }
 }
 
@@ -81,7 +81,7 @@ def limpa_texto(texto):
     return texto.encode('latin-1', 'replace').decode('latin-1')
 
 # ==============================================================================
-# 2. MOTOR DE PRECIFICAÇÃO DINÂMICA
+# 2. MOTOR DE PRECIFICAÇÃO DINÂMICA (Fallback)
 # ==============================================================================
 def calcular_preco_sugerido(vidas):
     if vidas <= 0: return 0.00
@@ -106,7 +106,7 @@ class ProposalPDF(FPDF):
     def __init__(self, logo_path=None):
         super().__init__()
         self.logo_path = logo_path
-        self.set_auto_page_break(auto=True, margin=35) 
+        self.set_auto_page_break(auto=True, margin=30) 
 
     def header(self):
         self.set_fill_color(255, 255, 255)
@@ -123,7 +123,7 @@ class ProposalPDF(FPDF):
         self.set_y(10)
         self.set_font('Arial', 'B', 15)
         self.set_text_color(*COR_PRIMARIA)
-        self.cell(0, 8, 'PROPOSTA COMERCIAL', 0, 1, 'R')
+        self.cell(0, 8, 'PROPOSTA COMERCIAL / ANEXO I', 0, 1, 'R')
         
         self.set_font('Arial', 'B', 9)
         self.set_text_color(*COR_SECUNDARIA)
@@ -152,31 +152,31 @@ class ProposalPDF(FPDF):
 
     def chapter_title(self, title):
         self.ln(5)
-        self.set_font('Arial', 'B', 13)
+        self.set_font('Arial', 'B', 11)
         self.set_text_color(*COR_PRIMARIA)
         self.cell(0, 8, limpa_texto(title.upper()), 0, 1, 'L')
         self.set_fill_color(*COR_PRIMARIA)
         self.rect(10, self.get_y(), 10, 0.8, 'F')
-        self.ln(5)
+        self.ln(3)
 
     def sub_title(self, title):
-        self.set_font('Arial', 'B', 11)
+        self.set_font('Arial', 'B', 10)
         self.set_text_color(*COR_PRIMARIA)
         self.cell(0, 6, limpa_texto(title), 0, 1, 'L')
         self.ln(1)
 
     def body_text(self, text):
-        self.set_font('Arial', '', 10)
+        self.set_font('Arial', '', 9)
         self.set_text_color(50, 50, 50)
         self.multi_cell(0, 5, limpa_texto(text), align='J')
-        self.ln(3)
+        self.ln(2)
 
     def bullet_point(self, text):
-        self.set_font('Arial', '', 10)
+        self.set_font('Arial', '', 9)
         self.set_text_color(50, 50, 50)
         self.cell(5) 
         self.set_text_color(*COR_SECUNDARIA)
-        self.cell(3, 5, "»", 0, 0) 
+        self.cell(3, 5, "•", 0, 0) 
         self.set_text_color(50, 50, 50)
         self.multi_cell(0, 5, limpa_texto(text), align='J')
         self.ln(1)
@@ -198,7 +198,7 @@ def main():
         nome_vendedor = st.text_input("Nome", value="Rauf Alencar")
         cargo_vendedor = st.text_input("Cargo", value="Gestor Comercial")
         telefone_vendedor = st.text_input("Telefone", value="(41) 99550-0770")
-        email_vendedor = st.text_input("E-mail", value="contato@lsxmedical.com")
+        email_vendedor = st.text_input("E-mail", value="rauf.alencar@lsxmedical.com")
         
         st.markdown("---")
         st.markdown("### ⚙️ Configurações Visuais")
@@ -211,13 +211,13 @@ def main():
             logo_final = logo_padrao
 
     # --- MAIN CONTENT ---
-    st.title("Gerador de Propostas Enterprise - LSX Medical")
+    st.title("Gerador de Propostas e Anexo I - LSX Medical")
     st.markdown("Plataforma White Label B2B - Configuração de Contratos Avançados")
 
     st.subheader("1. Dados do Cliente e Inteligência Comercial")
     col1, col2, col3 = st.columns([2, 1, 1])
     
-    # PRÉ-PREENCHIDO COM OS DADOS DO IGOR E DO CARTÃO BRISA
+    # PRÉ-PREENCHIDO
     cliente_empresa = col1.text_input("Razão Social / Empresa", value="Cartão Brisa Saúde")
     cliente_responsavel = col2.text_input("Nome do Responsável", value="Igor Ferreira da Silva")
     segmento_selecionado = col3.selectbox("Segmento de Atuação", list(TEXTOS_SEGMENTOS.keys()))
@@ -226,16 +226,20 @@ def main():
 
     st.markdown("---")
     
-    st.subheader("2. Dimensionamento e Precificação")
-    col_vig, col_rampa = st.columns([1, 2])
+    st.subheader("2. Dimensionamento, Precificação e Prazos")
+    col_vig, col_acesso, col_pag = st.columns([1, 1, 1])
     vigencia_contrato = col_vig.radio("Vigência do Contrato", ["12 Meses", "24 Meses"], index=1)
     
-    # RAMPA PRÉ-PREENCHIDA COM A SOLICITAÇÃO ESPECÍFICA
-    usar_rampa = col_rampa.checkbox("📈 Habilitar Cronograma de Implantação (Rampa de Crescimento)", value=True)
+    # NOVOS CAMPOS DE DATAS DINÂMICAS
+    data_acesso = col_acesso.text_input("Data Disponibilização do Acesso", value="05/02/2026")
+    data_pagamento = col_pag.text_input("Data 1º Pagamento / Kick-Off", value="03/03/2026")
+    
+    st.markdown("<br>", unsafe_allow_html=True)
+    usar_rampa = st.checkbox("📈 Habilitar Cronograma de Implantação (Rampa de Crescimento)", value=True)
     dados_rampa = None 
     
     if usar_rampa:
-        st.info("Preencha a expectativa de crescimento (Adicione ou remova linhas conforme os meses de implantação). A política de descontos progressivos por volume será gerada automaticamente.")
+        st.info("Preencha a rampa. A política de escalonamento será gerada baseada nessas linhas (fases iniciais).")
         
         meses_iniciais = ["Março Vencimento: 05/03", "Abril Vencimento: 05/04", "Maio Vencimento: 05/05", "Junho Vencimento: 05/06"] 
         vidas_iniciais = [1000, 3000, 5000, 10000]
@@ -266,33 +270,22 @@ def main():
         st.markdown(f"""
             <div class="highlight-box">
                 <h3 style="margin:0; color: #001E50;">Faturamento Base: R$ {total_mensal:,.2f} /mês</h3>
-                <p style="margin:0; color: #555;">Iniciando com {qtd_vidas} vidas a R$ {valor_unitario:.2f}. O cliente terá acesso automático a descontos se ultrapassar esse volume.</p>
             </div>
         """, unsafe_allow_html=True)
 
     st.markdown("---")
-    st.subheader("3. Configuração de Escopo e Diferenciais Estratégicos")
-    c_scope1, c_scope2 = st.columns(2)
-    with c_scope1:
-        st.markdown("**Core Clínico (Incluso):**")
-        st.checkbox("Clínico Geral 24/7", value=True, disabled=True)
-        st.checkbox("Pediatria e Médico da Família", value=True)
-        st.checkbox("Psicologia Orientativa (09h às 18h)", value=True)
-        st.checkbox("Programa de Apoio ao Luto / Acolhimento", value=True)
-        st.checkbox("App e Dashboard White Label", value=True, disabled=True)
-    with c_scope2:
-        st.markdown("**Diferenciais B2B:**")
-        inc_clube = st.checkbox("Clube de Benefícios (Descontos em medicamentos, etc)", value=True)
+    st.subheader("3. Escopo Bônus / Diferenciais")
+    col_d1, col_d2 = st.columns(2)
+    with col_d1:
+        inc_clube = st.checkbox("Clube de Benefícios", value=True)
         inc_televet = st.checkbox("Televeterinária (Pet)", value=False)
-        inc_entrevista = st.checkbox("Projeto de Entrevista Qualificada", value=False)
-        inc_nr1 = st.checkbox("Programa de Regulamentação NR-1", value=False)
-        inc_protocolos = st.checkbox("Protocolos clínicos corporativos", value=False)
-        inc_cabine = st.checkbox("Cabine Física de Telemedicina", value=False)
-    
-    obs_comerciais = st.text_area("Observações Comerciais (Ex: Carência, Setup de Implantação)", height=80)
+        inc_entrevista = st.checkbox("Entrevista Qualificada", value=False)
+    with col_d2:
+        inc_nr1 = st.checkbox("Regulamentação NR-1", value=False)
+        inc_protocolos = st.checkbox("Protocolos Clínicos", value=False)
+        inc_cabine = st.checkbox("Cabine Física", value=False)
 
-    st.markdown("---")
-    submit_btn = st.button("GERAR PROPOSTA ENTERPRISE (PDF) 🚀")
+    submit_btn = st.button("GERAR ANEXO COMERCIAL (PDF) 🚀")
 
     if submit_btn:
         if not cliente_empresa:
@@ -309,84 +302,99 @@ def main():
                 pdf.set_font('Arial', '', 11)
                 if cliente_responsavel: pdf.cell(0, 6, limpa_texto(f"Aos cuidados de: {cliente_responsavel}"), 0, 1)
                 pdf.cell(0, 6, f"Data da Emissão: {datetime.now().strftime('%d/%m/%Y')}", 0, 1)
-                pdf.ln(8)
+                pdf.ln(5)
                 
-                # --- INTRODUÇÃO DINÂMICA ---
+                # --- APRESENTAÇÃO COMERCIAL ---
                 copy_intro = TEXTOS_SEGMENTOS[segmento_selecionado]
-                
-                pdf.chapter_title(f"1. A CLÍNICA DIGITAL {nome_fantasia_cliente.upper()}")
+                pdf.chapter_title(f"A CLÍNICA DIGITAL {nome_fantasia_cliente.upper()}")
                 pdf.body_text(copy_intro["intro1"].replace("{marca}", nome_fantasia_cliente))
                 pdf.body_text(copy_intro["intro2"])
+                pdf.ln(5)
 
-                # --- JORNADA E GATILHOS DE GRATUIDADE ---
-                pdf.chapter_title("2. TECNOLOGIA E IMPLANTAÇÃO (BÔNUS 100% INCLUSO)")
-                pdf.body_text("Para viabilizar uma parceria de longo prazo e garantir tração rápida, a LSX Medical subsidia integralmente os custos de tecnologia e implantação. O pacote inclui:")
-                pdf.bullet_point(f"Desenvolvimento White Label: Aplicativo e Plataforma completa com a identidade, nome e cores da {nome_fantasia_cliente}.")
-                pdf.bullet_point("Helpdesk e Treinamento: Corpo clínico e atendimento atuando como extensão oficial da sua equipe sem custo extra.")
-                pdf.bullet_point(f"Documentos Oficiais: Atestados, receituários ICP-Brasil e exames emitidos com a marca {nome_fantasia_cliente}.")
-                pdf.bullet_point("Dashboard Exclusivo: Painel corporativo com dados reais de uso, engajamento e performance da base.")
+                # ==========================================
+                # ESTRUTURA RIGOROSA DO ANEXO I
+                # ==========================================
+                pdf.set_font('Arial', 'B', 14)
+                pdf.set_text_color(*COR_PRIMARIA)
+                pdf.cell(0, 8, limpa_texto("ANEXO I - CONDIÇÕES COMERCIAIS"), 0, 1, 'C')
+                pdf.ln(3)
 
-                # --- ESCOPO CORE ---
-                if pdf.get_y() > 190: pdf.add_page()
+                # 1. OBJETO DO ANEXO
+                pdf.chapter_title("1. OBJETO DO ANEXO")
+                pdf.body_text("O presente Anexo tem por objeto estabelecer todas as condições comerciais, operacionais e assistenciais referentes à contratação da Solução de Telemedicina Corporativa em modelo White Label, conforme proposta comercial aceita pelas partes.")
+
+                # 2. MODELO DA SOLUÇÃO CONTRATADA
+                pdf.chapter_title("2. MODELO DA SOLUÇÃO CONTRATADA")
+                pdf.body_text("A solução contratada compreende:")
+                pdf.bullet_point("Plataforma de telemedicina 100% White Label;")
+                pdf.bullet_point("Operação assistencial em regime de Pronto Atendimento 24x7;")
+                pdf.bullet_point(f"Clínica digital personalizada com identidade visual da CONTRATANTE ({nome_fantasia_cliente});")
+                pdf.bullet_point("Corpo clínico próprio da LSX Medical;")
+                pdf.bullet_point("Operação, suporte técnico e helpdesk sob gestão da LSX Medical.")
+
+                # 3. ESCOPO DOS SERVIÇOS INCLUSOS
+                if pdf.get_y() > 220: pdf.add_page()
+                pdf.chapter_title("3. ESCOPO DOS SERVIÇOS INCLUSOS")
+                pdf.body_text("Estão inclusos na solução contratada:")
+                pdf.bullet_point("Agendamento digital de consultas (opcional);")
+                pdf.bullet_point("Videoconsultas integradas;")
+                pdf.bullet_point("Prontuário eletrônico;")
+                pdf.bullet_point("Receituário médico digital;")
+                pdf.bullet_point("Emissão de atestados médicos;")
+                pdf.bullet_point("Solicitação de exames;")
+                pdf.bullet_point("Dashboard gerencial;")
+                pdf.bullet_point("Helpdesk técnico e assistencial;")
+                if inc_clube: pdf.bullet_point("Clube de Benefícios;")
+                if inc_televet: pdf.bullet_point("Televeterinária (Pet);")
+                if inc_entrevista: pdf.bullet_point("Projeto de Entrevista Qualificada;")
+                if inc_nr1: pdf.bullet_point("Programa de Regulamentação NR-1;")
+                if inc_protocolos: pdf.bullet_point("Protocolos Clínicos;")
+                if inc_cabine: pdf.bullet_point("Cabine Física de Telemedicina;")
+
+                # 4. MODELO ASSISTENCIAL
+                if pdf.get_y() > 220: pdf.add_page()
+                pdf.chapter_title("4. MODELO ASSISTENCIAL")
                 
-                pdf.chapter_title("3. ESCOPO MÉDICO E ASSISTENCIAL")
+                pdf.sub_title("4.1 Pronto Atendimento 24x7")
+                pdf.body_text("Atendimento médico disponível 24 horas por dia, 7 dias por semana, com foco em orientação clínica, resolutividade e redução de atendimentos presenciais desnecessários.")
                 
-                pdf.sub_title("Pronto Atendimento 24h / 7 Dias")
-                pdf.body_text("Acesso imediato e ilimitado para triagem, diagnóstico e prescrição. Corpo clínico composto por:")
-                pdf.bullet_point("Clínico Geral")
-                pdf.bullet_point("Pediatra")
-                pdf.bullet_point("Médico da Família")
-
-                pdf.ln(2)
-                pdf.sub_title("Política de Especialidades")
-                pdf.body_text("Para garantir eficiência e controle de custos, adotamos a seguinte política de especialidades focada no encaminhamento inteligente:")
-                pdf.bullet_point("Quando houver encaminhamento médico realizado pelo corpo clínico da LSX Medical e o atendimento ocorrer dentro da nossa rede própria, não haverá custo adicional para o beneficiário.")
-                pdf.bullet_point("Caso o beneficiário solicite diretamente um atendimento especializado sem o encaminhamento do Clínico Geral/Médico da Família, poderão ser aplicadas as regras e tabelas comerciais vigentes para especialidades avulsas.")
-
-                pdf.ln(2)
-                # SAÚDE MENTAL DINÂMICA
-                pdf.sub_title(copy_intro["titulo_mental"])
+                pdf.sub_title("4.2 Especialidades Disponíveis")
+                pdf.bullet_point("Clínico Geral;")
+                pdf.bullet_point("Pediatria;")
+                pdf.bullet_point("Medicina da Família;")
+                
+                # INSERE O TEXTO DINÂMICO DE SAÚDE MENTAL
+                pdf.ln(1)
+                pdf.bullet_point(f"{copy_intro['titulo_mental']}:")
                 for paragrafo in copy_intro["texto_mental"].split("\n\n"):
-                    pdf.body_text(paragrafo)
+                    pdf.set_font('Arial', '', 9)
+                    pdf.set_text_color(50, 50, 50)
+                    pdf.cell(10) # Indent
+                    pdf.multi_cell(0, 5, limpa_texto(paragrafo), align='J')
 
-                # --- DIFERENCIAIS ---
-                diferenciais = []
-                if inc_clube: diferenciais.append("Clube de Benefícios completo integrado à solução.")
-                if inc_televet: diferenciais.append("Televeterinária (cuidado ampliado para o bem-estar de toda a família).")
-                if inc_entrevista: diferenciais.append("Projeto de Entrevista Qualificada (inteligência de dados da base).")
-                if inc_nr1: diferenciais.append("Programa de Regulamentação NR-1 (oportunidade de escala B2B).")
-                if inc_protocolos: diferenciais.append("Protocolos clínicos estruturados para demandas corporativas/específicas.")
-                if inc_cabine: diferenciais.append("Fornecimento de Cabine Física de Telemedicina para alocação presencial.")
+                # 5. POLÍTICA DE ESPECIALIDADES
+                if pdf.get_y() > 220: pdf.add_page()
+                pdf.chapter_title("5. POLÍTICA DE ESPECIALIDADES")
+                pdf.bullet_point("Quando houver encaminhamento médico realizado pelo corpo clínico da LSX Medical e o atendimento ocorrer dentro da rede própria da LSX Medical, não haverá custo adicional;")
+                pdf.bullet_point("Caso o beneficiário solicite diretamente atendimento especializado sem encaminhamento médico, poderão ser aplicadas as regras comerciais vigentes para especialidades, conforme tabela da LSX Medical.")
 
-                if diferenciais:
-                    if pdf.get_y() > 220: pdf.add_page()
-                    pdf.ln(3)
-                    pdf.sub_title("Diferenciais Estratégicos Agregados")
-                    for d in diferenciais:
-                        pdf.bullet_point(d)
-
-                # --- INVESTIMENTO E POLÍTICA DE UPSELL ---
-                pdf.add_page() 
-                pdf.chapter_title("4. MODELO DE INVESTIMENTO E ESCALA")
+                # 6. CONDIÇÕES COMERCIAIS E ESCALONAMENTO DE PREÇOS
+                pdf.add_page()
+                pdf.chapter_title("6. CONDIÇÕES COMERCIAIS E ESCALONAMENTO DE PREÇOS")
+                pdf.body_text("O modelo de precificação será mensal, por vida ativa, conforme o volume embarcado, respeitando o escalonamento mínimo abaixo:")
                 
-                # Parte 1: Implantação / Fixa
                 if usar_rampa and dados_rampa is not None:
-                    pdf.body_text("Cronograma de Implantação (Rampa de Lançamento):")
-                    pdf.ln(3)
-                    
-                    # AJUSTADO: Adicionada a coluna de Faturamento Mensal com redimensionamento
+                    pdf.ln(2)
                     pdf.set_font('Arial', 'B', 9)
                     pdf.set_fill_color(*COR_PRIMARIA)
                     pdf.set_text_color(255, 255, 255)
-                    pdf.cell(50, 8, 'Período', 1, 0, 'C', fill=True)
-                    pdf.cell(45, 8, 'Vidas Ativas', 1, 0, 'C', fill=True)
-                    pdf.cell(40, 8, 'Valor Unitário', 1, 0, 'C', fill=True)
-                    pdf.cell(50, 8, 'Faturamento Mensal', 1, 1, 'C', fill=True)
+                    pdf.cell(45, 8, 'Fase / Período', 1, 0, 'C', fill=True)
+                    pdf.cell(45, 8, 'Vidas Ativas (Meta)', 1, 0, 'C', fill=True)
+                    pdf.cell(45, 8, 'Valor Unitário', 1, 0, 'C', fill=True)
+                    pdf.cell(45, 8, 'Faturamento Mensal', 1, 1, 'C', fill=True)
 
                     pdf.set_font('Arial', '', 9)
                     pdf.set_text_color(50, 50, 50)
-                    
-                    total_ano = 0
                     
                     for index, row in dados_rampa.iterrows():
                         mes = str(row['Período'])
@@ -397,102 +405,95 @@ def main():
                             vidas, valor = 0, 0.0
                             
                         faturamento_mes = vidas * valor
-                        total_ano += faturamento_mes
-                            
-                        pdf.cell(50, 8, limpa_texto(mes), 1, 0, 'C')
-                        pdf.cell(45, 8, f"{vidas:,}", 1, 0, 'C')
-                        pdf.cell(40, 8, f"R$ {valor:,.2f}", 1, 0, 'C')
-                        pdf.cell(50, 8, f"R$ {faturamento_mes:,.2f}", 1, 1, 'C')
-                        
-                else:
-                    pdf.set_fill_color(*COR_CINZA_CLARO)
-                    pdf.rect(10, pdf.get_y(), 190, 40, 'F')
-                    pdf.set_y(pdf.get_y() + 5)
-                    
-                    pdf.set_font('Arial', 'B', 12)
-                    pdf.set_text_color(*COR_PRIMARIA)
-                    pdf.cell(95, 10, limpa_texto("VOLUME INICIAL CONTRATADO"), 0, 0, 'C')
-                    pdf.cell(95, 10, limpa_texto("VALOR MENSAL POR VIDA"), 0, 1, 'C')
-                    
-                    pdf.set_font('Arial', '', 14)
-                    pdf.set_text_color(50, 50, 50)
-                    pdf.cell(95, 10, limpa_texto(f"{qtd_vidas} Beneficiários ativos"), 0, 0, 'C')
-                    
-                    pdf.set_font('Arial', 'B', 22)
-                    pdf.set_text_color(*COR_SECUNDARIA) 
-                    pdf.cell(95, 10, f"R$ {valor_unitario:,.2f}", 0, 1, 'C')
-                    pdf.ln(12)
-
-                # Parte 2: A Tabela Progressiva
-                pdf.ln(8)
-                pdf.sub_title("Política de Crescimento e Upsell (Descontos Progressivos):")
-                pdf.body_text("Nossa parceria foi desenhada para escalar com você. Não há limite de crescimento. Conforme a base de usuários aumenta, o custo unitário da operação diminui automaticamente, aumentando sua margem de lucro:")
+                        pdf.cell(45, 6, limpa_texto(mes), 1, 0, 'C')
+                        pdf.cell(45, 6, f"{vidas:,}", 1, 0, 'C')
+                        pdf.cell(45, 6, f"R$ {valor:,.2f}", 1, 0, 'C')
+                        pdf.cell(45, 6, f"R$ {faturamento_mes:,.2f}", 1, 1, 'C')
                 
-                pdf.ln(2)
+                pdf.ln(5)
+                pdf.body_text("A partir de 10.001 vidas, seguindo o escalonamento abaixo:")
+                
                 pdf.set_font('Arial', 'B', 9)
                 pdf.set_fill_color(240, 240, 240)
                 pdf.set_text_color(*COR_PRIMARIA)
-                pdf.cell(85, 6, 'Volume de Vidas Ativas', 1, 0, 'C', fill=True)
-                pdf.cell(85, 6, 'Valor Unitário (Desconto Progressivo)', 1, 1, 'C', fill=True)
+                pdf.cell(90, 6, 'Quantidade Mínima de Vidas', 1, 0, 'C', fill=True)
+                pdf.cell(90, 6, 'Valor por Vida', 1, 1, 'C', fill=True)
+                
+                faixas_upsell = [
+                    ("10.001 a 17.999", "R$ 3,49"),
+                    ("18.000 a 20.999", "R$ 2,90"),
+                    ("21.000 a 23.999", "R$ 2,49"),
+                    ("24.000 a 26.999", "R$ 1,90"),
+                    ("27.000 a 29.999", "R$ 1,49"),
+                    ("Acima de 30.000", "R$ 0,90")
+                ]
                 
                 pdf.set_font('Arial', '', 9)
                 pdf.set_text_color(50, 50, 50)
-                
-                faixas_crescimento = [15000, 25000, 35000]
-                faixas_para_mostrar = [f for f in faixas_crescimento if f > qtd_vidas]
-                
-                if not faixas_para_mostrar: 
-                    faixas_para_mostrar = [qtd_vidas + 5000, qtd_vidas + 15000] 
-                    
-                for limite in faixas_para_mostrar:
-                    preco_faixa = calcular_preco_sugerido(limite)
-                    pdf.cell(85, 6, f"Acima de {limite:,} vidas", 1, 0, 'C')
-                    pdf.cell(85, 6, f"R$ {preco_faixa:,.2f}", 1, 1, 'C')
-                
-                pdf.ln(8)
-                pdf.sub_title("Regras de Faturamento e Prazos (SLAs):")
-                pdf.bullet_point(f"Vigência Contratual: {vigencia_contrato} (Período mínimo para sustentação da tabela de preços).")
-                pdf.bullet_point("Prazos de Implantação: Plataforma White Label operante em até 48 horas e Clube de Benefícios em até 20 dias, acompanhados de Reunião de Kick-Off.")
-                pdf.bullet_point("Isenções Comerciais: Isenção total e irrevogável de taxa de setup, taxa de implantação, taxa de personalização White Label e taxa de adesão.")
-                pdf.bullet_point("Faturamento: Apuração por volume de vidas ativas (ou volume mínimo) baseada no ciclo do primeiro ao último dia do mês, com vencimento programado para o dia 10 do mês subsequente.")
-                pdf.bullet_point("Reajuste: Anual com base no índice IPCA.")
-                
-                if obs_comerciais:
-                    pdf.bullet_point(f"Observações: {obs_comerciais}")
+                for faixa, valor in faixas_upsell:
+                    pdf.cell(90, 6, limpa_texto(faixa), 1, 0, 'C')
+                    pdf.cell(90, 6, limpa_texto(valor), 1, 1, 'C')
 
-                # --- COMPLIANCE ---
-                if pdf.get_y() > 190: 
-                    pdf.add_page()
-                else:
-                    pdf.ln(5)
-                    
-                pdf.chapter_title("5. COMPROMISSO ÉTICO, SEGURANÇA E LEGALIDADE")
-                texto_compliance = (
-                    "O ecossistema LSX Medical é 100% seguro, auditável e estruturado para proteger sua marca e "
-                    "a vida dos beneficiários, cumprindo rigorosamente as exigências legais vigentes no país:\n\n"
-                    f"• REGULARIDADE TÉCNICA E ÉTICA: Operação registrada no Conselho Regional de Medicina "
-                    f"do Paraná sob o nº {REGISTRO_CRM_PJ}, supervisionada diretamente por responsabilidade médica.\n\n"
-                    "• PRIVACIDADE (LGPD): Total conformidade com a Lei Geral de Proteção de Dados (Lei 13.709/18). "
-                    "Os prontuários médicos são criptografados e acessíveis exclusivamente na relação Médico-Paciente.\n\n"
-                    "• DIRETRIZES TÉCNICAS (NR-1 e CFM): Triagem clínica rigorosa, fluxos de contingência para alto "
-                    "risco e Termo de Consentimento Livre e Esclarecido (TCLE) implementado."
-                )
+                pdf.ln(3)
+                pdf.body_text("O escalonamento ocorrerá de forma automática conforme o crescimento do número de vidas, sem necessidade de renegociação contratual, desde que respeitados os volumes mínimos estabelecidos neste acordo.")
+
+                # 7. MODELO DE COBRANÇA
+                if pdf.get_y() > 220: pdf.add_page()
+                pdf.chapter_title("7. MODELO DE COBRANÇA")
+                pdf.bullet_point("Periodicidade: mensal;")
+                pdf.bullet_point("Base de cálculo: número de vidas ativas no período ou volume mínimo estipulado;")
+                pdf.bullet_point("Forma de pagamento: conforme definido no contrato principal;")
+                pdf.bullet_point("Não haverá cobrança de taxa de setup, implantação ou adesão;")
+                pdf.bullet_point("A apuração será realizada do primeiro ao último dia de cada mês;")
+                pdf.bullet_point("Os pagamentos serão realizados até o dia 10 do mês subsequente.")
+
+                # 8. IMPLANTAÇÃO E PRAZOS
+                if pdf.get_y() > 220: pdf.add_page()
+                pdf.chapter_title("8. IMPLANTAÇÃO E PRAZOS")
+                pdf.bullet_point("Prazo de implantação da clínica digital White Label: até 48 horas;")
+                pdf.bullet_point("Prazo de implantação e configuração do Clube de Benefícios: até 20 dias;")
+                pdf.bullet_point("Personalização visual conforme identidade da CONTRATANTE;")
+                pdf.bullet_point(f"Disponibilização do acesso aos beneficiários a partir de {data_acesso}.")
                 
-                pdf.set_fill_color(250, 250, 250)
-                pdf.set_draw_color(200, 200, 200)
-                pdf.set_font('Arial', '', 9)
-                pdf.multi_cell(0, 5, limpa_texto(texto_compliance), border=1, align='J', fill=True)
+                pdf.ln(2)
+                pdf.body_text(f"Obs.: Será realizada reunião de Kick Off para apresentação da equipe e entrega das plataformas após a assinatura do contrato. O primeiro pagamento e o início das operações estão programados para {data_pagamento}.")
+
+                # 9. ISENÇÕES E CONDIÇÕES ESPECIAIS
+                if pdf.get_y() > 220: pdf.add_page()
+                pdf.chapter_title("9. ISENÇÕES E CONDIÇÕES ESPECIAIS")
+                pdf.body_text("Estão expressamente isentas de cobrança:")
+                pdf.bullet_point("Taxa de setup;")
+                pdf.bullet_point("Taxa de implantação;")
+                pdf.bullet_point("Taxa de personalização White Label;")
+                pdf.bullet_point("Taxa de adesão.")
+
+                # 10. SEGURANÇA DA INFORMAÇÃO E CONFORMIDADE
+                if pdf.get_y() > 220: pdf.add_page()
+                pdf.chapter_title("10. SEGURANÇA DA INFORMAÇÃO E CONFORMIDADE")
+                pdf.body_text("A LSX Medical assegura:")
+                pdf.bullet_point("Conformidade com a LGPD, HIPAA e demais normas aplicáveis;")
+                pdf.bullet_point("Criptografia de dados;")
+                pdf.bullet_point("Controle de acesso e auditoria;")
+                pdf.bullet_point("Integridade e rastreabilidade das informações clínicas.")
+
+                # 11. VIGÊNCIA DAS CONDIÇÕES
+                if pdf.get_y() > 220: pdf.add_page()
+                pdf.chapter_title("11. VIGÊNCIA DAS CONDIÇÕES")
+                pdf.body_text("As condições comerciais e operacionais descritas neste Anexo:")
+                pdf.bullet_point(f"Permanecerão válidas durante a vigência do contrato ({vigencia_contrato});")
+                pdf.bullet_point("Estão condicionadas ao cumprimento do crescimento mínimo de vidas;")
+                pdf.bullet_point("Não caracterizam desconto pontual, mas sim um modelo de parceria estratégica baseado em escala e previsibilidade.")
 
                 # --- ASSINATURA ---
                 if pdf.get_y() > 220:
                     pdf.add_page()
                 else:
-                    pdf.ln(20) 
+                    pdf.ln(15) 
                 
                 pdf.set_font('Arial', 'I', 10)
                 pdf.set_text_color(100, 100, 100)
-                pdf.cell(0, 5, limpa_texto("Estamos à inteira disposição para agendar uma reunião de fechamento e kick-off."), 0, 1, 'C')
-                pdf.ln(5)
+                pdf.cell(0, 5, limpa_texto("Estamos à inteira disposição para agendar nossa reunião de fechamento e kick-off."), 0, 1, 'C')
+                pdf.ln(8)
                 
                 y_ass = pdf.get_y()
                 pdf.set_draw_color(*COR_PRIMARIA)
@@ -515,12 +516,12 @@ def main():
                 if contato_str:
                     pdf.cell(0, 5, limpa_texto(contato_str.strip(' |')), 0, 1, 'C')
 
-                nome_arquivo = f"Proposta_LSX_{cliente_empresa.replace(' ', '_')}.pdf"
+                nome_arquivo = f"Anexo_Comercial_LSX_{cliente_empresa.replace(' ', '_')}.pdf"
                 pdf_bytes = pdf.output(dest='S').encode('latin-1', 'replace') 
                 
-                st.success("✅ Proposta Enterprise Gerada com Sucesso!")
+                st.success("✅ Anexo Comercial Gerado com Sucesso!")
                 st.download_button(
-                    label="⬇️ BAIXAR PROPOSTA COMERCIAL (PDF)",
+                    label="⬇️ BAIXAR ANEXO COMERCIAL (PDF)",
                     data=pdf_bytes,
                     file_name=nome_arquivo,
                     mime="application/pdf"
