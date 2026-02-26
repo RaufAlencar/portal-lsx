@@ -5,19 +5,46 @@ from datetime import datetime
 import os
 
 # ==============================================================================
-# 1. IDENTIDADE VISUAL & DADOS CORPORATIVOS (LSX MEDICAL)
+# 1. IDENTIDADE VISUAL & DADOS CORPORATIVOS
 # ==============================================================================
-COR_PRIMARIA = (0, 30, 80)      # Azul Navy Profundo (LSX Dark)
-COR_SECUNDARIA = (0, 195, 180)  # Turquesa/Ciano Vibrante (LSX Highlight)
+COR_PRIMARIA = (0, 30, 80)      
+COR_SECUNDARIA = (0, 195, 180)  
 COR_CINZA_CLARO = (245, 246, 250)
 
-# Dados Institucionais e Legais
 EMPRESA_NOME = "LSX MEDICAL LTDA"
 EMPRESA_CNPJ = "53.210.447/0001-51"
 EMPRESA_ENDERECO = "Alameda Dr. Carlos de Carvalho, 431 - 12º Andar | Curitiba - PR"
 EMPRESA_SITE = "www.lsxmedical.com.br"
 RESPONSAVEL_TECNICO = "Dra. Michelle Massaki | CRM-PR 28.435"
 REGISTRO_CRM_PJ = "CRM-PR PJ 24.806"
+
+# ==============================================================================
+# 1.5. MOTOR DE INTELIGÊNCIA COMERCIAL (SEGMENTOS B2B)
+# ==============================================================================
+# Aqui definimos o discurso de vendas (Copy) focado na dor de cada segmento.
+TEXTOS_SEGMENTOS = {
+    "Geral / Corporativo": {
+        "intro1": "A LSX Medical propõe transformar sua base de confiança em um cuidado contínuo de alto valor agregado. Nosso objetivo é estruturar e operar uma Clínica Digital de telemedicina totalmente personalizada, exclusiva e integralmente sob a marca {marca}.",
+        "intro2": "Não se trata de uma plataforma genérica de mercado. Esta é uma operação desenhada para a realidade corporativa, focada em reduzir absenteísmo, otimizar custos de saúde e valorizar a sua marca empregadora perante colaboradores e clientes."
+    },
+    "Funerárias / Assistência Familiar": {
+        "intro1": "No setor de assistência familiar, o cuidado não termina com a despedida. A LSX Medical propõe transformar a {marca} em uma verdadeira provedora de saúde em vida, agregando valor tangível aos seus planos e aumentando a fidelização e retenção da sua carteira.",
+        "intro2": "Desenhamos uma Clínica Digital 100% White Label. O grande diferencial desta proposta é o foco em Saúde Mental e Apoio ao Luto, oferecendo suporte contínuo para a família no momento em que ela mais precisa, consolidando a sua marca como um pilar de acolhimento."
+    },
+    "Cartões de Benefícios / Saúde": {
+        "intro1": "Para aumentar o LTV (Life Time Value) e a atratividade do seu cartão, a LSX Medical oferece a infraestrutura completa para você operar a sua própria Clínica Digital de Telemedicina, fortalecendo o ecossistema da {marca}.",
+        "intro2": "Entregue um benefício de uso imediato e alta percepção de valor. Uma solução 100% customizável, pronta para escalar suas vendas e gerar novas linhas de receita, sem a necessidade de investir em desenvolvimento tecnológico ou corpo clínico próprio."
+    },
+    "Hospitais, Clínicas e Planos de Saúde": {
+        "intro1": "A LSX Medical atua como o braço tecnológico e de retaguarda médica da {marca}. Nossa solução de Clínica Digital visa otimizar sua operação, desafogar prontos-socorros físicos e expandir sua capilaridade de atendimento.",
+        "intro2": "Com protocolos integrados e fluxos de triagem digital (Pronto Atendimento Virtual), reduzimos custos operacionais e sinistralidade, garantindo a excelência do cuidado primário e o direcionamento inteligente de casos de alta complexidade para a sua rede física."
+    },
+    "Varejo e Grandes Redes": {
+        "intro1": "O varejo moderno exige inovação na retenção de clientes e na monetização da base. A LSX propõe que a {marca} ofereça saúde de qualidade como um serviço financeiro e de fidelidade (Health as a Service).",
+        "intro2": "Com nossa plataforma White Label, você entrega um benefício percebido como essencial, aumentando o engajamento do cliente com o seu ecossistema, gerando recorrência e abrindo uma nova frente de faturamento altamente rentável."
+    }
+}
+
 
 st.set_page_config(page_title="LSX Propostas", page_icon="✚", layout="wide")
 
@@ -70,7 +97,6 @@ class ProposalPDF(FPDF):
     def __init__(self, logo_path=None):
         super().__init__()
         self.logo_path = logo_path
-        # AJUSTE 1: Configura uma margem de quebra de página automática bem antes do rodapé
         self.set_auto_page_break(auto=True, margin=35) 
 
     def header(self):
@@ -179,39 +205,55 @@ def main():
     st.title("Gerador de Propostas Enterprise - LSX Medical")
     st.markdown("Plataforma White Label B2B - Configuração de Contratos Avançados")
 
-    st.subheader("1. Dados do Cliente (Contratante)")
-    col1, col2 = st.columns(2)
+    st.subheader("1. Dados do Cliente e Inteligência Comercial")
+    col1, col2, col3 = st.columns([2, 1, 1])
     cliente_empresa = col1.text_input("Razão Social / Empresa", placeholder="Ex: Grupo UMUPREV")
     cliente_responsavel = col2.text_input("Nome do Responsável", placeholder="Ex: João Silva")
+    # NOVO: Seletor de Segmento
+    segmento_selecionado = col3.selectbox("Segmento de Atuação", list(TEXTOS_SEGMENTOS.keys()))
+    
     nome_fantasia_cliente = cliente_empresa if cliente_empresa else "Sua Empresa"
 
     st.markdown("---")
     
     st.subheader("2. Dimensionamento e Precificação")
-    usar_rampa = st.checkbox("📈 Habilitar Rampa de Lançamento (Contrato com Escalonamento Mensal)")
+    col_vig, col_rampa = st.columns([1, 2])
+    # NOVO: Vigência Contratual
+    vigencia_contrato = col_vig.radio("Vigência do Contrato", ["12 Meses", "24 Meses"], index=1)
+    
+    usar_rampa = col_rampa.checkbox("📈 Habilitar Cronograma de Implantação (Rampa de Crescimento)")
     dados_rampa = None 
     
     if usar_rampa:
-        st.info("Preencha a tabela abaixo com a projeção mês a mês. O PDF gerará um cronograma financeiro completo.")
-        meses_iniciais = [f"Mês {i}" for i in range(1, 13)]
-        vidas_iniciais = [1000] * 12
-        valores_iniciais = [5.90] * 12
+        st.info("Preencha a expectativa de crescimento (Adicione ou remova linhas conforme os meses de implantação). A política de descontos progressivos por volume será gerada automaticamente.")
+        meses_iniciais = [f"Mês {i}" for i in range(1, 4)] # Padrão mais curto para rampa
+        vidas_iniciais = [1000, 3000, 5000]
+        valores_iniciais = [calcular_preco_sugerido(v) for v in vidas_iniciais]
+        
         df_rampa = pd.DataFrame({
-            "Período": meses_iniciais, "Qtd. Vidas": vidas_iniciais, "Valor por Vida (R$)": valores_iniciais
+            "Período": meses_iniciais, "Qtd. Vidas (Meta)": vidas_iniciais, "Valor por Vida (R$)": valores_iniciais
         })
         dados_rampa = st.data_editor(df_rampa, num_rows="dynamic", use_container_width=True, hide_index=True)
-        qtd_vidas = dados_rampa["Qtd. Vidas"].max()
-        valor_unitario = dados_rampa["Valor por Vida (R$)"].iloc[-1]
+        dados_rampa = dados_rampa.fillna(0)
+        
+        try:
+            qtd_vidas = int(dados_rampa["Qtd. Vidas (Meta)"].max())
+        except:
+            qtd_vidas = 1000
     else:
         col_vidas, col_preco = st.columns([1, 1])
-        qtd_vidas = col_vidas.number_input("Quantidade de Vidas Fixas", min_value=1, value=1000, step=100)
+        qtd_vidas = col_vidas.number_input("Volume Inicial Estimado (Vidas)", min_value=1, value=1000, step=100)
+        if qtd_vidas is None: qtd_vidas = 0 
+        
         preco_calculado = calcular_preco_sugerido(qtd_vidas)
         valor_unitario = col_preco.number_input("Valor Mensal por Vida (R$)", value=float(preco_calculado), format="%.2f", step=0.10)
+        if valor_unitario is None: valor_unitario = 0.0 
+        
         total_mensal = qtd_vidas * valor_unitario
         st.markdown(f"""
             <div class="highlight-box">
-                <h3 style="margin:0; color: #001E50;">Valor Total Mensal: R$ {total_mensal:,.2f}</h3>
-                <p style="margin:0; color: #555;">Faixa aplicada: {qtd_vidas} vidas a R$ {valor_unitario:.2f} por beneficiário.</p>
+                <h3 style="margin:0; color: #001E50;">Faturamento Base: R$ {total_mensal:,.2f} /mês</h3>
+                <p style="margin:0; color: #555;">Iniciando com {qtd_vidas} vidas a R$ {valor_unitario:.2f}. O cliente terá acesso automático a descontos se ultrapassar esse volume.</p>
             </div>
         """, unsafe_allow_html=True)
 
@@ -230,7 +272,7 @@ def main():
         inc_televet = st.checkbox("Televeterinária (Pet)", value=False)
         inc_entrevista = st.checkbox("Projeto de Entrevista Qualificada", value=False)
         inc_nr1 = st.checkbox("Programa de Regulamentação NR-1", value=False)
-        inc_protocolos = st.checkbox("Protocolos (Tirzepatida/Canabidiol)", value=False)
+        inc_protocolos = st.checkbox("Protocolos clínicos corporativos", value=False)
         inc_cabine = st.checkbox("Cabine Física de Telemedicina", value=False)
     
     obs_comerciais = st.text_area("Observações Comerciais (Ex: Carência, Setup de Implantação)", height=80)
@@ -255,10 +297,12 @@ def main():
                 pdf.cell(0, 6, f"Data da Emissão: {datetime.now().strftime('%d/%m/%Y')}", 0, 1)
                 pdf.ln(8)
                 
-                # --- INTRODUÇÃO ---
+                # --- INTRODUÇÃO DINÂMICA (POR SEGMENTO) ---
+                copy_intro = TEXTOS_SEGMENTOS[segmento_selecionado]
+                
                 pdf.chapter_title(f"1. A CLÍNICA DIGITAL {nome_fantasia_cliente.upper()}")
-                pdf.body_text(f"A LSX Medical propõe transformar sua base de confiança em um cuidado contínuo de alto valor agregado. Nosso objetivo é estruturar e operar uma Clínica Digital de telemedicina totalmente personalizada, exclusiva e integralmente sob a marca {nome_fantasia_cliente}.")
-                pdf.body_text("Não se trata de uma plataforma genérica de mercado. Esta é uma operação desenhada para a realidade, estratégia de negócios e posicionamento institucional.")
+                pdf.body_text(copy_intro["intro1"].replace("{marca}", nome_fantasia_cliente))
+                pdf.body_text(copy_intro["intro2"])
 
                 # --- JORNADA ---
                 pdf.chapter_title("2. JORNADA 100% PERSONALIZADA (WHITE LABEL)")
@@ -268,7 +312,6 @@ def main():
                 pdf.bullet_point("Dashboard exclusivo corporativo com dados reais de uso, engajamento e performance da base.")
 
                 # --- ESCOPO CORE ---
-                # AJUSTE 2: Forçar quebra se não houver espaço para o escopo
                 if pdf.get_y() > 190: pdf.add_page()
                 
                 pdf.chapter_title("3. ESCOPO MÉDICO E ASSISTENCIAL")
@@ -287,7 +330,7 @@ def main():
                 if inc_televet: diferenciais.append("Televeterinária (cuidado ampliado para o bem-estar de toda a família).")
                 if inc_entrevista: diferenciais.append("Projeto de Entrevista Qualificada (inteligência de dados da base).")
                 if inc_nr1: diferenciais.append("Programa de Regulamentação NR-1 (oportunidade de escala B2B).")
-                if inc_protocolos: diferenciais.append("Protocolos clínicos estruturados para prescrição de Tirzepatida e Canabidiol.")
+                if inc_protocolos: diferenciais.append("Protocolos clínicos estruturados para demandas corporativas/específicas.")
                 if inc_cabine: diferenciais.append("Fornecimento de Cabine Física de Telemedicina para alocação presencial.")
 
                 if diferenciais:
@@ -297,42 +340,37 @@ def main():
                     for d in diferenciais:
                         pdf.bullet_point(d)
 
-                # --- INVESTIMENTO ---
-                pdf.add_page() # Rampa de investimento sempre em página nova
-                pdf.chapter_title("4. MODELO DE INVESTIMENTO")
+                # --- INVESTIMENTO E POLÍTICA DE UPSELL ---
+                pdf.add_page() 
+                pdf.chapter_title("4. MODELO DE INVESTIMENTO E ESCALA")
                 
+                # Parte 1: Implantação / Fixa
                 if usar_rampa and dados_rampa is not None:
-                    pdf.body_text("Projeção de implantação com Rampa de Lançamento (Crescimento Escalonado):")
+                    pdf.body_text("Cronograma de Implantação (Rampa de Lançamento):")
                     pdf.ln(3)
                     
                     pdf.set_font('Arial', 'B', 10)
                     pdf.set_fill_color(*COR_PRIMARIA)
                     pdf.set_text_color(255, 255, 255)
-                    pdf.cell(40, 8, 'Período', 1, 0, 'C', fill=True)
-                    pdf.cell(50, 8, 'Vidas Estimadas', 1, 0, 'C', fill=True)
-                    pdf.cell(50, 8, 'Valor Unitário', 1, 0, 'C', fill=True)
-                    pdf.cell(50, 8, 'Faturamento Estimado', 1, 1, 'C', fill=True)
+                    pdf.cell(50, 8, 'Período', 1, 0, 'C', fill=True)
+                    pdf.cell(60, 8, 'Vidas Ativas (Meta)', 1, 0, 'C', fill=True)
+                    pdf.cell(60, 8, 'Valor Unitário Aplicado', 1, 1, 'C', fill=True)
 
                     pdf.set_font('Arial', '', 10)
                     pdf.set_text_color(50, 50, 50)
-                    total_ano = 0
                     
                     for index, row in dados_rampa.iterrows():
                         mes = str(row['Período'])
-                        vidas = int(row['Qtd. Vidas'])
-                        valor = float(row['Valor por Vida (R$)'])
-                        total_mes = vidas * valor
-                        total_ano += total_mes
+                        try:
+                            vidas = int(row['Qtd. Vidas (Meta)'])
+                            valor = float(row['Valor por Vida (R$)'])
+                        except:
+                            vidas, valor = 0, 0.0
+                            
+                        pdf.cell(50, 8, limpa_texto(mes), 1, 0, 'C')
+                        pdf.cell(60, 8, f"{vidas:,}", 1, 0, 'C')
+                        pdf.cell(60, 8, f"R$ {valor:,.2f}", 1, 1, 'C')
                         
-                        pdf.cell(40, 8, limpa_texto(mes), 1, 0, 'C')
-                        pdf.cell(50, 8, f"{vidas:,}", 1, 0, 'C')
-                        pdf.cell(50, 8, f"R$ {valor:,.2f}", 1, 0, 'C')
-                        pdf.cell(50, 8, f"R$ {total_mes:,.2f}", 1, 1, 'C')
-                        
-                    pdf.ln(5)
-                    pdf.set_font('Arial', 'B', 11)
-                    pdf.set_text_color(*COR_SECUNDARIA)
-                    pdf.cell(0, 8, f"Expectativa de Faturamento Acumulado no Período: R$ {total_ano:,.2f}", 0, 1, 'R')
                 else:
                     pdf.set_fill_color(*COR_CINZA_CLARO)
                     pdf.rect(10, pdf.get_y(), 190, 40, 'F')
@@ -340,7 +378,7 @@ def main():
                     
                     pdf.set_font('Arial', 'B', 12)
                     pdf.set_text_color(*COR_PRIMARIA)
-                    pdf.cell(95, 10, limpa_texto("QUANTIDADE DE VIDAS"), 0, 0, 'C')
+                    pdf.cell(95, 10, limpa_texto("VOLUME INICIAL ESTIMADO"), 0, 0, 'C')
                     pdf.cell(95, 10, limpa_texto("VALOR MENSAL POR VIDA"), 0, 1, 'C')
                     
                     pdf.set_font('Arial', '', 14)
@@ -350,21 +388,45 @@ def main():
                     pdf.set_font('Arial', 'B', 22)
                     pdf.set_text_color(*COR_SECUNDARIA) 
                     pdf.cell(95, 10, f"R$ {valor_unitario:,.2f}", 0, 1, 'C')
+                    pdf.ln(12)
+
+                # Parte 2: A Tabela Progressiva (A Quebra do Teto)
+                pdf.ln(8)
+                pdf.sub_title("Política de Crescimento e Upsell (Descontos Progressivos):")
+                pdf.body_text("Nossa parceria foi desenhada para escalar com você. Não há limite de crescimento. Conforme a base de usuários aumenta, o custo unitário da operação diminui automaticamente, aumentando sua margem de lucro:")
+                
+                pdf.ln(2)
+                pdf.set_font('Arial', 'B', 9)
+                pdf.set_fill_color(240, 240, 240)
+                pdf.set_text_color(*COR_PRIMARIA)
+                pdf.cell(85, 6, 'Volume de Vidas Ativas', 1, 0, 'C', fill=True)
+                pdf.cell(85, 6, 'Valor Unitário (Desconto Progressivo)', 1, 1, 'C', fill=True)
+                
+                # Gera as faixas dinamicamente acima da faixa atual do cliente
+                pdf.set_font('Arial', '', 9)
+                pdf.set_text_color(50, 50, 50)
+                
+                faixas_crescimento = [3000, 6000, 9000, 15000, 25000, 35000]
+                faixas_para_mostrar = [f for f in faixas_crescimento if f > qtd_vidas]
+                
+                if not faixas_para_mostrar: 
+                    faixas_para_mostrar = [qtd_vidas + 5000, qtd_vidas + 15000] # Garante que sempre mostra que pode crescer mais
                     
-                    pdf.ln(10)
-                    pdf.set_font('Arial', 'B', 13)
-                    pdf.set_text_color(*COR_PRIMARIA)
-                    pdf.cell(0, 10, f"TOTAL MENSAL ESTIMADO: R$ {total_mensal:,.2f}", 0, 1, 'R')
+                for limite in faixas_para_mostrar:
+                    preco_faixa = calcular_preco_sugerido(limite)
+                    pdf.cell(85, 6, f"Acima de {limite:,} vidas", 1, 0, 'C')
+                    pdf.cell(85, 6, f"R$ {preco_faixa:,.2f}", 1, 1, 'C')
                 
                 pdf.ln(8)
                 pdf.sub_title("Diretrizes Comerciais:")
-                pdf.bullet_point("Vigência Contratual: 24 meses (Período mínimo).")
+                # NOVO: Vigência Dinâmica
+                pdf.bullet_point(f"Vigência Contratual: {vigencia_contrato} (Período mínimo para sustentação da tabela de preços).")
                 pdf.bullet_point("Reajuste: Anual com base no índice IPCA.")
+                pdf.bullet_point("Faturamento: Apuração por volume de CPFs ativos enviados na base mensal.")
                 if obs_comerciais:
                     pdf.bullet_point(f"Observações: {obs_comerciais}")
 
                 # --- COMPLIANCE ---
-                # AJUSTE 3: Garante que o bloco não fique "picotado"
                 if pdf.get_y() > 190: 
                     pdf.add_page()
                 else:
@@ -388,11 +450,10 @@ def main():
                 pdf.multi_cell(0, 5, limpa_texto(texto_compliance), border=1, align='J', fill=True)
 
                 # --- ASSINATURA ---
-                # AJUSTE 4: Dinâmico em vez de Fixo. Pula de página se não couber.
                 if pdf.get_y() > 220:
                     pdf.add_page()
                 else:
-                    pdf.ln(20) # Espaço de respiro
+                    pdf.ln(20) 
                 
                 pdf.set_font('Arial', 'I', 10)
                 pdf.set_text_color(100, 100, 100)
