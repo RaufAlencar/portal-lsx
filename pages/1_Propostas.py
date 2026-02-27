@@ -54,7 +54,6 @@ TEXTOS_SEGMENTOS = {
     }
 }
 
-
 st.set_page_config(page_title="LSX Propostas", page_icon="✚", layout="wide")
 
 st.markdown(f"""
@@ -73,7 +72,7 @@ st.markdown(f"""
     </style>
 """, unsafe_allow_html=True)
 
-# FUNÇÃO DE LIMPEZA BLINDADA
+# FUNÇÃO DE LIMPEZA BLINDADA (Anti-Crash)
 def limpa_texto(texto):
     if not texto: return ""
     texto = str(texto)
@@ -402,7 +401,8 @@ def main():
                 pdf.sub_title("4.1 Pronto Atendimento 24x7")
                 pdf.body_text("Atendimento médico disponível 24 horas por dia, 7 dias por semana, com foco em orientação clínica, resolutividade e redução de atendimentos presenciais desnecessários.")
                 
-                pdf.sub_title("4.2 Especialidades Disponíveis")
+                # AQUI ESTÁ A CORREÇÃO DE OURO (Atenção Primária vs Especialidades)
+                pdf.sub_title("4.2 Atenção Primária e Saúde Mental (Incluso no Pacote)")
                 pdf.bullet_point("Clínico Geral;")
                 pdf.bullet_point("Pediatria;")
                 pdf.bullet_point("Medicina da Família;")
@@ -414,6 +414,15 @@ def main():
                     pdf.set_text_color(50, 50, 50)
                     pdf.cell(10) 
                     pdf.multi_cell(0, 5, limpa_texto(paragrafo), align='J')
+
+                # NOVO ITEM 4.3 - REDE DE ESPECIALIDADES DA LSX
+                pdf.ln(3)
+                pdf.sub_title("4.3 Rede de Especialidades Médicas (Agendamento Eletivo)")
+                pdf.body_text("Para continuidade do cuidado, a plataforma dispõe de uma rede médica completa com mais de 30 especialidades focadas em tratamentos específicos e acompanhamento. Entre as principais áreas atendidas na plataforma, destacam-se:")
+                
+                # Lista das principais especialidades tiradas do arquivo enviado
+                especialidades = "Cardiologia, Dermatologia, Endocrinologia (Adulto e Infantil), Gastroenterologia, Geriatria, Ginecologia, Neurologia, Nutrição, Ortopedia, Pneumologia, Psiquiatria, Reumatologia e Urologia."
+                pdf.bullet_point(especialidades)
 
                 # 5. POLÍTICA DE ESPECIALIDADES
                 pdf.chapter_title("5. POLÍTICA DE ESPECIALIDADES")
@@ -514,9 +523,9 @@ def main():
 
                     # NOVA SEÇÃO 6.2 (RESUMO DO INVESTIMENTO)
                     pdf.ln(5)
+                    if pdf.get_y() > 250: pdf.add_page()
                     pdf.sub_title("6.2 Resumo do Investimento Mensal (Plataforma + Adicionais)")
                     
-                    # Puxa o valor da primeira fase ou valor fixo
                     if usar_rampa and dados_rampa is not None and not dados_rampa.empty:
                         try:
                             v_ini = int(dados_rampa.iloc[0]['Vidas Contratadas'])
@@ -629,11 +638,9 @@ def main():
                 pdf.bullet_point("Não caracterizam desconto pontual, mas sim um modelo de parceria estratégica baseado em escala e previsibilidade.")
 
                 # --- ASSINATURA ANCORADA AO FUNDO ---
-                # Garante que a assinatura vá para uma nova página apenas se não houver espaço (230 de limite)
                 if pdf.get_y() > 230:
                     pdf.add_page()
                 
-                # Empurra a assinatura para baixo, perto do rodapé (rodapé começa em -28)
                 pdf.set_y(-60) 
                 
                 pdf.set_font('Arial', 'I', 9)
