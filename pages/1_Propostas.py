@@ -241,7 +241,7 @@ def main():
     data_acesso = col_acesso.text_input("Data Disponibilização do Acesso", value="05/02/2026")
     data_pagamento = col_pag.text_input("Data 1º Pagamento / Kick-Off", value="03/03/2026")
     
-    st.markdown("<br>", unsafe_allow_html=False)
+    st.markdown("", unsafe_allow_html=False)
     usar_rampa = st.checkbox("📈 Habilitar Cronograma de Implantação (Rampa de Crescimento)", value=True)
     dados_rampa = None 
     
