@@ -204,10 +204,10 @@ def main():
             st.title("LSX Config")
             
         st.markdown("### 👤 Dados do Emissor")
-        nome_vendedor = st.text_input("Nome", value="")
-        cargo_vendedor = st.text_input("Cargo", value="")
-        telefone_vendedor = st.text_input("Telefone", value="")
-        email_vendedor = st.text_input("E-mail", value="@lsxmedical.com")
+        nome_vendedor = st.text_input("Nome", value="Rauf Alencar")
+        cargo_vendedor = st.text_input("Cargo", value="Gestor Comercial")
+        telefone_vendedor = st.text_input("Telefone", value="(41) 99550-0770")
+        email_vendedor = st.text_input("E-mail", value="rauf.alencar@lsxmedical.com")
         
         st.markdown("---")
         st.markdown("### ⚙️ Configurações Visuais")
@@ -226,8 +226,8 @@ def main():
     st.subheader("1. Dados do Cliente e Inteligência Comercial")
     col1, col2, col3 = st.columns([2, 1, 1])
     
-    cliente_empresa = col1.text_input("Razão Social / Empresa", value="")
-    cliente_responsavel = col2.text_input("Nome do Responsável", value="")
+    cliente_empresa = col1.text_input("Razão Social / Empresa", value="Cartão Brisa Saúde")
+    cliente_responsavel = col2.text_input("Nome do Responsável", value="Igor Ferreira da Silva")
     segmento_selecionado = col3.selectbox("Segmento de Atuação", list(TEXTOS_SEGMENTOS.keys()))
     
     nome_fantasia_cliente = cliente_empresa if cliente_empresa else "Sua Empresa"
@@ -241,14 +241,17 @@ def main():
     data_acesso = col_acesso.text_input("Data Disponibilização do Acesso", value="05/02/2026")
     data_pagamento = col_pag.text_input("Data 1º Pagamento / Kick-Off", value="03/03/2026")
     
-    st.markdown("", unsafe_allow_html=False)
+    st.markdown("<br>", unsafe_allow_html=True)
     usar_rampa = st.checkbox("📈 Habilitar Cronograma de Implantação (Rampa de Crescimento)", value=True)
     dados_rampa = None 
+    
+    # Inicia a variável de vidas para usar na regra da Cabine Física
+    qtd_vidas = 1000 
     
     if usar_rampa:
         st.info("Preencha a rampa. A política de escalonamento será gerada baseada nessas linhas.")
         
-        meses_iniciais = ["Mês 1", "Mês 2", "Mês 3", "Mês 4"] 
+        meses_iniciais = ["Março Vencimento: 05/03", "Abril Vencimento: 05/04", "Maio Vencimento: 05/05", "Junho Vencimento: 05/06"] 
         vidas_iniciais = [1000, 3000, 5000, 10000]
         valores_iniciais = [3.90, 3.90, 3.90, 3.90]
         
@@ -281,16 +284,61 @@ def main():
         """, unsafe_allow_html=True)
 
     st.markdown("---")
-    st.subheader("3. Escopo Bônus / Diferenciais")
-    col_d1, col_d2 = st.columns(2)
-    with col_d1:
-        inc_clube = st.checkbox("Clube de Benefícios", value=True)
-        inc_televet = st.checkbox("Televeterinária (Pet)", value=False)
-        inc_entrevista = st.checkbox("Entrevista Qualificada", value=False)
-    with col_d2:
-        inc_nr1 = st.checkbox("Regulamentação NR-1", value=False)
-        inc_protocolos = st.checkbox("Protocolos Clínicos", value=False)
-        inc_cabine = st.checkbox("Cabine Física", value=False)
+    st.subheader("3. Escopo Bônus e Serviços Adicionais (Precificação)")
+    st.write("Marque os diferenciais contratados. Se houver custo extra, o sistema abrirá os campos para precificação automática no contrato.")
+    
+    # Clube de Benefícios (Gratuito)
+    inc_clube = st.checkbox("Clube de Benefícios (Gratuito Inclusivo)", value=True)
+    
+    # Televeterinária
+    inc_televet = st.checkbox("Televeterinária (Pet)")
+    if inc_televet:
+        col_t1, col_t2 = st.columns(2)
+        qtd_pet = col_t1.number_input("Quantidade de Vidas Pet", min_value=1, value=1000)
+        valor_pet = col_t2.number_input("Valor por Vida Pet (R$)", min_value=0.0, value=1.00, format="%.2f")
+
+    # Entrevista Qualificada
+    inc_entrevista = st.checkbox("Projeto de Entrevista Qualificada")
+    if inc_entrevista:
+        col_e1, col_e2, col_e3 = st.columns(3)
+        plano_entrevista = col_e1.text_input("Formato (Entrevista)", value="Por Vida Ativa / Fixo Mensal")
+        valor_entrevista = col_e2.number_input("Valor Unitário/Mensal (R$) - Entrevista", min_value=0.0, value=1500.00, format="%.2f")
+        setup_entrevista = col_e3.number_input("Setup (R$) - Entrevista", min_value=0.0, value=0.00, format="%.2f")
+
+    # NR-1
+    inc_nr1 = st.checkbox("Programa de Regulamentação NR-1")
+    if inc_nr1:
+        col_n1, col_n2, col_n3 = st.columns(3)
+        plano_nr1 = col_n1.text_input("Formato (NR-1)", value="Por Vidas Contratadas")
+        valor_nr1 = col_n2.number_input("Valor Unitário/Mensal (R$) - NR-1", min_value=0.0, value=1.50, format="%.2f")
+        setup_nr1 = col_n3.number_input("Setup (R$) - NR-1", min_value=0.0, value=0.00, format="%.2f")
+
+    # Protocolos Clínicos
+    inc_protocolos = st.checkbox("Protocolos Clínicos Personalizados")
+    if inc_protocolos:
+        col_p1, col_p2, col_p3 = st.columns(3)
+        plano_protocolos = col_p1.text_input("Formato (Protocolos)", value="Taxa Única de Estruturação")
+        valor_protocolos = col_p2.number_input("Mensalidade (R$) - Protocolos", min_value=0.0, value=0.00, format="%.2f")
+        setup_protocolos = col_p3.number_input("Setup/Taxa Única (R$) - Protocolos", min_value=0.0, value=3000.00, format="%.2f")
+
+    # Cabine Física
+    inc_cabine = st.checkbox("Cabine Física de Telemedicina")
+    if inc_cabine:
+        col_c1, col_c2 = st.columns(2)
+        qtd_cabines = col_c1.number_input("Quantidade de Cabines", min_value=1, value=1)
+        
+        # Inteligência da Cabine: Se > 100k vidas, zera o valor (Comodato). Se não, cobra 3900.
+        default_cabine = 0.00 if qtd_vidas >= 100000 else 3900.00
+        valor_cabine = col_c2.number_input("Mensalidade por Cabine (R$)", min_value=0.0, value=default_cabine, format="%.2f")
+        
+        if valor_cabine == 0:
+            st.success(f"🎉 Como o contrato atinge {qtd_vidas:,} vidas, a cabine será fornecida em regime de Comodato (Gratuita)!")
+        else:
+            st.info("ℹ️ Instalação Gratuita. O contrato da cabine acompanhará a vigência principal.")
+
+
+    st.markdown("---")
+    obs_comerciais = st.text_area("Observações Comerciais (Ex: Carência, Alinhamentos Específicos)", height=80)
 
     submit_btn = st.button("GERAR ANEXO COMERCIAL (PDF) 🚀")
 
@@ -350,12 +398,14 @@ def main():
                 pdf.bullet_point("Solicitação de exames;")
                 pdf.bullet_point("Dashboard gerencial;")
                 pdf.bullet_point("Helpdesk técnico e assistencial;")
+                
+                # ADICIONAIS NO ESCOPO GERAL
                 if inc_clube: pdf.bullet_point("Clube de Benefícios;")
-                if inc_televet: pdf.bullet_point("Televeterinária (Pet);")
+                if inc_televet: pdf.bullet_point(f"Televeterinária (Pet) estruturada para {qtd_pet:,} pets;")
                 if inc_entrevista: pdf.bullet_point("Projeto de Entrevista Qualificada;")
                 if inc_nr1: pdf.bullet_point("Programa de Regulamentação NR-1;")
-                if inc_protocolos: pdf.bullet_point("Protocolos Clínicos;")
-                if inc_cabine: pdf.bullet_point("Cabine Física de Telemedicina;")
+                if inc_protocolos: pdf.bullet_point("Protocolos Clínicos Personalizados;")
+                if inc_cabine: pdf.bullet_point(f"Fornecimento de {qtd_cabines} Cabine(s) Física(s) de Telemedicina;")
 
                 # 4. MODELO ASSISTENCIAL
                 pdf.chapter_title("4. MODELO ASSISTENCIAL")
@@ -373,17 +423,17 @@ def main():
                 for paragrafo in copy_intro["texto_mental"].split("\n\n"):
                     pdf.set_font('Arial', '', 9)
                     pdf.set_text_color(50, 50, 50)
-                    pdf.cell(10) # Indent
+                    pdf.cell(10) 
                     pdf.multi_cell(0, 5, limpa_texto(paragrafo), align='J')
 
                 # 5. POLÍTICA DE ESPECIALIDADES
                 pdf.chapter_title("5. POLÍTICA DE ESPECIALIDADES")
                 pdf.bullet_point("Quando houver encaminhamento médico realizado pelo corpo clínico da LSX Medical e o atendimento ocorrer dentro da rede própria da LSX Medical, não haverá custo adicional;")
-                pdf.bullet_point("Caso o beneficiário solicite diretamente atendimento especializado sem encaminhamento médico, poderão ser aplicadas as regras comerciais vigentes para especialidades, conforme tabela da LSX Medical.")
+                pdf.bullet_point("Caso o beneficiário solicite diretamente atendimento especializado sem encaminhamento médico, poderão ser aplicadas as regras comerciais vigentes para especialidades avulsas, conforme tabela da LSX Medical.")
 
                 # 6. CONDIÇÕES COMERCIAIS E ESCALONAMENTO DE PREÇOS
                 pdf.chapter_title("6. CONDIÇÕES COMERCIAIS E ESCALONAMENTO DE PREÇOS")
-                pdf.body_text("O modelo de precificação será mensal, baseado na quantidade de vidas contratada multiplicada pelo valor unitário, respeitando o escalonamento abaixo:")
+                pdf.body_text("O modelo de precificação será mensal, baseado na quantidade de vidas contratada multiplicada pelo valor unitário estipulado, respeitando a estruturação abaixo:")
                 
                 if usar_rampa and dados_rampa is not None:
                     pdf.ln(2)
@@ -413,7 +463,7 @@ def main():
                         pdf.cell(45, 6, f"R$ {faturamento_mes:,.2f}", 1, 1, 'C')
                 
                 pdf.ln(5)
-                pdf.body_text("A partir de 10.001 vidas, seguindo o escalonamento abaixo:")
+                pdf.body_text("A partir de 10.001 vidas, seguindo o escalonamento abaixo para crescimento orgânico da base:")
                 
                 pdf.set_font('Arial', 'B', 9)
                 pdf.set_fill_color(240, 240, 240)
@@ -439,13 +489,46 @@ def main():
                 pdf.ln(3)
                 pdf.body_text("O escalonamento ocorrerá de forma automática conforme o crescimento do número de vidas, sem necessidade de renegociação contratual, desde que respeitados os volumes mínimos estabelecidos neste acordo.")
 
+                # ==========================================
+                # SERVIÇOS ADICIONAIS (INTELIGÊNCIA DE PREÇOS)
+                # ==========================================
+                if inc_clube or inc_televet or inc_entrevista or inc_nr1 or inc_protocolos or inc_cabine:
+                    pdf.ln(3)
+                    pdf.sub_title("6.1 Condições e Precificação - Serviços Adicionais Contratados")
+                    
+                    if inc_clube:
+                        pdf.bullet_point("Clube de Benefícios: Fornecido de forma integralmente Gratuita (Isento) para a base ativa.")
+                    
+                    if inc_televet:
+                        pdf.bullet_point(f"Televeterinária (Pet): Pacote para {qtd_pet:,} vidas Pet ao valor de R$ {valor_pet:,.2f} por vida. Investimento de R$ {qtd_pet * valor_pet:,.2f} /mês adicionais ao plano principal.")
+                        
+                    if inc_entrevista:
+                        txt_entrevista = f"Projeto de Entrevista Qualificada: Formato {plano_entrevista} | Valor Acordado: R$ {valor_entrevista:,.2f}"
+                        if setup_entrevista > 0: txt_entrevista += f" | Setup Inicial: R$ {setup_entrevista:,.2f}"
+                        pdf.bullet_point(txt_entrevista + ".")
+                        
+                    if inc_nr1:
+                        txt_nr1 = f"Programa de Regulamentação NR-1: Formato {plano_nr1} | Valor Acordado: R$ {valor_nr1:,.2f}"
+                        if setup_nr1 > 0: txt_nr1 += f" | Setup Inicial: R$ {setup_nr1:,.2f}"
+                        pdf.bullet_point(txt_nr1 + ".")
+                        
+                    if inc_protocolos:
+                        txt_prot = f"Protocolos Clínicos: Formato {plano_protocolos} | Mensalidade: R$ {valor_protocolos:,.2f}"
+                        if setup_protocolos > 0: txt_prot += f" | Taxa Única de Estruturação: R$ {setup_protocolos:,.2f}"
+                        pdf.bullet_point(txt_prot + ".")
+                        
+                    if inc_cabine:
+                        if valor_cabine == 0:
+                            pdf.bullet_point(f"Cabine Física de Telemedicina: {qtd_cabines} unidade(s) alocada(s) em regime de COMODATO (R$ 0,00) devido ao volume de base contratada. Instalação Gratuita. A manutenção das cabines acompanha a vigência principal.")
+                        else:
+                            pdf.bullet_point(f"Cabine Física de Telemedicina: {qtd_cabines} unidade(s) contratada(s) sob locação ao valor de R$ {valor_cabine:,.2f} /mês cada. Instalação Gratuita. O contrato acompanha a vigência principal.")
+
                 # 7. MODELO DE COBRANÇA
                 pdf.chapter_title("7. MODELO DE COBRANÇA")
                 pdf.bullet_point("Periodicidade: mensal;")
-                # REGRA ALTERADA CONFORME SOLICITADO
                 pdf.bullet_point("Base de cálculo: volume mínimo estipulado multiplicado pelo valor unitário por vida;")
                 pdf.bullet_point("Forma de pagamento: conforme definido no contrato principal;")
-                pdf.bullet_point("Não haverá cobrança de taxa de setup, implantação ou adesão;")
+                pdf.bullet_point("Não haverá cobrança de taxa de setup, implantação ou adesão da plataforma principal;")
                 pdf.bullet_point("A apuração será realizada do primeiro ao último dia de cada mês;")
                 pdf.bullet_point("Os pagamentos serão realizados até o dia 10 do mês subsequente.")
 
@@ -461,7 +544,7 @@ def main():
 
                 # 9. ISENÇÕES E CONDIÇÕES ESPECIAIS
                 pdf.chapter_title("9. ISENÇÕES E CONDIÇÕES ESPECIAIS")
-                pdf.body_text("Estão expressamente isentas de cobrança:")
+                pdf.body_text("Estão expressamente isentas de cobrança na plataforma principal:")
                 pdf.bullet_point("Taxa de setup;")
                 pdf.bullet_point("Taxa de implantação;")
                 pdf.bullet_point("Taxa de personalização White Label;")
