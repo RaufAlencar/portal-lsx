@@ -73,7 +73,7 @@ st.markdown(f"""
     </style>
 """, unsafe_allow_html=True)
 
-# FUNÇÃO DE LIMPEZA BLINDADA (Anti-Crash)
+# FUNÇÃO DE LIMPEZA BLINDADA
 def limpa_texto(texto):
     if not texto: return ""
     texto = str(texto)
@@ -207,7 +207,7 @@ def main():
         nome_vendedor = st.text_input("Nome", value="")
         cargo_vendedor = st.text_input("Cargo", value="")
         telefone_vendedor = st.text_input("Telefone", value="")
-        email_vendedor = st.text_input("E-mail", value="@lsxmedical.com")
+        email_vendedor = st.text_input("E-mail", value="")
         
         st.markdown("---")
         st.markdown("### ⚙️ Configurações Visuais")
@@ -238,14 +238,13 @@ def main():
     col_vig, col_acesso, col_pag = st.columns([1, 1, 1])
     vigencia_contrato = col_vig.radio("Vigência do Contrato", ["12 Meses", "24 Meses"], index=1)
     
-    data_acesso = col_acesso.text_input("Data Disponibilização do Acesso", value="05/02/2026")
-    data_pagamento = col_pag.text_input("Data 1º Pagamento / Kick-Off", value="03/03/2026")
+    data_acesso = col_acesso.text_input("Data Disponibilização do Acesso", value="")
+    data_pagamento = col_pag.text_input("Data 1º Pagamento / Kick-Off", value="")
     
-    st.markdown("", unsafe_allow_html=True)
-    usar_rampa = st.checkbox("📈 Habilitar Cronograma de Implantação (Rampa de Crescimento)", value=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    usar_rampa = st.checkbox("📈 Habilitar Cronograma de Implantação (Rampa de Crescimento)")
     dados_rampa = None 
     
-    # Inicia a variável de vidas para usar na regra da Cabine Física
     qtd_vidas = 1000 
     
     if usar_rampa:
@@ -287,25 +286,21 @@ def main():
     st.subheader("3. Escopo Bônus e Serviços Adicionais (Precificação)")
     st.write("Marque os diferenciais contratados. Se houver custo extra, o sistema abrirá os campos para precificação automática no contrato.")
     
-    # Clube de Benefícios (Gratuito)
     inc_clube = st.checkbox("Clube de Benefícios (Gratuito Inclusivo)", value=True)
     
-    # Televeterinária
     inc_televet = st.checkbox("Televeterinária (Pet)")
     if inc_televet:
         col_t1, col_t2 = st.columns(2)
         qtd_pet = col_t1.number_input("Quantidade de Vidas Pet", min_value=1, value=1000)
         valor_pet = col_t2.number_input("Valor por Vida Pet (R$)", min_value=0.0, value=1.00, format="%.2f")
 
-    # Entrevista Qualificada
     inc_entrevista = st.checkbox("Projeto de Entrevista Qualificada")
     if inc_entrevista:
         col_e1, col_e2, col_e3 = st.columns(3)
-        plano_entrevista = col_e1.text_input("Formato (Entrevista)", value="Por Vida Ativa / Fixo Mensal")
+        plano_entrevista = col_e1.text_input("Formato (Entrevista)", value="Fixo Mensal")
         valor_entrevista = col_e2.number_input("Valor Unitário/Mensal (R$) - Entrevista", min_value=0.0, value=1500.00, format="%.2f")
         setup_entrevista = col_e3.number_input("Setup (R$) - Entrevista", min_value=0.0, value=0.00, format="%.2f")
 
-    # NR-1
     inc_nr1 = st.checkbox("Programa de Regulamentação NR-1")
     if inc_nr1:
         col_n1, col_n2, col_n3 = st.columns(3)
@@ -313,7 +308,6 @@ def main():
         valor_nr1 = col_n2.number_input("Valor Unitário/Mensal (R$) - NR-1", min_value=0.0, value=1.50, format="%.2f")
         setup_nr1 = col_n3.number_input("Setup (R$) - NR-1", min_value=0.0, value=0.00, format="%.2f")
 
-    # Protocolos Clínicos
     inc_protocolos = st.checkbox("Protocolos Clínicos Personalizados")
     if inc_protocolos:
         col_p1, col_p2, col_p3 = st.columns(3)
@@ -321,13 +315,10 @@ def main():
         valor_protocolos = col_p2.number_input("Mensalidade (R$) - Protocolos", min_value=0.0, value=0.00, format="%.2f")
         setup_protocolos = col_p3.number_input("Setup/Taxa Única (R$) - Protocolos", min_value=0.0, value=3000.00, format="%.2f")
 
-    # Cabine Física
     inc_cabine = st.checkbox("Cabine Física de Telemedicina")
     if inc_cabine:
         col_c1, col_c2 = st.columns(2)
         qtd_cabines = col_c1.number_input("Quantidade de Cabines", min_value=1, value=1)
-        
-        # Inteligência da Cabine: Se > 100k vidas, zera o valor (Comodato). Se não, cobra 3900.
         default_cabine = 0.00 if qtd_vidas >= 100000 else 3900.00
         valor_cabine = col_c2.number_input("Mensalidade por Cabine (R$)", min_value=0.0, value=default_cabine, format="%.2f")
         
@@ -335,7 +326,6 @@ def main():
             st.success(f"🎉 Como o contrato atinge {qtd_vidas:,} vidas, a cabine será fornecida em regime de Comodato (Gratuita)!")
         else:
             st.info("ℹ️ Instalação Gratuita. O contrato da cabine acompanhará a vigência principal.")
-
 
     st.markdown("---")
     obs_comerciais = st.text_area("Observações Comerciais (Ex: Carência, Alinhamentos Específicos)", height=80)
@@ -356,7 +346,7 @@ def main():
                 pdf.cell(0, 10, limpa_texto(f"À/C: {cliente_empresa}"), 0, 1)
                 pdf.set_font('Arial', '', 11)
                 if cliente_responsavel: pdf.cell(0, 6, limpa_texto(f"Aos cuidados de: {cliente_responsavel}"), 0, 1)
-                pdf.cell(0, 6, f"Data da Emissão: {datetime.now().strftime('%d/%m/%Y')}", 0, 1)
+                if data_acesso: pdf.cell(0, 6, f"Data da Emissão: {datetime.now().strftime('%d/%m/%Y')}", 0, 1)
                 pdf.ln(5)
                 
                 # --- APRESENTAÇÃO COMERCIAL ---
@@ -399,7 +389,6 @@ def main():
                 pdf.bullet_point("Dashboard gerencial;")
                 pdf.bullet_point("Helpdesk técnico e assistencial;")
                 
-                # ADICIONAIS NO ESCOPO GERAL
                 if inc_clube: pdf.bullet_point("Clube de Benefícios;")
                 if inc_televet: pdf.bullet_point(f"Televeterinária (Pet) estruturada para {qtd_pet:,} pets;")
                 if inc_entrevista: pdf.bullet_point("Projeto de Entrevista Qualificada;")
@@ -523,6 +512,77 @@ def main():
                         else:
                             pdf.bullet_point(f"Cabine Física de Telemedicina: {qtd_cabines} unidade(s) contratada(s) sob locação ao valor de R$ {valor_cabine:,.2f} /mês cada. Instalação Gratuita. O contrato acompanha a vigência principal.")
 
+                    # NOVA SEÇÃO 6.2 (RESUMO DO INVESTIMENTO)
+                    pdf.ln(5)
+                    pdf.sub_title("6.2 Resumo do Investimento Mensal (Plataforma + Adicionais)")
+                    
+                    # Puxa o valor da primeira fase ou valor fixo
+                    if usar_rampa and dados_rampa is not None and not dados_rampa.empty:
+                        try:
+                            v_ini = int(dados_rampa.iloc[0]['Vidas Contratadas'])
+                            p_ini = float(dados_rampa.iloc[0]['Valor por Vida (R$)'])
+                            base_faturamento = v_ini * p_ini
+                            lbl_base = f"Licenciamento Plataforma (Base da 1ª Fase - {v_ini:,} vidas)"
+                        except:
+                            base_faturamento = qtd_vidas * valor_unitario
+                            lbl_base = f"Licenciamento Plataforma ({qtd_vidas:,} vidas)"
+                    else:
+                        base_faturamento = qtd_vidas * valor_unitario
+                        lbl_base = f"Licenciamento Plataforma ({qtd_vidas:,} vidas)"
+                        
+                    total_adicionais = 0
+                    total_setup = 0
+                    
+                    pdf.set_font('Arial', '', 9)
+                    pdf.set_text_color(50, 50, 50)
+                    
+                    pdf.cell(5)
+                    pdf.cell(140, 5, limpa_texto(f"» {lbl_base}:"), 0, 0)
+                    pdf.cell(0, 5, f"R$ {base_faturamento:,.2f}", 0, 1, 'R')
+                    
+                    if inc_televet:
+                        val_t = qtd_pet * valor_pet
+                        total_adicionais += val_t
+                        pdf.cell(5); pdf.cell(140, 5, limpa_texto(f"» Televeterinária ({qtd_pet:,} pets):"), 0, 0); pdf.cell(0, 5, f"R$ {val_t:,.2f}", 0, 1, 'R')
+                        
+                    if inc_entrevista:
+                        val_e = (qtd_vidas * valor_entrevista) if "vida" in plano_entrevista.lower() else valor_entrevista
+                        total_adicionais += val_e
+                        total_setup += setup_entrevista
+                        pdf.cell(5); pdf.cell(140, 5, limpa_texto(f"» Entrevista Qualificada ({plano_entrevista}):"), 0, 0); pdf.cell(0, 5, f"R$ {val_e:,.2f}", 0, 1, 'R')
+                        
+                    if inc_nr1:
+                        val_n = (qtd_vidas * valor_nr1) if "vida" in plano_nr1.lower() else valor_nr1
+                        total_adicionais += val_n
+                        total_setup += setup_nr1
+                        pdf.cell(5); pdf.cell(140, 5, limpa_texto(f"» Programa NR-1 ({plano_nr1}):"), 0, 0); pdf.cell(0, 5, f"R$ {val_n:,.2f}", 0, 1, 'R')
+
+                    if inc_protocolos and valor_protocolos > 0:
+                        total_adicionais += valor_protocolos
+                        pdf.cell(5); pdf.cell(140, 5, limpa_texto("» Protocolos Clínicos (Mensalidade):"), 0, 0); pdf.cell(0, 5, f"R$ {valor_protocolos:,.2f}", 0, 1, 'R')
+                    if inc_protocolos:
+                        total_setup += setup_protocolos
+
+                    if inc_cabine and valor_cabine > 0:
+                        val_c = qtd_cabines * valor_cabine
+                        total_adicionais += val_c
+                        pdf.cell(5); pdf.cell(140, 5, limpa_texto(f"» Cabine Física ({qtd_cabines} un):"), 0, 0); pdf.cell(0, 5, f"R$ {val_c:,.2f}", 0, 1, 'R')
+
+                    pdf.ln(2)
+                    pdf.set_font('Arial', 'B', 10)
+                    pdf.set_text_color(*COR_PRIMARIA)
+                    pdf.cell(5)
+                    pdf.cell(140, 6, "INVESTIMENTO MENSAL TOTAL:", 0, 0)
+                    pdf.cell(0, 6, f"R$ {(base_faturamento + total_adicionais):,.2f}", 0, 1, 'R')
+                    
+                    if total_setup > 0:
+                        pdf.set_font('Arial', 'I', 8)
+                        pdf.set_text_color(100, 100, 100)
+                        pdf.cell(5)
+                        pdf.cell(140, 5, "* Taxa Única de Setup/Estruturação (Adicionais) faturada na implantação:", 0, 0)
+                        pdf.cell(0, 5, f"R$ {total_setup:,.2f}", 0, 1, 'R')
+
+
                 # 7. MODELO DE COBRANÇA
                 pdf.chapter_title("7. MODELO DE COBRANÇA")
                 pdf.bullet_point("Periodicidade: mensal;")
@@ -537,10 +597,13 @@ def main():
                 pdf.bullet_point("Prazo de implantação da clínica digital White Label: até 48 horas;")
                 pdf.bullet_point("Prazo de implantação e configuração do Clube de Benefícios: até 20 dias;")
                 pdf.bullet_point("Personalização visual conforme identidade da CONTRATANTE;")
-                pdf.bullet_point(f"Disponibilização do acesso aos beneficiários a partir de {data_acesso}.")
+                
+                txt_acesso = f"Disponibilização do acesso aos beneficiários a partir de {data_acesso}." if data_acesso else "Disponibilização do acesso aos beneficiários a definir."
+                pdf.bullet_point(txt_acesso)
                 
                 pdf.ln(2)
-                pdf.body_text(f"Obs.: Será realizada reunião de Kick Off para apresentação da equipe e entrega das plataformas após a assinatura do contrato. O primeiro pagamento e o início das operações estão programados para {data_pagamento}.")
+                txt_pag = f" O primeiro pagamento e o início das operações estão programados para {data_pagamento}." if data_pagamento else ""
+                pdf.body_text(f"Obs.: Será realizada reunião de Kick Off para apresentação da equipe e entrega das plataformas após a assinatura do contrato.{txt_pag}")
 
                 # 9. ISENÇÕES E CONDIÇÕES ESPECIAIS
                 pdf.chapter_title("9. ISENÇÕES E CONDIÇÕES ESPECIAIS")
@@ -565,16 +628,18 @@ def main():
                 pdf.bullet_point("Estão condicionadas ao cumprimento do crescimento mínimo de vidas;")
                 pdf.bullet_point("Não caracterizam desconto pontual, mas sim um modelo de parceria estratégica baseado em escala e previsibilidade.")
 
-                # --- ASSINATURA ---
-                if pdf.get_y() > 240:
+                # --- ASSINATURA ANCORADA AO FUNDO ---
+                # Garante que a assinatura vá para uma nova página apenas se não houver espaço (230 de limite)
+                if pdf.get_y() > 230:
                     pdf.add_page()
-                else:
-                    pdf.ln(15) 
                 
-                pdf.set_font('Arial', 'I', 10)
+                # Empurra a assinatura para baixo, perto do rodapé (rodapé começa em -28)
+                pdf.set_y(-60) 
+                
+                pdf.set_font('Arial', 'I', 9)
                 pdf.set_text_color(100, 100, 100)
-                pdf.cell(0, 5, limpa_texto("Estamos à inteira disposição para agendar nossa reunião de fechamento e kick-off."), 0, 1, 'C')
-                pdf.ln(8)
+                pdf.cell(0, 5, limpa_texto("Este Anexo Comercial integra a proposta principal e consolida as condições para formalização contratual."), 0, 1, 'C')
+                pdf.ln(5)
                 
                 y_ass = pdf.get_y()
                 pdf.set_draw_color(*COR_PRIMARIA)
@@ -583,11 +648,12 @@ def main():
                 
                 pdf.set_font('Arial', 'B', 11)
                 pdf.set_text_color(*COR_PRIMARIA)
-                pdf.cell(0, 5, limpa_texto(nome_vendedor), 0, 1, 'C')
+                pdf.cell(0, 5, limpa_texto(nome_vendedor) if nome_vendedor else "Assinatura Comercial", 0, 1, 'C')
                 
-                pdf.set_font('Arial', '', 10)
-                pdf.set_text_color(*COR_SECUNDARIA)
-                pdf.cell(0, 5, limpa_texto(cargo_vendedor), 0, 1, 'C')
+                if cargo_vendedor:
+                    pdf.set_font('Arial', '', 10)
+                    pdf.set_text_color(*COR_SECUNDARIA)
+                    pdf.cell(0, 5, limpa_texto(cargo_vendedor), 0, 1, 'C')
                 
                 pdf.set_font('Arial', '', 9)
                 pdf.set_text_color(100, 100, 100)
@@ -597,7 +663,7 @@ def main():
                 if contato_str:
                     pdf.cell(0, 5, limpa_texto(contato_str.strip(' |')), 0, 1, 'C')
 
-                nome_arquivo = f"Anexo_Comercial_LSX_{cliente_empresa.replace(' ', '_')}.pdf"
+                nome_arquivo = f"Anexo_Comercial_LSX_{cliente_empresa.replace(' ', '_')}.pdf" if cliente_empresa else "Anexo_Comercial_LSX.pdf"
                 pdf_bytes = pdf.output(dest='S').encode('latin-1', 'replace') 
                 
                 st.success("✅ Anexo Comercial Gerado com Sucesso!")
