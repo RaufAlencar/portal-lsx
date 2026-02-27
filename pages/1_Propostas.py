@@ -204,10 +204,10 @@ def main():
             st.title("LSX Config")
             
         st.markdown("### 👤 Dados do Emissor")
-        nome_vendedor = st.text_input("Nome", value="Rauf Alencar")
-        cargo_vendedor = st.text_input("Cargo", value="Gestor Comercial")
-        telefone_vendedor = st.text_input("Telefone", value="(41) 99550-0770")
-        email_vendedor = st.text_input("E-mail", value="rauf.alencar@lsxmedical.com")
+        nome_vendedor = st.text_input("Nome", value="")
+        cargo_vendedor = st.text_input("Cargo", value="")
+        telefone_vendedor = st.text_input("Telefone", value="")
+        email_vendedor = st.text_input("E-mail", value="@lsxmedical.com")
         
         st.markdown("---")
         st.markdown("### ⚙️ Configurações Visuais")
@@ -226,8 +226,8 @@ def main():
     st.subheader("1. Dados do Cliente e Inteligência Comercial")
     col1, col2, col3 = st.columns([2, 1, 1])
     
-    cliente_empresa = col1.text_input("Razão Social / Empresa", value="Cartão Brisa Saúde")
-    cliente_responsavel = col2.text_input("Nome do Responsável", value="Igor Ferreira da Silva")
+    cliente_empresa = col1.text_input("Razão Social / Empresa", value="")
+    cliente_responsavel = col2.text_input("Nome do Responsável", value="")
     segmento_selecionado = col3.selectbox("Segmento de Atuação", list(TEXTOS_SEGMENTOS.keys()))
     
     nome_fantasia_cliente = cliente_empresa if cliente_empresa else "Sua Empresa"
@@ -241,7 +241,7 @@ def main():
     data_acesso = col_acesso.text_input("Data Disponibilização do Acesso", value="05/02/2026")
     data_pagamento = col_pag.text_input("Data 1º Pagamento / Kick-Off", value="03/03/2026")
     
-    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("", unsafe_allow_html=True)
     usar_rampa = st.checkbox("📈 Habilitar Cronograma de Implantação (Rampa de Crescimento)", value=True)
     dados_rampa = None 
     
@@ -251,7 +251,7 @@ def main():
     if usar_rampa:
         st.info("Preencha a rampa. A política de escalonamento será gerada baseada nessas linhas.")
         
-        meses_iniciais = ["Março Vencimento: 05/03", "Abril Vencimento: 05/04", "Maio Vencimento: 05/05", "Junho Vencimento: 05/06"] 
+        meses_iniciais = ["Mês 1", "Mês 2", "Mês 3", "Mês 4"] 
         vidas_iniciais = [1000, 3000, 5000, 10000]
         valores_iniciais = [3.90, 3.90, 3.90, 3.90]
         
