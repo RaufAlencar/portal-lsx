@@ -139,6 +139,15 @@ VOLUME_MINIMO_TABLE = [
     ("Acima de 500 consultas", 61.60, "Máxima eficiência de custo na escala plena"),
 ]
 
+AREAS_ESPECIFICAS_DISPONIVEIS = [
+    "Psiquiatria", "Dermatologia", "Nutrição", "Cardiologia", "Endocrinologia",
+    "Ortopedia", "Ginecologia", "Urologia", "Neurologia", "Geriatria",
+    "Oftalmologia", "Otorrinolaringologia", "Outra (especificar)"
+]
+
+# --- App e Dashboard White Label (agora cobrado à parte) ---
+APP_DASHBOARD_SETUP = 2500.00
+
 
 # ==============================================================================
 # 3. CLASSE PDF PROFISSIONAL (GERADOR DE RELATÓRIO)
@@ -341,9 +350,9 @@ def main():
         st.markdown("**Core Clínico (Incluso no Pronto Atendimento 24/7):**")
         st.checkbox("Clínico Geral 24/7", value=True, disabled=True)
         st.checkbox("Pediatria e Médico da Família", value=True)
-        st.checkbox("Psicologia Orientativa (09h às 18h)", value=True)
+        st.checkbox("Psicologia Orientativa (09h às 23h)", value=True)
         st.checkbox("Programa de Apoio ao Luto / Acolhimento", value=True)
-        st.checkbox("App e Dashboard White Label", value=True, disabled=True)
+        st.caption("App e Dashboard White Label agora é um item à parte — configure na coluna ao lado.")
         st.caption(
             "Rede ampliada disponível conforme diferenciais contratados: "
             "Psiquiatra, Psiquiatra Pediátrico/Neuropediatra, Nutricionista, "
@@ -501,25 +510,64 @@ def main():
         inc_volume_min = st.checkbox("Contratação de Especialista por Volume Mínimo Inicial")
         if inc_volume_min:
             with st.expander("⚙️ Configurar Especialidade por Volume", expanded=True):
-                especialidade_vm = st.text_input(
-                    "Especialidade contratada",
-                    placeholder="Ex: Psiquiatria, Dermatologia, Nutrição...",
-                    key="vm_especialidade"
+                areas_selecionadas = st.multiselect(
+                    "Áreas específicas contratadas (pode marcar mais de uma)",
+                    AREAS_ESPECIFICAS_DISPONIVEIS,
+                    key="vm_areas"
                 )
-                nome_espec = especialidade_vm if especialidade_vm else "Especialista"
-                diferenciais_selecionados.append({
-                    "titulo": f"Contratação de {nome_espec} por Volume Mínimo Inicial",
-                    "descricao": (
-                        f"Alternativa à consulta avulsa de mercado (R$ 150,00): ao contratar um volume "
-                        f"mínimo inicial da especialidade de {nome_espec}, o contratante acessa condições "
-                        f"escalonadas de preço. Contratação à parte, complementar aos demais pacotes desta "
-                        f"proposta."
-                    ),
-                    "tabela": {
-                        "headers": ["Faixa de Volume Mensal", "Valor por Consulta", "Benefício"],
-                        "rows": [[f, f"R$ {p:.2f}", b] for f, p, b in VOLUME_MINIMO_TABLE]
-                    }
-                })
+                especialidade_custom = ""
+                if "Outra (especificar)" in areas_selecionadas:
+                    especialidade_custom = st.text_input(
+                        "Especifique a(s) outra(s) área(s)",
+                        placeholder="Ex: Reumatologia, Alergologia...",
+                        key="vm_especialidade_custom"
+                    )
+
+                # Preview visual da tabela — igual à referência do cliente
+                st.markdown("**Pré-visualização da tabela (entra assim no PDF):**")
+                df_preview = pd.DataFrame(
+                    [[f, f"R$ {p:.2f}", b] for f, p, b in VOLUME_MINIMO_TABLE],
+                    columns=["Faixa de Volume Mensal", "Valor por Consulta", "Benefício"]
+                )
+                st.table(df_preview)
+
+                areas_finais = [a for a in areas_selecionadas if a != "Outra (especificar)"]
+                if especialidade_custom:
+                    areas_finais += [a.strip() for a in especialidade_custom.split(",") if a.strip()]
+
+                if areas_finais:
+                    nome_areas = ", ".join(areas_finais)
+                    diferenciais_selecionados.append({
+                        "titulo": f"Contratação por Volume Mínimo Inicial — {nome_areas}",
+                        "descricao": (
+                            f"Alternativa à consulta avulsa de mercado (R$ 150,00): ao contratar um volume "
+                            f"mínimo inicial nas áreas específicas de {nome_areas}, o contratante acessa "
+                            f"condições escalonadas de preço. Contratação à parte, complementar aos demais "
+                            f"pacotes desta proposta."
+                        ),
+                        "tabela": {
+                            "headers": ["Faixa de Volume Mensal", "Valor por Consulta", "Benefício"],
+                            "rows": [[f, f"R$ {p:.2f}", b] for f, p, b in VOLUME_MINIMO_TABLE]
+                        }
+                    })
+                else:
+                    st.warning("Selecione ao menos uma área específica para incluir esse item na proposta.")
+
+        # 9. App e Dashboard White Label (agora item pago à parte)
+        inc_app_dashboard = st.checkbox("App e Dashboard White Label (implantação)")
+        if inc_app_dashboard:
+            diferenciais_selecionados.append({
+                "titulo": "App e Dashboard White Label",
+                "descricao": (
+                    "Aplicativo e painel white label com a identidade visual do contratante, incluindo "
+                    "dados reais de uso, engajamento e performance da base de beneficiários. Item de "
+                    "implantação, cobrado à parte do plano de telemedicina."
+                ),
+                "tabela": {
+                    "headers": ["Item", "Valor"],
+                    "rows": [["Implantação App e Dashboard White Label", f"R$ {APP_DASHBOARD_SETUP:,.2f}"]]
+                }
+            })
 
     obs_comerciais = st.text_area("Observações Comerciais (Ex: Carência, Setup de Implantação)", height=80)
 
@@ -580,7 +628,7 @@ def main():
                 )
 
                 pdf.sub_title("Saúde Mental e Apoio ao Luto")
-                pdf.body_text("Atendimento de Psicologia Orientativa (das 09h às 18h). Como pilar central do projeto, estruturamos o programa de Apoio ao Luto e Acolhimento Familiar.")
+                pdf.body_text("Atendimento de Psicologia Orientativa (das 09h às 23h). Como pilar central do projeto, estruturamos o programa de Apoio ao Luto e Acolhimento Familiar.")
                 pdf.body_text("Sabemos que a dor não termina no momento da despedida — muitas vezes ela se intensifica nos dias seguintes. Oferecemos escuta qualificada e direcionamento emocional para as famílias num momento extremamente sensível, fortalecendo laços e gerando valor social à marca.")
 
                 # --- DIFERENCIAIS ESTRATÉGICOS (dinâmico) ---
