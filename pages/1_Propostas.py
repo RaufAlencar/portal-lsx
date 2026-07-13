@@ -5,54 +5,19 @@ from datetime import datetime
 import os
 
 # ==============================================================================
-# 1. IDENTIDADE VISUAL & DADOS CORPORATIVOS
+# 1. IDENTIDADE VISUAL & DADOS CORPORATIVOS (LSX MEDICAL)
 # ==============================================================================
-COR_PRIMARIA = (0, 30, 80)      
-COR_SECUNDARIA = (0, 195, 180)  
+COR_PRIMARIA = (0, 30, 80)      # Azul Navy Profundo (LSX Dark)
+COR_SECUNDARIA = (0, 195, 180)  # Turquesa/Ciano Vibrante (LSX Highlight)
 COR_CINZA_CLARO = (245, 246, 250)
 
+# Dados Institucionais e Legais
 EMPRESA_NOME = "LSX MEDICAL LTDA"
 EMPRESA_CNPJ = "53.210.447/0001-51"
 EMPRESA_ENDERECO = "Alameda Dr. Carlos de Carvalho, 431 - 12º Andar | Curitiba - PR"
 EMPRESA_SITE = "www.lsxmedical.com.br"
 RESPONSAVEL_TECNICO = "Dra. Michelle Massaki | CRM-PR 28.435"
 REGISTRO_CRM_PJ = "CRM-PR PJ 24.806"
-
-# ==============================================================================
-# 1.5. MOTOR DE INTELIGÊNCIA COMERCIAL (SEGMENTOS B2B)
-# ==============================================================================
-TEXTOS_SEGMENTOS = {
-    "Cartões de Benefícios / Saúde": {
-        "intro1": "Para aumentar o LTV (Life Time Value) e a atratividade do seu cartão, a LSX Medical oferece a infraestrutura completa para você operar a sua própria Clínica Digital de Telemedicina, fortalecendo o ecossistema da {marca}.",
-        "intro2": "Entregue um benefício de uso imediato e alta percepção de valor. Uma solução 100% customizável, pronta para escalar suas vendas e gerar novas linhas de receita, sem a necessidade de investir em desenvolvimento tecnológico ou corpo clínico próprio.",
-        "titulo_mental": "Telepsicologia Orientativa (Acesso Rápido)",
-        "texto_mental": "Atendimento das 09h às 18h. Agregue alto valor percebido ao seu cartão entregando cuidado emocional.\n\nNossos profissionais estão disponíveis para triagem e orientação em casos de ansiedade, crises pontuais e conflitos familiares. Um benefício que gera uso recorrente e fideliza o usuário ao seu produto."
-    },
-    "Geral / Corporativo": {
-        "intro1": "A LSX Medical propõe transformar sua base de confiança em um cuidado contínuo de alto valor agregado. Nosso objetivo é estruturar e operar uma Clínica Digital de telemedicina totalmente personalizada, exclusiva e integralmente sob a marca {marca}.",
-        "intro2": "Não se trata de uma plataforma genérica de mercado. Esta é uma operação desenhada para a realidade corporativa, focada em reduzir absenteísmo, otimizar custos de saúde e valorizar a sua marca empregadora perante colaboradores e clientes.",
-        "titulo_mental": "Telepsicologia Orientativa (Suporte Corporativo)",
-        "texto_mental": "Atendimento das 09h às 18h. Entendemos que a saúde mental é o maior desafio corporativo atual.\n\nDisponibilizamos suporte psicológico de rápido acesso para gerenciamento de estresse, ansiedade e prevenção de burnout, promovendo bem-estar e produtividade para os seus beneficiários."
-    },
-    "Funerárias / Assistência Familiar": {
-        "intro1": "No setor de assistência familiar, o cuidado não termina com a despedida. A LSX Medical propõe transformar a {marca} em uma verdadeira provedora de saúde em vida, agregando valor tangível aos seus planos e aumentando a fidelização e retenção da sua carteira.",
-        "intro2": "Desenhamos uma Clínica Digital 100% White Label. O grande diferencial desta proposta é o foco em Saúde Mental e Apoio ao Luto, oferecendo suporte contínuo para a família no momento em que ela mais precisa, consolidando a sua marca como um pilar de acolhimento.",
-        "titulo_mental": "Telepsicologia Orientativa (Apoio ao Luto)",
-        "texto_mental": "Atendimento das 09h às 18h. Como pilar central do projeto, estruturamos o programa de Apoio ao Luto e Acolhimento Familiar.\n\nSabemos que a dor não termina no momento da despedida — muitas vezes ela se intensifica nos dias seguintes. Oferecemos escuta qualificada e direcionamento emocional num momento extremamente sensível, fortalecendo laços e gerando valor social à marca."
-    },
-    "Hospitais, Clínicas e Planos de Saúde": {
-        "intro1": "A LSX Medical atua como o braço tecnológico e de retaguarda médica da {marca}. Nossa solução de Clínica Digital visa otimizar sua operação, desafogar prontos-socorros físicos e expandir sua capilaridade de atendimento.",
-        "intro2": "Com protocolos integrados e fluxos de triagem digital (Pronto Atendimento Virtual), reduzimos custos operacionais e sinistralidade, garantindo a excelência do cuidado primário e o direcionamento inteligente de casos de alta complexidade para a sua rede física.",
-        "titulo_mental": "Telepsicologia Orientativa (Triagem)",
-        "texto_mental": "Atendimento das 09h às 18h. Atua como um importante filtro para a rede presencial.\n\nRealizamos o acolhimento, escuta qualificada e encaminhamento assertivo. Ideal para pacientes com quadros leves, evitando idas desnecessárias à emergência e oferecendo conforto e comodidade diretamente pelo aplicativo."
-    },
-    "Varejo e Grandes Redes": {
-        "intro1": "O varejo moderno exige inovação na retenção de clientes e na monetização da base. A LSX propõe que a {marca} ofereça saúde de qualidade como um serviço financeiro e de fidelidade (Health as a Service).",
-        "intro2": "Com nossa plataforma White Label, você entrega um benefício percebido como essencial, aumentando o engajamento do cliente com o seu ecossistema, gerando recorrência e abrindo uma nova frente de faturamento altamente rentável.",
-        "titulo_mental": "Telepsicologia Orientativa (Bem-Estar)",
-        "texto_mental": "Atendimento das 09h às 18h. Diferencie o seu programa de fidelidade entregando acolhimento.\n\nOferecemos acesso rápido a profissionais de saúde mental para orientações gerais. Um serviço moderno que conecta a sua marca diretamente ao cuidado pessoal do seu cliente."
-    }
-}
 
 st.set_page_config(page_title="LSX Propostas", page_icon="✚", layout="wide")
 
@@ -66,26 +31,25 @@ st.markdown(f"""
     .stButton > button:hover {{ background-color: #00C3B4; color: white; transform: scale(1.02); }}
     h1, h2, h3, h4 {{ color: #001E50; }}
     .highlight-box {{
-        background-color: #E0F7FA; padding: 20px; border-radius: 10px; 
+        background-color: #E0F7FA; padding: 20px; border-radius: 10px;
         border-left: 6px solid #00C3B4; margin-bottom: 20px;
     }}
     </style>
 """, unsafe_allow_html=True)
 
-# FUNÇÃO DE LIMPEZA BLINDADA (Anti-Crash)
+
+# Limpeza de caracteres não suportados pelo FPDF
 def limpa_texto(texto):
-    if not texto: return ""
-    texto = str(texto)
-    replacements = {
-        "•": "-", "–": "-", "—": "-", "“": '"', "”": '"', "‘": "'", "’": "'", 
-        "\u2022": "-", "\u2028": "\n"
-    }
+    if not texto:
+        return ""
+    replacements = {"•": "-", "–": "-", "—": "-", "“": '"', "”": '"', "\u2022": "-", "\u2028": "\n"}
     for char, rep in replacements.items():
-        texto = texto.replace(char, rep)
+        texto = str(texto).replace(char, rep)
     return texto.encode('latin-1', 'replace').decode('latin-1')
 
+
 # ==============================================================================
-# 2. MOTOR DE PRECIFICAÇÃO DINÂMICA
+# 2. MOTOR DE PRECIFICAÇÃO — VIDAS (TELEMEDICINA BASE / SEÇÃO 2)
 # ==============================================================================
 def calcular_preco_sugerido(vidas):
     if vidas <= 0: return 0.00
@@ -103,6 +67,79 @@ def calcular_preco_sugerido(vidas):
     if vidas <= 29999: return 1.49
     return 0.90
 
+
+# ==============================================================================
+# 2B. TABELAS DE PREÇO DOS DIFERENCIAIS ESTRATÉGICOS
+# ==============================================================================
+
+# --- Programa NR-1 / Suporte Psicossocial Corporativo ---
+def calc_nr1_price(vidas):
+    if vidas <= 10: return 18.90
+    if vidas <= 20: return 16.90
+    if vidas <= 30: return 14.90
+    if vidas <= 40: return 12.90
+    if vidas <= 49: return 10.90
+    if vidas <= 50: return 9.90
+    if vidas <= 150: return 8.90
+    if vidas <= 200: return 7.90
+    return 7.45
+
+NR1_PACOTE1 = {"quinzenal": 58.11, "semanal": 93.87}   # Clínico Geral + Psicologia
+NR1_PACOTE2 = {"quinzenal": 87.42, "semanal": 123.18}  # Psiquiatria + Psicologia
+
+# --- Projeto Emagrecimento (Tirzepatida) — valor por vida ---
+EMAGRECIMENTO_TABLE = [
+    (50, 61.20), (60, 60.49), (80, 59.52), (100, 58.91), (150, 57.70),
+    (200, 56.69), (300, 54.95), (400, 53.42), (10**9, 52.02)
+]
+def calc_emagrecimento_price(vidas):
+    for limite, preco in EMAGRECIMENTO_TABLE:
+        if vidas <= limite:
+            return preco
+    return EMAGRECIMENTO_TABLE[-1][1]
+
+# --- Telemedicina em Canabidiol (CBD) ---
+CBD_PRECO_CONSULTA = 49.90
+
+# --- Projeto Remoção ---
+REMOCAO_PRECO_CONSULTA = 29.90
+REMOCAO_MINIMO_CONSULTAS = 100
+REMOCAO_FEE_MENSAL = 2990.00
+
+# --- Entrevista Qualificada Gravada ---
+ENTREVISTA_OPCOES = {
+    "Médico": {"preco": 49.90, "minimo": 100, "fee": 4990.00},
+    "Técnico de Enfermagem / Enfermeiro": {"preco": 9.90, "minimo": 200, "fee": 1980.00},
+}
+
+# --- Projeto TEA — Planos ---
+TEA_PLANOS = {
+    "Plano Mensal — Manutenção (5 atendimentos/mês)": 373.00,
+    "Plano Quinzenal — Intermediário (8 atendimentos/mês)": 548.00,
+    "Plano Semanal — Intensivo (14 atendimentos/mês)": 898.00,
+}
+
+# --- Soluções LSX para Atenção Primária (Totem / Cabine / SSVV) ---
+ATENCAO_PRIMARIA_SOLUCOES = {
+    "Cabine 1x1 + Solução SSVV": {"locacao": 4147.00, "venda": 57720.00},
+    "Cabine 1,5m x 2m + Solução SSVV": {"locacao": 5447.00, "venda": 71240.00},
+    "Totem + Solução SSVV": {"locacao": 2535.00, "venda": 44070.00},
+    "Solução SSVV (equipamentos de sinais vitais avulsos)": {"locacao": 1495.00, "venda": 29770.00},
+}
+
+# --- Contratação de Especialista por Volume Mínimo Inicial (genérico) ---
+# Alternativa à consulta avulsa de mercado (R$150,00): ao contratar volume
+# mínimo inicial de uma especialidade específica, o cliente acessa condições
+# escalonadas de preço. Contratação à parte, complementar aos demais pacotes.
+VOLUME_MINIMO_TABLE = [
+    ("A partir de 50 consultas", 70.00, "Entrada acessível para novos contratos"),
+    ("51 a 100 consultas", 68.50, "Redução de custo conforme crescimento inicial"),
+    ("101 a 300 consultas", 65.90, "Economia significativa em operações em expansão"),
+    ("301 a 500 consultas", 63.80, "Alta competitividade para grandes volumes"),
+    ("Acima de 500 consultas", 61.60, "Máxima eficiência de custo na escala plena"),
+]
+
+
 # ==============================================================================
 # 3. CLASSE PDF PROFISSIONAL (GERADOR DE RELATÓRIO)
 # ==============================================================================
@@ -110,14 +147,13 @@ class ProposalPDF(FPDF):
     def __init__(self, logo_path=None):
         super().__init__()
         self.logo_path = logo_path
-        self.set_auto_page_break(auto=True, margin=30) 
 
     def header(self):
         self.set_fill_color(255, 255, 255)
         self.rect(0, 0, 210, 35, 'F')
-        
+
         if self.logo_path and os.path.exists(self.logo_path):
-            self.image(self.logo_path, x=10, y=8, w=45) 
+            self.image(self.logo_path, x=10, y=8, w=45)
         else:
             self.set_font('Arial', 'B', 24)
             self.set_text_color(*COR_PRIMARIA)
@@ -127,12 +163,12 @@ class ProposalPDF(FPDF):
         self.set_y(10)
         self.set_font('Arial', 'B', 15)
         self.set_text_color(*COR_PRIMARIA)
-        self.cell(0, 8, 'PROPOSTA COMERCIAL / ANEXO I', 0, 1, 'R')
-        
+        self.cell(0, 8, 'PROPOSTA COMERCIAL', 0, 1, 'R')
+
         self.set_font('Arial', 'B', 9)
         self.set_text_color(*COR_SECUNDARIA)
         self.cell(0, 5, limpa_texto('SUA MARCA, NOSSA TECNOLOGIA.'), 0, 1, 'R')
-        
+
         self.set_fill_color(*COR_SECUNDARIA)
         self.rect(10, 32, 190, 0.8, 'F')
         self.ln(12)
@@ -142,52 +178,75 @@ class ProposalPDF(FPDF):
         y_line = self.get_y()
         self.set_fill_color(*COR_SECUNDARIA)
         self.rect(0, y_line, 210, 1.5, 'F')
-        
+
         self.set_y(y_line + 3)
         self.set_font('Arial', 'I', 8)
         self.set_text_color(100, 100, 100)
-        
+
         texto_rodape = f"{EMPRESA_NOME} | CNPJ: {EMPRESA_CNPJ}\n{EMPRESA_ENDERECO}\nResp. Técnico: {RESPONSAVEL_TECNICO} | {REGISTRO_CRM_PJ}"
         self.multi_cell(0, 4, limpa_texto(texto_rodape), 0, 'C')
-        
+
         self.set_y(-12)
         self.set_font('Arial', '', 8)
         self.cell(0, 10, f'Página {self.page_no()}', 0, 0, 'R')
 
     def chapter_title(self, title):
-        if self.get_y() > 240: 
-            self.add_page()
         self.ln(5)
-        self.set_font('Arial', 'B', 11)
+        self.set_font('Arial', 'B', 13)
         self.set_text_color(*COR_PRIMARIA)
         self.cell(0, 8, limpa_texto(title.upper()), 0, 1, 'L')
         self.set_fill_color(*COR_PRIMARIA)
         self.rect(10, self.get_y(), 10, 0.8, 'F')
-        self.ln(3)
+        self.ln(5)
 
     def sub_title(self, title):
-        if self.get_y() > 250: 
-            self.add_page()
-        self.set_font('Arial', 'B', 10)
+        self.set_font('Arial', 'B', 11)
         self.set_text_color(*COR_PRIMARIA)
         self.cell(0, 6, limpa_texto(title), 0, 1, 'L')
         self.ln(1)
 
     def body_text(self, text):
-        self.set_font('Arial', '', 9)
+        self.set_font('Arial', '', 10)
         self.set_text_color(50, 50, 50)
         self.multi_cell(0, 5, limpa_texto(text), align='J')
-        self.ln(2)
+        self.ln(3)
 
     def bullet_point(self, text):
-        self.set_font('Arial', '', 9)
+        self.set_font('Arial', '', 10)
         self.set_text_color(50, 50, 50)
-        self.cell(5) 
+        self.cell(5)
         self.set_text_color(*COR_SECUNDARIA)
-        self.cell(3, 5, chr(187), 0, 0) 
+        self.cell(3, 5, "»", 0, 0)
         self.set_text_color(50, 50, 50)
         self.multi_cell(0, 5, limpa_texto(text), align='J')
         self.ln(1)
+
+    def price_table(self, headers, rows, col_widths=None):
+        """Desenha uma tabela de preços genérica (usada por todos os diferenciais)."""
+        if col_widths is None:
+            n = len(headers)
+            col_widths = [190 / n] * n
+
+        # Cabeçalho
+        self.set_font('Arial', 'B', 9)
+        self.set_fill_color(*COR_PRIMARIA)
+        self.set_text_color(255, 255, 255)
+        for h, w in zip(headers, col_widths):
+            self.cell(w, 7, limpa_texto(str(h)), 1, 0, 'C', fill=True)
+        self.ln()
+
+        # Linhas
+        self.set_font('Arial', '', 9)
+        self.set_text_color(50, 50, 50)
+        fill = False
+        for row in rows:
+            self.set_fill_color(*COR_CINZA_CLARO) if fill else self.set_fill_color(255, 255, 255)
+            for val, w in zip(row, col_widths):
+                self.cell(w, 6.5, limpa_texto(str(val)), 1, 0, 'C', fill=True)
+            self.ln()
+            fill = not fill
+        self.ln(3)
+
 
 # ==============================================================================
 # 4. APP STREAMLIT (LÓGICA E INTERFACE)
@@ -198,16 +257,16 @@ def main():
     # --- SIDEBAR ---
     with st.sidebar:
         if logo_padrao:
-            st.image(logo_padrao, width='stretch')
+            st.image(logo_padrao, use_container_width=True)
         else:
             st.title("LSX Config")
-            
+
         st.markdown("### 👤 Dados do Emissor")
-        nome_vendedor = st.text_input("Nome", value="")
-        cargo_vendedor = st.text_input("Cargo", value="")
-        telefone_vendedor = st.text_input("Telefone", value="")
-        email_vendedor = st.text_input("E-mail", value="")
-        
+        nome_vendedor = st.text_input("Nome", value="Rauf Alencar")
+        cargo_vendedor = st.text_input("Cargo", value="Gestor Comercial")
+        telefone_vendedor = st.text_input("Telefone", value="(41) 99550-0770")
+        email_vendedor = st.text_input("E-mail", value="contato@lsxmedical.com")
+
         st.markdown("---")
         st.markdown("### ⚙️ Configurações Visuais")
         uploaded_logo = st.file_uploader("Trocar Logo LSX (Opcional)", type=['png', 'jpg'])
@@ -219,118 +278,256 @@ def main():
             logo_final = logo_padrao
 
     # --- MAIN CONTENT ---
-    st.title("Gerador de Propostas e Anexo I - LSX Medical")
+    st.title("Gerador de Propostas Enterprise - LSX Medical")
     st.markdown("Plataforma White Label B2B - Configuração de Contratos Avançados")
 
-    st.subheader("1. Dados do Cliente e Inteligência Comercial")
-    col1, col2, col3 = st.columns([2, 1, 1])
-    
-    cliente_empresa = col1.text_input("Razão Social / Empresa", value="")
-    cliente_responsavel = col2.text_input("Nome do Responsável", value="")
-    segmento_selecionado = col3.selectbox("Segmento de Atuação", list(TEXTOS_SEGMENTOS.keys()))
-    
+    # SEÇÃO 1: CLIENTE
+    st.subheader("1. Dados do Cliente (Contratante)")
+    col1, col2 = st.columns(2)
+    cliente_empresa = col1.text_input("Razão Social / Empresa", placeholder="Ex: Grupo UMUPREV")
+    cliente_responsavel = col2.text_input("Nome do Responsável", placeholder="Ex: João Silva")
+
     nome_fantasia_cliente = cliente_empresa if cliente_empresa else "Sua Empresa"
 
     st.markdown("---")
-    
-    st.subheader("2. Dimensionamento, Precificação e Prazos")
-    col_vig, col_acesso, col_pag = st.columns([1, 1, 1])
-    vigencia_contrato = col_vig.radio("Vigência do Contrato", ["12 Meses", "24 Meses"], index=1)
-    
-    data_acesso = col_acesso.text_input("Data Disponibilização do Acesso", value="")
-    data_pagamento = col_pag.text_input("Data 1º Pagamento / Kick-Off", value="")
-    
-    st.markdown("<br>", unsafe_allow_html=True)
-    usar_rampa = st.checkbox("📈 Habilitar Cronograma de Implantação (Rampa de Crescimento)")
-    dados_rampa = None 
-    
-    qtd_vidas = 1000 
-    
+
+    # SEÇÃO 2: PRECIFICAÇÃO BASE (SIMPLES OU RAMPA)
+    st.subheader("2. Dimensionamento e Precificação — Telemedicina Base")
+
+    usar_rampa = st.checkbox("📈 Habilitar Rampa de Lançamento (Contrato com Escalonamento Mensal)")
+
+    dados_rampa = None
+
     if usar_rampa:
-        st.info("Preencha a rampa. A política de escalonamento será gerada baseada nessas linhas.")
-        
-        meses_iniciais = ["Mês 1", "Mês 2", "Mês 3", "Mês 4"] 
-        vidas_iniciais = [1000, 3000, 5000, 10000]
-        valores_iniciais = [3.90, 3.90, 3.90, 3.90]
-        
+        st.info("Preencha a tabela abaixo com a projeção mês a mês. O PDF gerará um cronograma financeiro completo.")
+
+        meses_iniciais = [f"Mês {i}" for i in range(1, 13)]
+        vidas_iniciais = [1000] * 12
+        valores_iniciais = [5.90] * 12
+
         df_rampa = pd.DataFrame({
-            "Período": meses_iniciais, "Vidas Contratadas": vidas_iniciais, "Valor por Vida (R$)": valores_iniciais
+            "Período": meses_iniciais,
+            "Qtd. Vidas": vidas_iniciais,
+            "Valor por Vida (R$)": valores_iniciais
         })
+
         dados_rampa = st.data_editor(df_rampa, num_rows="dynamic", use_container_width=True, hide_index=True)
-        dados_rampa = dados_rampa.fillna(0)
-        
-        try:
-            qtd_vidas = int(dados_rampa["Vidas Contratadas"].max())
-            valor_unitario = float(dados_rampa["Valor por Vida (R$)"].iloc[-1])
-        except:
-            qtd_vidas = 10000
-            valor_unitario = 3.90
+
+        qtd_vidas = dados_rampa["Qtd. Vidas"].max()
+        valor_unitario = dados_rampa["Valor por Vida (R$)"].iloc[-1]
+
     else:
         col_vidas, col_preco = st.columns([1, 1])
-        qtd_vidas = col_vidas.number_input("Volume Inicial Estimado (Vidas)", min_value=1, value=1000, step=100)
-        if qtd_vidas is None: qtd_vidas = 0 
-        
+        qtd_vidas = col_vidas.number_input("Quantidade de Vidas Fixas", min_value=1, value=1000, step=100)
         preco_calculado = calcular_preco_sugerido(qtd_vidas)
         valor_unitario = col_preco.number_input("Valor Mensal por Vida (R$)", value=float(preco_calculado), format="%.2f", step=0.10)
-        if valor_unitario is None: valor_unitario = 0.0 
-        
+
         total_mensal = qtd_vidas * valor_unitario
         st.markdown(f"""
             <div class="highlight-box">
-                <h3 style="margin:0; color: #001E50;">Investimento Base: R$ {total_mensal:,.2f} /mês</h3>
+                <h3 style="margin:0; color: #001E50;">Valor Total Mensal: R$ {total_mensal:,.2f}</h3>
+                <p style="margin:0; color: #555;">Faixa aplicada: {qtd_vidas} vidas a R$ {valor_unitario:.2f} por beneficiário.</p>
             </div>
         """, unsafe_allow_html=True)
 
     st.markdown("---")
-    st.subheader("3. Escopo Bônus e Serviços Adicionais (Precificação)")
-    st.write("Marque os diferenciais contratados. Se houver custo extra, o sistema abrirá os campos para precificação automática no contrato.")
-    
-    inc_clube = st.checkbox("Clube de Benefícios (Gratuito Inclusivo)", value=True)
-    
-    inc_televet = st.checkbox("Televeterinária (Pet)")
-    if inc_televet:
-        col_t1, col_t2 = st.columns(2)
-        qtd_pet = col_t1.number_input("Quantidade de Vidas Pet", min_value=1, value=1000)
-        valor_pet = col_t2.number_input("Valor por Vida Pet (R$)", min_value=0.0, value=1.00, format="%.2f")
 
-    inc_entrevista = st.checkbox("Projeto de Entrevista Qualificada")
-    if inc_entrevista:
-        col_e1, col_e2, col_e3 = st.columns(3)
-        plano_entrevista = col_e1.text_input("Formato (Entrevista)", value="Fixo Mensal")
-        valor_entrevista = col_e2.number_input("Valor Unitário/Mensal (R$) - Entrevista", min_value=0.0, value=1500.00, format="%.2f")
-        setup_entrevista = col_e3.number_input("Setup (R$) - Entrevista", min_value=0.0, value=0.00, format="%.2f")
+    # SEÇÃO 3: ESCOPO CLÍNICO CORE
+    st.subheader("3. Configuração de Escopo e Diferenciais Estratégicos")
 
-    inc_nr1 = st.checkbox("Programa de Regulamentação NR-1")
-    if inc_nr1:
-        col_n1, col_n2, col_n3 = st.columns(3)
-        plano_nr1 = col_n1.text_input("Formato (NR-1)", value="Por Vidas Contratadas")
-        valor_nr1 = col_n2.number_input("Valor Unitário/Mensal (R$) - NR-1", min_value=0.0, value=1.50, format="%.2f")
-        setup_nr1 = col_n3.number_input("Setup (R$) - NR-1", min_value=0.0, value=0.00, format="%.2f")
+    c_scope1, c_scope2 = st.columns(2)
 
-    inc_protocolos = st.checkbox("Protocolos Clínicos Personalizados")
-    if inc_protocolos:
-        col_p1, col_p2, col_p3 = st.columns(3)
-        plano_protocolos = col_p1.text_input("Formato (Protocolos)", value="Taxa Única de Estruturação")
-        valor_protocolos = col_p2.number_input("Mensalidade (R$) - Protocolos", min_value=0.0, value=0.00, format="%.2f")
-        setup_protocolos = col_p3.number_input("Setup/Taxa Única (R$) - Protocolos", min_value=0.0, value=3000.00, format="%.2f")
+    with c_scope1:
+        st.markdown("**Core Clínico (Incluso no Pronto Atendimento 24/7):**")
+        st.checkbox("Clínico Geral 24/7", value=True, disabled=True)
+        st.checkbox("Pediatria e Médico da Família", value=True)
+        st.checkbox("Psicologia Orientativa (09h às 18h)", value=True)
+        st.checkbox("Programa de Apoio ao Luto / Acolhimento", value=True)
+        st.checkbox("App e Dashboard White Label", value=True, disabled=True)
+        st.caption(
+            "Rede ampliada disponível conforme diferenciais contratados: "
+            "Psiquiatra, Psiquiatra Pediátrico/Neuropediatra, Nutricionista, "
+            "Fonoaudiólogo e Fisioterapeuta."
+        )
 
-    inc_cabine = st.checkbox("Cabine Física de Telemedicina")
-    if inc_cabine:
-        col_c1, col_c2 = st.columns(2)
-        qtd_cabines = col_c1.number_input("Quantidade de Cabines", min_value=1, value=1)
-        default_cabine = 0.00 if qtd_vidas >= 100000 else 3900.00
-        valor_cabine = col_c2.number_input("Mensalidade por Cabine (R$)", min_value=0.0, value=default_cabine, format="%.2f")
-        
-        if valor_cabine == 0:
-            st.success(f"🎉 Como o contrato atinge {qtd_vidas:,} vidas, a cabine será fornecida em regime de Comodato (Gratuita)!")
-        else:
-            st.info("ℹ️ Instalação Gratuita. O contrato da cabine acompanhará a vigência principal.")
+    # Lista que alimenta o PDF — cada item: titulo, descricao, tabela (headers/rows)
+    diferenciais_selecionados = []
 
+    with c_scope2:
+        st.markdown("**Diferenciais B2B (marque para configurar cada um):**")
+
+        # 1. Entrevista Qualificada Gravada
+        inc_entrevista = st.checkbox("Projeto de Entrevista Qualificada Gravada")
+        if inc_entrevista:
+            with st.expander("⚙️ Configurar Entrevista Qualificada", expanded=True):
+                tipo_prof = st.radio("Profissional entrevistador", list(ENTREVISTA_OPCOES.keys()), key="entrevista_tipo")
+                cfg = ENTREVISTA_OPCOES[tipo_prof]
+                st.info(f"Mínimo {cfg['minimo']} consultas a R$ {cfg['preco']:.2f} | Fee mensal: R$ {cfg['fee']:,.2f}")
+                diferenciais_selecionados.append({
+                    "titulo": "Projeto de Entrevista Qualificada Gravada",
+                    "descricao": (
+                        f"Formalização da Declaração de Saúde do beneficiário, conduzida por "
+                        f"{tipo_prof.lower()}, com segurança jurídica, análise de risco assistencial "
+                        f"e controle de sinistralidade — em conformidade com a legislação sanitária vigente."
+                    ),
+                    "tabela": {
+                        "headers": ["Modalidade", "Valor/Consulta", "Volume Mínimo", "Fee Mensal"],
+                        "rows": [[tipo_prof, f"R$ {cfg['preco']:.2f}", f"{cfg['minimo']} consultas", f"R$ {cfg['fee']:,.2f}"]]
+                    }
+                })
+
+        # 2. Programa NR-1 / Suporte Psicossocial Corporativo
+        inc_nr1 = st.checkbox("Programa de Suporte Psicossocial Corporativo (NR-1)")
+        if inc_nr1:
+            with st.expander("⚙️ Configurar Programa NR-1", expanded=True):
+                vidas_nr1 = st.number_input("Número de beneficiários", min_value=1, value=50, key="nr1_vidas")
+                preco_nr1 = calc_nr1_price(vidas_nr1)
+                st.info(f"Valor sugerido: R$ {preco_nr1:.2f}/vida/mês (Total: R$ {preco_nr1 * vidas_nr1:,.2f}/mês)")
+                inc_pacote1 = st.checkbox("Incluir Pacote 1 — Suporte Inicial (Clínico Geral + Psicologia), sob demanda", key="nr1_p1")
+                inc_pacote2 = st.checkbox("Incluir Pacote 2 — Suporte Especializado (Psiquiatria + Psicologia), sob demanda", key="nr1_p2")
+
+                tabela_rows = [["Programa Base NR-1 (mensal, por vida)", f"R$ {preco_nr1:.2f}"]]
+                if inc_pacote1:
+                    tabela_rows.append(["Pacote 1 Quinzenal — Clínico + Psicologia", f"R$ {NR1_PACOTE1['quinzenal']:.2f}"])
+                    tabela_rows.append(["Pacote 1 Semanal — Clínico + Psicologia", f"R$ {NR1_PACOTE1['semanal']:.2f}"])
+                if inc_pacote2:
+                    tabela_rows.append(["Pacote 2 Quinzenal — Psiquiatria + Psicologia", f"R$ {NR1_PACOTE2['quinzenal']:.2f}"])
+                    tabela_rows.append(["Pacote 2 Semanal — Psiquiatria + Psicologia", f"R$ {NR1_PACOTE2['semanal']:.2f}"])
+
+                diferenciais_selecionados.append({
+                    "titulo": "Programa de Suporte Psicossocial Corporativo (NR-1)",
+                    "descricao": (
+                        "Atendimento psicológico orientativo mensal a cada colaborador, com pesquisa "
+                        "psicossocial inclusa (integrável ao PGR) e relatório mensal de indicadores em "
+                        "conformidade com a LGPD. Pacotes de suporte clínico e psiquiátrico acionados "
+                        "sob demanda, mediante indicação e aprovação da empresa."
+                    ),
+                    "tabela": {"headers": ["Serviço", "Valor / Colaborador"], "rows": tabela_rows}
+                })
+
+        # 3. Telemedicina em Canabidiol (CBD)
+        inc_cbd = st.checkbox("Telemedicina em Canabidiol (CBD)")
+        if inc_cbd:
+            diferenciais_selecionados.append({
+                "titulo": "Telemedicina em Canabidiol (CBD)",
+                "descricao": (
+                    "Avaliação médica e prescrição de canabidiol via telemedicina, em conformidade com "
+                    "ANVISA e CFM, com acompanhamento contínuo (mensal, bimestral ou semestral conforme "
+                    "evolução clínica) e cadastro automático via API."
+                ),
+                "tabela": {"headers": ["Serviço", "Valor"], "rows": [["Consulta avulsa de prescrição", f"R$ {CBD_PRECO_CONSULTA:.2f}"]]}
+            })
+
+        # 4. Projeto Emagrecimento (Tirzepatida)
+        inc_emagrecimento = st.checkbox("Projeto Emagrecimento (Tirzepatida)")
+        if inc_emagrecimento:
+            with st.expander("⚙️ Configurar Projeto Emagrecimento", expanded=True):
+                vidas_emag = st.number_input("Número de vidas estimado", min_value=1, value=50, key="emag_vidas")
+                duracao_emag = st.selectbox("Duração do pacote", ["2 meses", "4 meses", "6 meses"], key="emag_duracao")
+                preco_emag = calc_emagrecimento_price(vidas_emag)
+                st.info(f"Valor sugerido: R$ {preco_emag:.2f}/vida (pacote {duracao_emag})")
+                diferenciais_selecionados.append({
+                    "titulo": "Projeto Emagrecimento (Tirzepatida)",
+                    "descricao": (
+                        f"Tratamento completo e integrado para pacientes em uso de Tirzepatida, com "
+                        f"acompanhamento de Clínico Geral, Nutricionista e Psicólogo. Pacote de "
+                        f"{duracao_emag}, com autoagendamento em todas as etapas."
+                    ),
+                    "tabela": {"headers": ["Vidas", "Valor por Vida", "Duração"], "rows": [[f"{vidas_emag}", f"R$ {preco_emag:.2f}", duracao_emag]]}
+                })
+
+        # 5. Soluções LSX para Atenção Primária (Totem/Cabine)
+        inc_atencao_primaria = st.checkbox("Soluções LSX para Atenção Primária (Totem/Cabine)")
+        if inc_atencao_primaria:
+            with st.expander("⚙️ Configurar Soluções de Atenção Primária", expanded=True):
+                solucoes_escolhidas = st.multiselect("Soluções desejadas", list(ATENCAO_PRIMARIA_SOLUCOES.keys()), key="ap_solucoes")
+                modalidade_ap = st.radio("Modalidade", ["Locação Mensal", "Venda"], key="ap_modalidade")
+                tabela_rows = []
+                for sol in solucoes_escolhidas:
+                    valores = ATENCAO_PRIMARIA_SOLUCOES[sol]
+                    valor = valores["locacao"] if modalidade_ap == "Locação Mensal" else valores["venda"]
+                    tabela_rows.append([sol, modalidade_ap, f"R$ {valor:,.2f}"])
+                if tabela_rows:
+                    diferenciais_selecionados.append({
+                        "titulo": "Soluções LSX Medical para Atenção Primária",
+                        "descricao": (
+                            "Tecnologia 100% nacional (fabricação própria) para triagem autônoma e "
+                            "telemedicina presencial — totens de sinais vitais e cabines de telemedicina, "
+                            "com suporte técnico, treinamento e calibração periódica inclusos."
+                        ),
+                        "tabela": {"headers": ["Solução", "Modalidade", "Valor"], "rows": tabela_rows}
+                    })
+                else:
+                    st.warning("Selecione ao menos uma solução para incluir na proposta.")
+
+        # 6. Projeto Remoção
+        inc_remocao = st.checkbox("Projeto Remoção (Barreira Assistencial)")
+        if inc_remocao:
+            diferenciais_selecionados.append({
+                "titulo": "Projeto Remoção — Barreira Assistencial",
+                "descricao": (
+                    "Telemedicina como filtro clínico antes de qualquer acionamento de ambulância, "
+                    "reduzindo remoções desnecessárias e custos operacionais. A decisão final sobre o "
+                    "envio da ambulância é sempre baseada na avaliação médica da LSX Medical, com "
+                    "respaldo técnico e legal ao contratante."
+                ),
+                "tabela": {
+                    "headers": ["Item", "Valor"],
+                    "rows": [
+                        ["Consulta de triagem/remoção", f"R$ {REMOCAO_PRECO_CONSULTA:.2f}"],
+                        ["Volume mínimo mensal", f"{REMOCAO_MINIMO_CONSULTAS} consultas"],
+                        ["Fee mensal", f"R$ {REMOCAO_FEE_MENSAL:,.2f}"],
+                    ]
+                }
+            })
+
+        # 7. Projeto TEA
+        inc_tea = st.checkbox("Projeto TEA — Acompanhamento Multidisciplinar")
+        if inc_tea:
+            with st.expander("⚙️ Configurar Projeto TEA", expanded=True):
+                plano_tea = st.selectbox("Plano de acompanhamento", list(TEA_PLANOS.keys()), key="tea_plano")
+                valor_tea = TEA_PLANOS[plano_tea]
+                diferenciais_selecionados.append({
+                    "titulo": "Projeto TEA — Planos de Acompanhamento Multidisciplinar",
+                    "descricao": (
+                        "Avaliação, diagnóstico e acompanhamento multidisciplinar 100% digital para "
+                        "crianças com suspeita ou diagnóstico de TEA, com equipe de Clínico Geral, "
+                        "Psiquiatra Pediátrico/Neuropediatra, Psicologia, Fonoaudiologia e Fisioterapia."
+                    ),
+                    "tabela": {"headers": ["Plano", "Valor Mensal"], "rows": [[plano_tea, f"R$ {valor_tea:,.2f}"]]}
+                })
+
+        # 8. Contratação de Especialista por Volume Mínimo Inicial (genérico)
+        inc_volume_min = st.checkbox("Contratação de Especialista por Volume Mínimo Inicial")
+        if inc_volume_min:
+            with st.expander("⚙️ Configurar Especialidade por Volume", expanded=True):
+                especialidade_vm = st.text_input(
+                    "Especialidade contratada",
+                    placeholder="Ex: Psiquiatria, Dermatologia, Nutrição...",
+                    key="vm_especialidade"
+                )
+                nome_espec = especialidade_vm if especialidade_vm else "Especialista"
+                diferenciais_selecionados.append({
+                    "titulo": f"Contratação de {nome_espec} por Volume Mínimo Inicial",
+                    "descricao": (
+                        f"Alternativa à consulta avulsa de mercado (R$ 150,00): ao contratar um volume "
+                        f"mínimo inicial da especialidade de {nome_espec}, o contratante acessa condições "
+                        f"escalonadas de preço. Contratação à parte, complementar aos demais pacotes desta "
+                        f"proposta."
+                    ),
+                    "tabela": {
+                        "headers": ["Faixa de Volume Mensal", "Valor por Consulta", "Benefício"],
+                        "rows": [[f, f"R$ {p:.2f}", b] for f, p, b in VOLUME_MINIMO_TABLE]
+                    }
+                })
+
+    obs_comerciais = st.text_area("Observações Comerciais (Ex: Carência, Setup de Implantação)", height=80)
+
+    # BOTÃO GERADOR
     st.markdown("---")
-    obs_comerciais = st.text_area("Observações Comerciais (Ex: Carência, Alinhamentos Específicos)", height=80)
+    submit_btn = st.button("GERAR PROPOSTA ENTERPRISE (PDF) 🚀")
 
-    submit_btn = st.button("GERAR ANEXO COMERCIAL (PDF) 🚀")
-
+    # --- PROCESSAMENTO DO PDF ---
     if submit_btn:
         if not cliente_empresa:
             st.error("⚠️ Por favor, preencha o nome da Empresa Cliente.")
@@ -338,330 +535,178 @@ def main():
             try:
                 pdf = ProposalPDF(logo_path=logo_final)
                 pdf.add_page()
-                
+
                 # --- CAPA ---
                 pdf.set_font('Arial', 'B', 12)
                 pdf.set_text_color(*COR_PRIMARIA)
                 pdf.cell(0, 10, limpa_texto(f"À/C: {cliente_empresa}"), 0, 1)
                 pdf.set_font('Arial', '', 11)
-                if cliente_responsavel: pdf.cell(0, 6, limpa_texto(f"Aos cuidados de: {cliente_responsavel}"), 0, 1)
-                if data_acesso: pdf.cell(0, 6, f"Data da Emissão: {datetime.now().strftime('%d/%m/%Y')}", 0, 1)
-                pdf.ln(5)
-                
-                # --- APRESENTAÇÃO COMERCIAL ---
-                copy_intro = TEXTOS_SEGMENTOS[segmento_selecionado]
-                pdf.chapter_title(f"A CLÍNICA DIGITAL {nome_fantasia_cliente.upper()}")
-                pdf.body_text(copy_intro["intro1"].replace("{marca}", nome_fantasia_cliente))
-                pdf.body_text(copy_intro["intro2"])
-                pdf.ln(5)
+                if cliente_responsavel:
+                    pdf.cell(0, 6, limpa_texto(f"Aos cuidados de: {cliente_responsavel}"), 0, 1)
+                pdf.cell(0, 6, f"Data da Emissão: {datetime.now().strftime('%d/%m/%Y')}", 0, 1)
 
-                # ==========================================
-                # ESTRUTURA RIGOROSA DO ANEXO I
-                # ==========================================
-                pdf.set_font('Arial', 'B', 14)
-                pdf.set_text_color(*COR_PRIMARIA)
-                pdf.cell(0, 8, limpa_texto("ANEXO I - CONDIÇÕES COMERCIAIS"), 0, 1, 'C')
-                pdf.ln(3)
+                pdf.ln(8)
 
-                # 1. OBJETO DO ANEXO
-                pdf.chapter_title("1. OBJETO DO ANEXO")
-                pdf.body_text("O presente Anexo tem por objeto estabelecer todas as condições comerciais, operacionais e assistenciais referentes à contratação da Solução de Telemedicina Corporativa em modelo White Label, conforme proposta comercial aceita pelas partes.")
+                # --- INTRODUÇÃO ENTERPRISE ---
+                pdf.chapter_title(f"1. A CLÍNICA DIGITAL {nome_fantasia_cliente.upper()}")
+                pdf.body_text(
+                    f"A LSX Medical propõe transformar sua base de confiança em um cuidado contínuo de alto valor agregado. "
+                    f"Nosso objetivo é estruturar e operar uma Clínica Digital de telemedicina totalmente personalizada, "
+                    f"exclusiva e integralmente sob a marca {nome_fantasia_cliente}."
+                )
+                pdf.body_text(
+                    "Não se trata de uma plataforma genérica de mercado. Esta é uma operação desenhada para a realidade, "
+                    f"estratégia de negócios e posicionamento institucional da {nome_fantasia_cliente}."
+                )
 
-                # 2. MODELO DA SOLUÇÃO CONTRATADA
-                pdf.chapter_title("2. MODELO DA SOLUÇÃO CONTRATADA")
-                pdf.body_text("A solução contratada compreende:")
-                pdf.bullet_point("Plataforma de telemedicina 100% White Label;")
-                pdf.bullet_point("Operação assistencial em regime de Pronto Atendimento 24x7;")
-                pdf.bullet_point(f"Clínica digital personalizada com identidade visual da CONTRATANTE ({nome_fantasia_cliente});")
-                pdf.bullet_point("Corpo clínico próprio da LSX Medical;")
-                pdf.bullet_point("Operação, suporte técnico e helpdesk sob gestão da LSX Medical.")
+                # --- JORNADA PERSONALIZADA ---
+                pdf.chapter_title("2. JORNADA 100% PERSONALIZADA (WHITE LABEL)")
+                pdf.bullet_point(f"Plataforma completa com identidade visual, nome e posicionamento da {nome_fantasia_cliente}.")
+                pdf.bullet_point("Helpdesk e corpo clínico treinado, atuando como extensão oficial da sua equipe.")
+                pdf.bullet_point(f"Atestados, receituários ICP-Brasil e exames emitidos com a marca {nome_fantasia_cliente}.")
+                pdf.bullet_point("Dashboard exclusivo corporativo com dados reais de uso, engajamento e performance da base.")
 
-                # 3. ESCOPO DOS SERVIÇOS INCLUSOS
-                pdf.chapter_title("3. ESCOPO DOS SERVIÇOS INCLUSOS")
-                pdf.body_text("Estão inclusos na solução contratada:")
-                pdf.bullet_point("Agendamento digital de consultas (opcional);")
-                pdf.bullet_point("Videoconsultas integradas;")
-                pdf.bullet_point("Prontuário eletrônico;")
-                pdf.bullet_point("Receituário médico digital;")
-                pdf.bullet_point("Emissão de atestados médicos;")
-                pdf.bullet_point("Solicitação de exames;")
-                pdf.bullet_point("Dashboard gerencial;")
-                pdf.bullet_point("Helpdesk técnico e assistencial;")
-                
-                if inc_clube: pdf.bullet_point("Clube de Benefícios;")
-                if inc_televet: pdf.bullet_point(f"Televeterinária (Pet) estruturada para {qtd_pet:,} pets;")
-                if inc_entrevista: pdf.bullet_point("Projeto de Entrevista Qualificada;")
-                if inc_nr1: pdf.bullet_point("Programa de Regulamentação NR-1;")
-                if inc_protocolos: pdf.bullet_point("Protocolos Clínicos Personalizados;")
-                if inc_cabine: pdf.bullet_point(f"Fornecimento de {qtd_cabines} Cabine(s) Física(s) de Telemedicina;")
+                # --- ESCOPO CORE ---
+                pdf.chapter_title("3. ESCOPO MÉDICO E ASSISTENCIAL")
 
-                # 4. MODELO ASSISTENCIAL
-                pdf.chapter_title("4. MODELO ASSISTENCIAL")
-                
-                pdf.sub_title("4.1 Pronto Atendimento 24x7")
-                pdf.body_text("Atendimento médico disponível 24 horas por dia, 7 dias por semana, com foco em orientação clínica, resolutividade e redução de atendimentos presenciais desnecessários.")
-                
-                # AQUI ESTÁ A CORREÇÃO DE OURO (Atenção Primária vs Especialidades)
-                pdf.sub_title("4.2 Atenção Primária e Saúde Mental (Incluso no Pacote)")
-                pdf.bullet_point("Clínico Geral;")
-                pdf.bullet_point("Pediatria;")
-                pdf.bullet_point("Medicina da Família;")
-                
-                pdf.ln(1)
-                pdf.bullet_point(f"{copy_intro['titulo_mental']}:")
-                for paragrafo in copy_intro["texto_mental"].split("\n\n"):
-                    pdf.set_font('Arial', '', 9)
-                    pdf.set_text_color(50, 50, 50)
-                    pdf.cell(10) 
-                    pdf.multi_cell(0, 5, limpa_texto(paragrafo), align='J')
+                pdf.sub_title("Pronto Atendimento 24h / 7 Dias")
+                pdf.body_text("Acesso imediato e ilimitado para triagem, diagnóstico e prescrição. Corpo clínico composto por:")
+                pdf.bullet_point("Clínico Geral")
+                pdf.bullet_point("Pediatra")
+                pdf.bullet_point("Médico da Família")
+                pdf.body_text(
+                    "Rede médica ampliada disponível conforme os diferenciais contratados nesta proposta: "
+                    "Psiquiatra, Psiquiatra Pediátrico/Neuropediatra, Nutricionista, Fonoaudiólogo e Fisioterapeuta."
+                )
 
-                # NOVO ITEM 4.3 - REDE DE ESPECIALIDADES DA LSX
-                pdf.ln(3)
-                pdf.sub_title("4.3 Rede de Especialidades Médicas (Agendamento Eletivo)")
-                pdf.body_text("Para continuidade do cuidado, a plataforma dispõe de uma rede médica completa com mais de 30 especialidades focadas em tratamentos específicos e acompanhamento. Entre as principais áreas atendidas na plataforma, destacam-se:")
-                
-                # Lista das principais especialidades tiradas do arquivo enviado
-                especialidades = "Cardiologia, Dermatologia, Endocrinologia (Adulto e Infantil), Gastroenterologia, Geriatria, Ginecologia, Neurologia, Nutrição, Ortopedia, Pneumologia, Psiquiatria, Reumatologia e Urologia."
-                pdf.bullet_point(especialidades)
+                pdf.sub_title("Saúde Mental e Apoio ao Luto")
+                pdf.body_text("Atendimento de Psicologia Orientativa (das 09h às 18h). Como pilar central do projeto, estruturamos o programa de Apoio ao Luto e Acolhimento Familiar.")
+                pdf.body_text("Sabemos que a dor não termina no momento da despedida — muitas vezes ela se intensifica nos dias seguintes. Oferecemos escuta qualificada e direcionamento emocional para as famílias num momento extremamente sensível, fortalecendo laços e gerando valor social à marca.")
 
-                # 5. POLÍTICA DE ESPECIALIDADES
-                pdf.chapter_title("5. POLÍTICA DE ESPECIALIDADES")
-                pdf.bullet_point("Quando houver encaminhamento médico realizado pelo corpo clínico da LSX Medical e o atendimento ocorrer dentro da rede própria da LSX Medical, não haverá custo adicional;")
-                pdf.bullet_point("Caso o beneficiário solicite diretamente atendimento especializado sem encaminhamento médico, poderão ser aplicadas as regras comerciais vigentes para especialidades avulsas, conforme tabela da LSX Medical.")
+                # --- DIFERENCIAIS ESTRATÉGICOS (dinâmico) ---
+                if diferenciais_selecionados:
+                    pdf.add_page()
+                    pdf.chapter_title("4. SOLUÇÕES E DIFERENCIAIS CONTRATADOS")
+                    for d in diferenciais_selecionados:
+                        pdf.sub_title(d["titulo"])
+                        pdf.body_text(d["descricao"])
+                        if "tabela" in d:
+                            pdf.price_table(d["tabela"]["headers"], d["tabela"]["rows"])
+                    num_investimento = "5"
+                    num_compliance = "6"
+                else:
+                    num_investimento = "4"
+                    num_compliance = "5"
 
-                # 6. CONDIÇÕES COMERCIAIS E ESCALONAMENTO DE PREÇOS
-                pdf.chapter_title("6. CONDIÇÕES COMERCIAIS E ESCALONAMENTO DE PREÇOS")
-                pdf.body_text("O modelo de precificação será mensal, baseado na quantidade de vidas contratada multiplicada pelo valor unitário estipulado, respeitando a estruturação abaixo:")
-                
+                # --- INVESTIMENTO E RAMPA ---
+                pdf.add_page()
+                pdf.chapter_title(f"{num_investimento}. MODELO DE INVESTIMENTO — TELEMEDICINA BASE")
+
                 if usar_rampa and dados_rampa is not None:
-                    pdf.ln(2)
-                    pdf.set_font('Arial', 'B', 9)
+                    pdf.body_text("Projeção de implantação com Rampa de Lançamento (Crescimento Escalonado):")
+                    pdf.ln(3)
+
+                    pdf.set_font('Arial', 'B', 10)
                     pdf.set_fill_color(*COR_PRIMARIA)
                     pdf.set_text_color(255, 255, 255)
-                    pdf.cell(45, 8, 'Fase / Período', 1, 0, 'C', fill=True)
-                    pdf.cell(45, 8, 'Vidas Contratadas', 1, 0, 'C', fill=True)
-                    pdf.cell(45, 8, 'Valor Unitário', 1, 0, 'C', fill=True)
-                    pdf.cell(45, 8, 'Investimento Mensal', 1, 1, 'C', fill=True)
+                    pdf.cell(40, 8, 'Período', 1, 0, 'C', fill=True)
+                    pdf.cell(50, 8, 'Vidas Estimadas', 1, 0, 'C', fill=True)
+                    pdf.cell(50, 8, 'Valor Unitário', 1, 0, 'C', fill=True)
+                    pdf.cell(50, 8, 'Faturamento Estimado', 1, 1, 'C', fill=True)
 
-                    pdf.set_font('Arial', '', 9)
+                    pdf.set_font('Arial', '', 10)
                     pdf.set_text_color(50, 50, 50)
-                    
+                    total_ano = 0
+
                     for index, row in dados_rampa.iterrows():
                         mes = str(row['Período'])
-                        try:
-                            vidas = int(row['Vidas Contratadas'])
-                            valor = float(row['Valor por Vida (R$)'])
-                        except:
-                            vidas, valor = 0, 0.0
-                            
-                        faturamento_mes = vidas * valor
-                        pdf.cell(45, 6, limpa_texto(mes), 1, 0, 'C')
-                        pdf.cell(45, 6, f"{vidas:,}", 1, 0, 'C')
-                        pdf.cell(45, 6, f"R$ {valor:,.2f}", 1, 0, 'C')
-                        pdf.cell(45, 6, f"R$ {faturamento_mes:,.2f}", 1, 1, 'C')
-                
-                pdf.ln(5)
-                pdf.body_text("A partir de 10.001 vidas, seguindo o escalonamento abaixo para crescimento orgânico da base:")
-                
-                pdf.set_font('Arial', 'B', 9)
-                pdf.set_fill_color(240, 240, 240)
-                pdf.set_text_color(*COR_PRIMARIA)
-                pdf.cell(90, 6, 'Quantidade Mínima de Vidas', 1, 0, 'C', fill=True)
-                pdf.cell(90, 6, 'Valor por Vida', 1, 1, 'C', fill=True)
-                
-                faixas_upsell = [
-                    ("10.001 a 17.999", "R$ 4,49"),
-                    ("18.000 a 20.999", "R$ 2,90"),
-                    ("21.000 a 23.999", "R$ 2,49"),
-                    ("24.000 a 26.999", "R$ 1,90"),
-                    ("27.000 a 29.999", "R$ 1,49"),
-                    ("Acima de 30.000", "R$ 0,90")
-                ]
-                
-                pdf.set_font('Arial', '', 9)
-                pdf.set_text_color(50, 50, 50)
-                for faixa, valor in faixas_upsell:
-                    pdf.cell(90, 6, limpa_texto(faixa), 1, 0, 'C')
-                    pdf.cell(90, 6, limpa_texto(valor), 1, 1, 'C')
+                        vidas = int(row['Qtd. Vidas'])
+                        valor = float(row['Valor por Vida (R$)'])
+                        total_mes = vidas * valor
+                        total_ano += total_mes
 
-                pdf.ln(3)
-                pdf.body_text("O escalonamento ocorrerá de forma automática conforme o crescimento do número de vidas, sem necessidade de renegociação contratual, desde que respeitados os volumes mínimos estabelecidos neste acordo.")
+                        pdf.cell(40, 8, limpa_texto(mes), 1, 0, 'C')
+                        pdf.cell(50, 8, f"{vidas:,}", 1, 0, 'C')
+                        pdf.cell(50, 8, f"R$ {valor:,.2f}", 1, 0, 'C')
+                        pdf.cell(50, 8, f"R$ {total_mes:,.2f}", 1, 1, 'C')
 
-                # ==========================================
-                # SERVIÇOS ADICIONAIS (INTELIGÊNCIA DE PREÇOS)
-                # ==========================================
-                if inc_clube or inc_televet or inc_entrevista or inc_nr1 or inc_protocolos or inc_cabine:
-                    pdf.ln(3)
-                    pdf.sub_title("6.1 Condições e Precificação - Serviços Adicionais Contratados")
-                    
-                    if inc_clube:
-                        pdf.bullet_point("Clube de Benefícios: Fornecido de forma integralmente Gratuita (Isento) para a base ativa.")
-                    
-                    if inc_televet:
-                        pdf.bullet_point(f"Televeterinária (Pet): Pacote para {qtd_pet:,} vidas Pet ao valor de R$ {valor_pet:,.2f} por vida. Investimento de R$ {qtd_pet * valor_pet:,.2f} /mês adicionais ao plano principal.")
-                        
-                    if inc_entrevista:
-                        txt_entrevista = f"Projeto de Entrevista Qualificada: Formato {plano_entrevista} | Valor Acordado: R$ {valor_entrevista:,.2f}"
-                        if setup_entrevista > 0: txt_entrevista += f" | Setup Inicial: R$ {setup_entrevista:,.2f}"
-                        pdf.bullet_point(txt_entrevista + ".")
-                        
-                    if inc_nr1:
-                        txt_nr1 = f"Programa de Regulamentação NR-1: Formato {plano_nr1} | Valor Acordado: R$ {valor_nr1:,.2f}"
-                        if setup_nr1 > 0: txt_nr1 += f" | Setup Inicial: R$ {setup_nr1:,.2f}"
-                        pdf.bullet_point(txt_nr1 + ".")
-                        
-                    if inc_protocolos:
-                        txt_prot = f"Protocolos Clínicos: Formato {plano_protocolos} | Mensalidade: R$ {valor_protocolos:,.2f}"
-                        if setup_protocolos > 0: txt_prot += f" | Taxa Única de Estruturação: R$ {setup_protocolos:,.2f}"
-                        pdf.bullet_point(txt_prot + ".")
-                        
-                    if inc_cabine:
-                        if valor_cabine == 0:
-                            pdf.bullet_point(f"Cabine Física de Telemedicina: {qtd_cabines} unidade(s) alocada(s) em regime de COMODATO (R$ 0,00) devido ao volume de base contratada. Instalação Gratuita. A manutenção das cabines acompanha a vigência principal.")
-                        else:
-                            pdf.bullet_point(f"Cabine Física de Telemedicina: {qtd_cabines} unidade(s) contratada(s) sob locação ao valor de R$ {valor_cabine:,.2f} /mês cada. Instalação Gratuita. O contrato acompanha a vigência principal.")
-
-                    # NOVA SEÇÃO 6.2 (RESUMO DO INVESTIMENTO)
                     pdf.ln(5)
-                    if pdf.get_y() > 250: pdf.add_page()
-                    pdf.sub_title("6.2 Resumo do Investimento Mensal (Plataforma + Adicionais)")
-                    
-                    if usar_rampa and dados_rampa is not None and not dados_rampa.empty:
-                        try:
-                            v_ini = int(dados_rampa.iloc[0]['Vidas Contratadas'])
-                            p_ini = float(dados_rampa.iloc[0]['Valor por Vida (R$)'])
-                            base_faturamento = v_ini * p_ini
-                            lbl_base = f"Licenciamento Plataforma (Base da 1ª Fase - {v_ini:,} vidas)"
-                        except:
-                            base_faturamento = qtd_vidas * valor_unitario
-                            lbl_base = f"Licenciamento Plataforma ({qtd_vidas:,} vidas)"
-                    else:
-                        base_faturamento = qtd_vidas * valor_unitario
-                        lbl_base = f"Licenciamento Plataforma ({qtd_vidas:,} vidas)"
-                        
-                    total_adicionais = 0
-                    total_setup = 0
-                    
-                    pdf.set_font('Arial', '', 9)
-                    pdf.set_text_color(50, 50, 50)
-                    
-                    pdf.cell(5)
-                    pdf.cell(140, 5, limpa_texto(f"» {lbl_base}:"), 0, 0)
-                    pdf.cell(0, 5, f"R$ {base_faturamento:,.2f}", 0, 1, 'R')
-                    
-                    if inc_televet:
-                        val_t = qtd_pet * valor_pet
-                        total_adicionais += val_t
-                        pdf.cell(5); pdf.cell(140, 5, limpa_texto(f"» Televeterinária ({qtd_pet:,} pets):"), 0, 0); pdf.cell(0, 5, f"R$ {val_t:,.2f}", 0, 1, 'R')
-                        
-                    if inc_entrevista:
-                        val_e = (qtd_vidas * valor_entrevista) if "vida" in plano_entrevista.lower() else valor_entrevista
-                        total_adicionais += val_e
-                        total_setup += setup_entrevista
-                        pdf.cell(5); pdf.cell(140, 5, limpa_texto(f"» Entrevista Qualificada ({plano_entrevista}):"), 0, 0); pdf.cell(0, 5, f"R$ {val_e:,.2f}", 0, 1, 'R')
-                        
-                    if inc_nr1:
-                        val_n = (qtd_vidas * valor_nr1) if "vida" in plano_nr1.lower() else valor_nr1
-                        total_adicionais += val_n
-                        total_setup += setup_nr1
-                        pdf.cell(5); pdf.cell(140, 5, limpa_texto(f"» Programa NR-1 ({plano_nr1}):"), 0, 0); pdf.cell(0, 5, f"R$ {val_n:,.2f}", 0, 1, 'R')
+                    pdf.set_font('Arial', 'B', 11)
+                    pdf.set_text_color(*COR_SECUNDARIA)
+                    pdf.cell(0, 8, f"Expectativa de Faturamento Acumulado no Período: R$ {total_ano:,.2f}", 0, 1, 'R')
 
-                    if inc_protocolos and valor_protocolos > 0:
-                        total_adicionais += valor_protocolos
-                        pdf.cell(5); pdf.cell(140, 5, limpa_texto("» Protocolos Clínicos (Mensalidade):"), 0, 0); pdf.cell(0, 5, f"R$ {valor_protocolos:,.2f}", 0, 1, 'R')
-                    if inc_protocolos:
-                        total_setup += setup_protocolos
+                else:
+                    pdf.set_fill_color(*COR_CINZA_CLARO)
+                    pdf.rect(10, pdf.get_y(), 190, 40, 'F')
+                    pdf.set_y(pdf.get_y() + 5)
 
-                    if inc_cabine and valor_cabine > 0:
-                        val_c = qtd_cabines * valor_cabine
-                        total_adicionais += val_c
-                        pdf.cell(5); pdf.cell(140, 5, limpa_texto(f"» Cabine Física ({qtd_cabines} un):"), 0, 0); pdf.cell(0, 5, f"R$ {val_c:,.2f}", 0, 1, 'R')
-
-                    pdf.ln(2)
-                    pdf.set_font('Arial', 'B', 10)
+                    pdf.set_font('Arial', 'B', 12)
                     pdf.set_text_color(*COR_PRIMARIA)
-                    pdf.cell(5)
-                    pdf.cell(140, 6, "INVESTIMENTO MENSAL TOTAL:", 0, 0)
-                    pdf.cell(0, 6, f"R$ {(base_faturamento + total_adicionais):,.2f}", 0, 1, 'R')
-                    
-                    if total_setup > 0:
-                        pdf.set_font('Arial', 'I', 8)
-                        pdf.set_text_color(100, 100, 100)
-                        pdf.cell(5)
-                        pdf.cell(140, 5, "* Taxa Única de Setup/Estruturação (Adicionais) faturada na implantação:", 0, 0)
-                        pdf.cell(0, 5, f"R$ {total_setup:,.2f}", 0, 1, 'R')
+                    pdf.cell(95, 10, limpa_texto("QUANTIDADE DE VIDAS"), 0, 0, 'C')
+                    pdf.cell(95, 10, limpa_texto("VALOR MENSAL POR VIDA"), 0, 1, 'C')
 
+                    pdf.set_font('Arial', '', 14)
+                    pdf.set_text_color(50, 50, 50)
+                    pdf.cell(95, 10, limpa_texto(f"{qtd_vidas} Beneficiários ativos"), 0, 0, 'C')
 
-                # 7. MODELO DE COBRANÇA
-                pdf.chapter_title("7. MODELO DE COBRANÇA")
-                pdf.bullet_point("Periodicidade: mensal;")
-                pdf.bullet_point("Base de cálculo: volume mínimo estipulado multiplicado pelo valor unitário por vida;")
-                pdf.bullet_point("Forma de pagamento: conforme definido no contrato principal;")
-                pdf.bullet_point("Não haverá cobrança de taxa de setup, implantação ou adesão da plataforma principal;")
-                pdf.bullet_point("A apuração será realizada do primeiro ao último dia de cada mês;")
-                pdf.bullet_point("Os pagamentos serão realizados até o dia 10 do mês subsequente.")
+                    pdf.set_font('Arial', 'B', 22)
+                    pdf.set_text_color(*COR_SECUNDARIA)
+                    pdf.cell(95, 10, f"R$ {valor_unitario:,.2f}", 0, 1, 'C')
 
-                # 8. IMPLANTAÇÃO E PRAZOS
-                pdf.chapter_title("8. IMPLANTAÇÃO E PRAZOS")
-                pdf.bullet_point("Prazo de implantação da clínica digital White Label: até 48 horas;")
-                pdf.bullet_point("Prazo de implantação e configuração do Clube de Benefícios: até 20 dias;")
-                pdf.bullet_point("Personalização visual conforme identidade da CONTRATANTE;")
-                
-                txt_acesso = f"Disponibilização do acesso aos beneficiários a partir de {data_acesso}." if data_acesso else "Disponibilização do acesso aos beneficiários a definir."
-                pdf.bullet_point(txt_acesso)
-                
-                pdf.ln(2)
-                txt_pag = f" O primeiro pagamento e o início das operações estão programados para {data_pagamento}." if data_pagamento else ""
-                pdf.body_text(f"Obs.: Será realizada reunião de Kick Off para apresentação da equipe e entrega das plataformas após a assinatura do contrato.{txt_pag}")
+                    pdf.ln(10)
+                    pdf.set_font('Arial', 'B', 13)
+                    pdf.set_text_color(*COR_PRIMARIA)
+                    pdf.cell(0, 10, f"TOTAL MENSAL ESTIMADO: R$ {total_mensal:,.2f}", 0, 1, 'R')
 
-                # 9. ISENÇÕES E CONDIÇÕES ESPECIAIS
-                pdf.chapter_title("9. ISENÇÕES E CONDIÇÕES ESPECIAIS")
-                pdf.body_text("Estão expressamente isentas de cobrança na plataforma principal:")
-                pdf.bullet_point("Taxa de setup;")
-                pdf.bullet_point("Taxa de implantação;")
-                pdf.bullet_point("Taxa de personalização White Label;")
-                pdf.bullet_point("Taxa de adesão.")
+                pdf.ln(8)
+                pdf.sub_title("Diretrizes Comerciais:")
+                pdf.bullet_point("Vigência Contratual: 24 meses (Período mínimo).")
+                pdf.bullet_point("Reajuste: Anual com base no índice IPCA.")
+                if obs_comerciais:
+                    pdf.bullet_point(f"Observações: {obs_comerciais}")
 
-                # 10. SEGURANÇA DA INFORMAÇÃO E CONFORMIDADE
-                pdf.chapter_title("10. SEGURANÇA DA INFORMAÇÃO E CONFORMIDADE")
-                pdf.body_text("A LSX Medical assegura:")
-                pdf.bullet_point("Conformidade com a LGPD, HIPAA e demais normas aplicáveis;")
-                pdf.bullet_point("Criptografia de dados;")
-                pdf.bullet_point("Controle de acesso e auditoria;")
-                pdf.bullet_point("Integridade e rastreabilidade das informações clínicas.")
-
-                # 11. VIGÊNCIA DAS CONDIÇÕES
-                pdf.chapter_title("11. VIGÊNCIA DAS CONDIÇÕES")
-                pdf.body_text("As condições comerciais e operacionais descritas neste Anexo:")
-                pdf.bullet_point(f"Permanecerão válidas durante a vigência do contrato ({vigencia_contrato});")
-                pdf.bullet_point("Estão condicionadas ao cumprimento do crescimento mínimo de vidas;")
-                pdf.bullet_point("Não caracterizam desconto pontual, mas sim um modelo de parceria estratégica baseado em escala e previsibilidade.")
-
-                # --- ASSINATURA ANCORADA AO FUNDO ---
-                if pdf.get_y() > 230:
-                    pdf.add_page()
-                
-                pdf.set_y(-60) 
-                
-                pdf.set_font('Arial', 'I', 9)
-                pdf.set_text_color(100, 100, 100)
-                pdf.cell(0, 5, limpa_texto("Este Anexo Comercial integra a proposta principal e consolida as condições para formalização contratual."), 0, 1, 'C')
+                # --- SEGURANÇA LEGAL ---
                 pdf.ln(5)
-                
+                pdf.chapter_title(f"{num_compliance}. COMPROMISSO ÉTICO, SEGURANÇA E LEGALIDADE")
+                texto_compliance = (
+                    "O ecossistema LSX Medical é 100% seguro, auditável e estruturado para proteger sua marca e "
+                    "a vida dos beneficiários, cumprindo rigorosamente as exigências legais vigentes no país:\n\n"
+                    f"• REGULARIDADE TÉCNICA E ÉTICA: Operação registrada no Conselho Regional de Medicina "
+                    f"do Paraná sob o nº {REGISTRO_CRM_PJ}, supervisionada diretamente por responsabilidade médica.\n\n"
+                    "• PRIVACIDADE (LGPD): Total conformidade com a Lei Geral de Proteção de Dados (Lei 13.709/18). "
+                    "Os prontuários médicos são criptografados e acessíveis exclusivamente na relação Médico-Paciente.\n\n"
+                    "• DIRETRIZES TÉCNICAS (NR-1 e CFM): Triagem clínica rigorosa, fluxos de contingência para alto "
+                    "risco e Termo de Consentimento Livre e Esclarecido (TCLE) implementado."
+                )
+
+                pdf.set_fill_color(250, 250, 250)
+                pdf.set_draw_color(200, 200, 200)
+                pdf.set_font('Arial', '', 9)
+                pdf.multi_cell(0, 5, limpa_texto(texto_compliance), border=1, align='J', fill=True)
+
+                pdf.ln(15)
+
+                # --- ASSINATURA AJUSTADA PARA NÃO SOBREPOR RODAPÉ ---
+                pdf.set_y(-75)
+
+                pdf.set_font('Arial', 'I', 10)
+                pdf.set_text_color(100, 100, 100)
+                pdf.cell(0, 5, limpa_texto("Estamos à inteira disposição para agendar uma reunião de fechamento e kick-off."), 0, 1, 'C')
+                pdf.ln(5)
+
                 y_ass = pdf.get_y()
                 pdf.set_draw_color(*COR_PRIMARIA)
                 pdf.line(70, y_ass, 140, y_ass)
                 pdf.ln(3)
-                
+
                 pdf.set_font('Arial', 'B', 11)
                 pdf.set_text_color(*COR_PRIMARIA)
-                pdf.cell(0, 5, limpa_texto(nome_vendedor) if nome_vendedor else "Assinatura Comercial", 0, 1, 'C')
-                
-                if cargo_vendedor:
-                    pdf.set_font('Arial', '', 10)
-                    pdf.set_text_color(*COR_SECUNDARIA)
-                    pdf.cell(0, 5, limpa_texto(cargo_vendedor), 0, 1, 'C')
-                
+                pdf.cell(0, 5, limpa_texto(nome_vendedor), 0, 1, 'C')
+
+                pdf.set_font('Arial', '', 10)
+                pdf.set_text_color(*COR_SECUNDARIA)
+                pdf.cell(0, 5, limpa_texto(cargo_vendedor), 0, 1, 'C')
+
                 pdf.set_font('Arial', '', 9)
                 pdf.set_text_color(100, 100, 100)
                 contato_str = ""
@@ -670,12 +715,13 @@ def main():
                 if contato_str:
                     pdf.cell(0, 5, limpa_texto(contato_str.strip(' |')), 0, 1, 'C')
 
-                nome_arquivo = f"Anexo_Comercial_LSX_{cliente_empresa.replace(' ', '_')}.pdf" if cliente_empresa else "Anexo_Comercial_LSX.pdf"
-                pdf_bytes = pdf.output(dest='S').encode('latin-1', 'replace') 
-                
-                st.success("✅ Anexo Comercial Gerado com Sucesso!")
+                # Geração
+                nome_arquivo = f"Proposta_LSX_{cliente_empresa.replace(' ', '_')}.pdf"
+                pdf_bytes = pdf.output(dest='S').encode('latin-1', 'replace')
+
+                st.success("✅ Proposta Enterprise Gerada com Sucesso!")
                 st.download_button(
-                    label="⬇️ BAIXAR ANEXO COMERCIAL (PDF)",
+                    label="⬇️ BAIXAR PROPOSTA COMERCIAL (PDF)",
                     data=pdf_bytes,
                     file_name=nome_arquivo,
                     mime="application/pdf"
@@ -683,6 +729,7 @@ def main():
 
             except Exception as e:
                 st.error(f"Erro ao gerar PDF: {e}")
+
 
 if __name__ == "__main__":
     main()
